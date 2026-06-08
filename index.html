@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BH Black Hawks — Freshman Practice Schedule</title>
+<title>BH Black Hawks — Freshman Football</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -11,52 +11,111 @@
     --purple: #5c2d91;
     --purple-mid: #7c3fbf;
     --purple-light: #a56fd4;
-    --purple-pale: #f0e8fa;
     --gray-dark: #1e1c22;
     --gray-mid: #3a3642;
-    --gray-light: #f5f4f7;
     --white: #ffffff;
     --accent: #c8a2e8;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Barlow', sans-serif; background: var(--black); color: var(--white); min-height: 100vh; }
+  body { font-family: "Barlow", sans-serif; background: var(--black); color: var(--white); min-height: 100vh; }
 
+  /* HEADER */
   .site-header { background: var(--black); border-bottom: 3px solid var(--purple); position: sticky; top: 0; z-index: 100; }
   .header-inner { max-width: 720px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
   .header-logo { width: 48px; height: 48px; object-fit: contain; flex-shrink: 0; }
   .header-text { flex: 1; }
-  .header-team { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); line-height: 1; }
+  .header-team { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); line-height: 1; }
   .header-sub { font-size: 11px; font-weight: 500; color: var(--purple-light); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; }
-  .header-badge { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; background: rgba(92,45,145,0.35); border: 1px solid rgba(92,45,145,0.5); padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
+  .header-badge { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; background: rgba(92,45,145,0.35); border: 1px solid rgba(92,45,145,0.5); padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
 
-  .main { max-width: 720px; margin: 0 auto; padding: 20px 12px 48px; }
+  /* TOP NAV TABS */
+  .top-nav { background: #111013; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .top-nav-inner { max-width: 720px; margin: 0 auto; display: flex; }
+  .top-tab { flex: 1; padding: 12px 8px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; text-align: center; color: #666; background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.18s; white-space: nowrap; }
+  .top-tab:hover { color: var(--purple-light); }
+  .top-tab.active { color: var(--white); border-bottom-color: var(--purple); }
 
-  /* MONTH SECTIONS */
+  /* PAGES */
+  .page { display: none; max-width: 720px; margin: 0 auto; padding: 24px 12px 48px; }
+  .page.active { display: block; }
+
+  /* ===== PHILOSOPHY PAGE ===== */
+  .phil-section { margin-bottom: 24px; }
+  .phil-card { background: var(--gray-dark); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 14px; }
+  .phil-card-header { background: linear-gradient(135deg, rgba(92,45,145,0.55) 0%, rgba(40,20,70,0.55) 100%); padding: 16px 20px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .phil-card-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 20px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); }
+  .phil-card-subtitle { font-size: 12px; color: var(--purple-light); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .phil-card-body { padding: 16px 20px; }
+
+  .expect-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .expect-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--purple-mid); }
+  .expect-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .expect-text { font-size: 14px; color: #ddd; line-height: 1.4; font-weight: 500; }
+
+  .standard-grid { display: flex; flex-direction: column; gap: 10px; }
+  .standard-item { background: rgba(0,0,0,0.2); border-radius: 6px; padding: 12px 14px; border-left: 3px solid var(--purple-mid); }
+  .standard-item.body { border-left-color: #e05c5c; }
+  .standard-item.mind { border-left-color: #4a9eff; }
+  .standard-item.principle { border-left-color: var(--purple-light); }
+  .standard-label { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .standard-item.body .standard-label { color: #e05c5c; }
+  .standard-item.mind .standard-label { color: #4a9eff; }
+  .standard-item.principle .standard-label { color: var(--accent); }
+  .standard-text { font-size: 13px; color: #ccc; line-height: 1.5; }
+  .standard-tagline { font-size: 12px; color: var(--purple-light); font-style: italic; margin-top: 4px; }
+
+  .identity-block { background: linear-gradient(135deg, rgba(92,45,145,0.3) 0%, rgba(40,20,70,0.3) 100%); border: 1px solid rgba(92,45,145,0.4); border-radius: 8px; padding: 16px 20px; margin-top: 14px; text-align: center; }
+  .identity-text { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 18px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--white); line-height: 1.4; }
+  .identity-sub { font-size: 13px; color: var(--accent); margin-top: 6px; font-style: italic; }
+
+  /* GOOD Standard */
+  .good-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .good-item { background: rgba(0,0,0,0.25); border-radius: 8px; padding: 14px; text-align: center; }
+  .good-letter { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 42px; color: var(--purple-light); line-height: 1; }
+  .good-word { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--white); margin-top: 4px; }
+  .good-desc { font-size: 11px; color: #888; margin-top: 3px; }
+  .good-tagline { background: rgba(92,45,145,0.2); border: 1px solid rgba(92,45,145,0.3); border-radius: 6px; padding: 12px 16px; margin-top: 12px; text-align: center; font-size: 13px; color: #ccc; font-style: italic; }
+  .good-tagline strong { color: var(--accent); font-style: normal; }
+
+  /* ===== CONDITIONING PAGE ===== */
+  .cond-card { background: var(--gray-dark); border-radius: 10px; margin-bottom: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+  .cond-toggle { width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left; }
+  .cond-toggle-inner { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: linear-gradient(135deg, rgba(92,45,145,0.4) 0%, rgba(40,20,70,0.4) 100%); }
+  .cond-toggle-inner:hover { background: linear-gradient(135deg, rgba(92,45,145,0.6) 0%, rgba(40,20,70,0.6) 100%); }
+  .cond-num { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: rgba(0,0,0,0.3); border: 1px solid rgba(200,162,232,0.3); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; }
+  .cond-name { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 17px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--white); flex: 1; }
+  .cond-chevron { color: var(--purple-light); font-size: 18px; flex-shrink: 0; transition: transform 0.25s; }
+  .cond-card.open .cond-chevron { transform: rotate(180deg); }
+  .cond-content { display: none; border-top: 1px solid rgba(255,255,255,0.06); padding: 14px 16px; }
+  .cond-card.open .cond-content { display: block; }
+  .cond-drill { background: rgba(0,0,0,0.2); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; border-left: 3px solid var(--purple-mid); font-size: 13px; color: #ccc; line-height: 1.5; }
+  .cond-drill:last-child { margin-bottom: 0; }
+
+  .standards-card { background: var(--gray-dark); border-radius: 10px; padding: 16px 18px; border: 1px solid rgba(255,255,255,0.05); margin-top: 6px; }
+  .standards-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 12px; }
+  .standard-rule { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; font-size: 13px; color: #ccc; line-height: 1.5; }
+  .standard-rule::before { content: "▸"; color: var(--purple-light); flex-shrink: 0; margin-top: 1px; }
+
+  /* ===== SCHEDULE PAGE ===== */
   .month-section { margin-bottom: 28px; }
-  .month-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 10px; padding-left: 4px; border-left: 3px solid var(--purple); padding-left: 10px; }
+  .month-label { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 10px; border-left: 3px solid var(--purple); padding-left: 10px; }
 
-  /* PRACTICE CARDS — accordion style */
   .practice { background: var(--gray-dark); border-radius: 10px; margin-bottom: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
-
   .practice-toggle { width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left; display: block; }
   .practice-toggle-inner { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: linear-gradient(135deg, rgba(92,45,145,0.5) 0%, rgba(40,20,70,0.5) 100%); }
   .practice-toggle-inner:hover { background: linear-gradient(135deg, rgba(92,45,145,0.7) 0%, rgba(40,20,70,0.7) 100%); }
-
-  .practice-num-badge { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: rgba(0,0,0,0.3); border: 1px solid rgba(200,162,232,0.3); padding: 3px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+  .practice-num-badge { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: rgba(0,0,0,0.3); border: 1px solid rgba(200,162,232,0.3); padding: 3px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
   .practice-header-text { flex: 1; }
-  .practice-date { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--white); line-height: 1.1; }
+  .practice-date { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 17px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--white); line-height: 1.1; }
   .practice-theme { font-size: 12px; color: var(--purple-light); margin-top: 2px; }
-  .practice-time-badge { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 12px; color: #aaa; white-space: nowrap; flex-shrink: 0; }
   .practice-chevron { color: var(--purple-light); font-size: 18px; flex-shrink: 0; transition: transform 0.25s; line-height: 1; }
   .practice.open .practice-chevron { transform: rotate(180deg); }
 
-  /* GAME DAY special */
   .practice.gameday .practice-toggle-inner { background: linear-gradient(135deg, rgba(30,100,30,0.6) 0%, rgba(10,40,10,0.6) 100%); }
   .practice.gameday .practice-toggle-inner:hover { background: linear-gradient(135deg, rgba(30,100,30,0.8) 0%, rgba(10,40,10,0.8) 100%); }
   .practice.gameday .practice-num-badge { border-color: rgba(100,220,100,0.3); color: #7eff7e; }
   .practice.gameday .practice-date { color: #7eff7e; }
 
-  /* CONTENT */
   .practice-content { display: none; border-top: 1px solid rgba(255,255,255,0.06); }
   .practice.open .practice-content { display: block; }
 
@@ -64,10 +123,10 @@
   .period:first-child { border-top: none; }
   .period-row { display: grid; grid-template-columns: 82px 1fr; align-items: stretch; }
   .period-time { background: rgba(0,0,0,0.25); padding: 12px 10px; display: flex; align-items: center; justify-content: center; border-right: 2px solid var(--purple); }
-  .period-time-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px; color: var(--accent); text-align: center; line-height: 1.3; }
+  .period-time-text { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; color: var(--accent); text-align: center; line-height: 1.3; }
   .period-body { padding: 12px 14px; }
-  .period-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 2px; }
-  .period-note { font-size: 11px; color: #777; font-style: italic; margin-bottom: 6px; }
+  .period-title { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 2px; }
+  .period-note { font-size: 11px; color: #777; font-style: italic; margin-bottom: 4px; }
 
   .drills { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
   .drill-group { background: rgba(0,0,0,0.2); border-radius: 6px; padding: 9px 11px; border-left: 3px solid var(--purple-mid); }
@@ -75,14 +134,14 @@
   .drill-group.defense { border-left-color: #e05c5c; }
   .drill-group.special { border-left-color: #f0a030; }
   .drill-group.team { border-left-color: #50c878; }
-  .drill-group.game { border-left-color: #7eff7e; }
+  .drill-group.goal { border-left-color: var(--accent); background: rgba(92,45,145,0.1); }
 
-  .drill-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; color: var(--purple-light); }
+  .drill-label { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; color: var(--purple-light); }
   .drill-group.offense .drill-label { color: #4a9eff; }
   .drill-group.defense .drill-label { color: #e05c5c; }
   .drill-group.special .drill-label { color: #f0a030; }
   .drill-group.team .drill-label { color: #50c878; }
-  .drill-group.game .drill-label { color: #7eff7e; }
+  .drill-group.goal .drill-label { color: var(--accent); }
 
   .drill-item { font-size: 13px; color: #ccc; line-height: 1.5; }
   .drill-item .cn { display: inline-block; font-size: 10px; font-weight: 700; color: var(--accent); background: rgba(92,45,145,0.35); padding: 1px 6px; border-radius: 3px; margin-right: 5px; text-transform: uppercase; letter-spacing: 0.06em; vertical-align: middle; }
@@ -91,14 +150,18 @@
   .hudl { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; font-weight: 600; color: #f0a030; background: rgba(240,160,48,0.12); border: 1px solid rgba(240,160,48,0.3); padding: 1px 7px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
 
   .game-detail { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 16px; margin: 14px; border: 1px solid rgba(100,220,100,0.2); text-align: center; }
-  .game-detail-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; color: #7eff7e; text-transform: uppercase; letter-spacing: 0.05em; }
+  .game-detail-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 22px; color: #7eff7e; text-transform: uppercase; letter-spacing: 0.05em; }
   .game-detail-sub { font-size: 13px; color: #aaa; margin-top: 4px; }
+
+  .footer-note { text-align: center; font-size: 11px; color: #333; margin-top: 28px; text-transform: uppercase; letter-spacing: 0.05em; }
 
   @media (max-width: 480px) {
     .header-badge { display: none; }
+    .good-grid { grid-template-columns: 1fr 1fr; }
     .period-row { grid-template-columns: 72px 1fr; }
     .period-time-text { font-size: 11px; }
     .practice-date { font-size: 15px; }
+    .top-tab { font-size: 11px; padding: 10px 4px; }
   }
 </style>
 </head>
@@ -106,18 +169,218 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <img src="data:image/gif;base64,R0lGODlhLAEsAfcAAAAAAP///xoZFTs1NltVVhYREq6pqjMrLQwFB7Otr/Lu8B4RGHNqbxoSFx0WG0MwPiccJC4jKzcsNEowRRkOGCMVIkUtQzwtO0QzQysZK0YpRjcjNxYSFlNLU2dgZ1tVW2tla0pGSv7z/v76/js6O1kqWjIeM14qYl4wYUstTamdqlosXlYuWkEkRKOQpa+ksEclSzwkP5qEnVYlXV4qZloqYl4wZlAvVVc0XU80U2REaXZZe66ascCzwlAZW1ohZGAlbEofUk4hV1IkW2QsblYqXlouYlYuXmxLcoFnhkQaTlsmZl8sa1ApWUwoVGM0bVw4ZJF6loh2jLaoubuyvVoqZlovZlEvWkUtS1UmY1YtYlIqX1IuYBEME00lX1luax4cH6GfonFucxIQFhYUGkZESz8+QlZVWmZlamJhZk1NUqqqrvr6/uLj5l5gY6uustvd30ZKTK6ys6aqqxUaGhIWFk5SUmZqasDExKqurvb6+lZbWmJnZi0yMBEXEmJnYqaqpq6yrqquqvr++vb69svNy01STFZbVRAhDD5CPWZqZb7CvTY7NEZLRG5zbAUMAl5iXBYbEx4jGg0TCBIWDhoeFiwyJrKzsRUbDicrIhIYChMaBRoeEhoeBt3e2BIUBRocDh4fERYWCgsLBRISChYWDhoaEh4eFhISDhYWEiMjHRoaFjs7NUJCPkpKRlJSTlpaVmZmYmJiXmpqZjU1M9TUz6qqpqKinvr69a6uqv7++j4+PVRUU8PDwX5+fXh4d3JycWxsa1xcW+Li4bq6uba2tZ6enYmJiCwrJjQzLgcGAg4NCh4aEhcRChoUDhoWEh4aFiUkIy0sK5GQjxYRDh4WEhIODB0bGlJOTSASEBoSEh4WFiMcHCskJBoWFkpFRWJdXWZiYmpmZqqmpv76+vr29piXl4OCgv7+/vr6+vb29vLy8u7u7ujo6N7e3tjY2NDQ0MjIyL6+vq6urqqqqqSkpGZmZmJiYkxMTERERBYWFhISEgoKCgYGBgICAv///yH5BAEAAP8ALAAAAAAsASwBAAj/AP8JHEiwoMGDCBMqXMiwocOHECNKnEixosWLGDNq3Mixo8ePIEOKHEmypMmTKFOqXMmypcuXMGPKnEmzps2bOHPq3Mmzp8+fQIMKHUq0qNGjSJMqXcq0qdOnUKNKnUq1qtWrWLNq3cq1q9evYMOKHUu2rNmzaNOqXcu2rdu3cOPKnUu3rt27ePPq3cu3r9+/gAMLHky4sOHDiBMrXsy4sePHkCNLnky5suXLmDNr3sy5s+fPoEOLHk26tOnTqFOrXs26tevXsGPLnk27tu3buHPr3s27t+/fwIMLH068uPHjyJMrX868ufPn0KNLn069uvXr2LNr3869u/fv4MOL/x9Pvrz58+jTq1/Pvr379/Djy59Pv779+/jz69/Pv7///wAGKOCABBZo4IEIJqjgggw26OCDEEYo4YQUVmjhhRhmqOGGHHbo4YcghijiiBIGYOKJKJ6YYIostujiizDGuF6MNNZo440tZodjiugEgE466aizDjvttDEMHO/AU0g88fQijzzEFCPlJVReUkyVVhLzZC/xFAJPLe+4M0w77KijRzojoKPmjs/V+GOQQxbpThvtKNkkMZfMQ089xhhjzjTHBHrMOef4YuihiB5KaKDTNGqOMfXUs0Yx8nAJDxzsDNMGO+uogyaNxsWoppojpKOmkOy04c47hchzCT1+/v8SQj75mLHLrbuQsIsZtprRSiu0BvtNsPl8YyyxxLaCq6247gKsMOaEQQ8x8YTZjgLqqInmmi4CR2OQqcIBzzvy/HmML7/8IoY999zjhjD4IJtPCPSGgM+9athhBy/8nuHvv/7yKzAv+tqBjRr4hBBHHPLSegY499gTDDC/nDONOb28884wZfbYbW4uolNqnAq0w6qr9fx5Di+3kuCyrmYUi8++vByyhzA4CwMOOLL03G4ssdwDdCz2FF100O0mrXTSO7+bszBnEIyPK/ko+7KusFhszBq91OLOOutgayqLr7k5gjqZwiPPPIAA84orcLvyTdyu4IPNK/seAkvOsvz/8YcifCgi+OCKAO13z7JAovjijDOOuCzhFC3O5OKAAALl4dwjzB6HdM4L3obcey/V+dTNiznUutOxjKe9eHamGvcShjnnAnOHG7/mDjc2vOwtC9D2KDLLLIocvvghn79iCNzf/JoIK9Azksz0ydBCffW0ZM/I9tA7a6y9vBNAgM7hJO734H7/AckeUlftvB13VDzNLb20w3E6H38W8gh6qON/O54oRDHCMI1zGOJlu5iXGnhBgL3hTBb3CMfQYlE+WQgDFrxYXtV2wQpa9EEa0kBGNFTBDTBcAxoCeIYznNGMFpKCGtaI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" alt="Black Hawks" class="header-logo">
+    <img src="data:image/gif;base64,R0lGODlhLAEsAfcAAAAAAP///xoZFTs1NltVVhYREq6pqjMrLQwFB7Otr/Lu8B4RGHNqbxoSFx0WG0MwPiccJC4jKzcsNEowRRkOGCMVIkUtQzwtO0QzQysZK0YpRjcjNxYSFlNLU2dgZ1tVW2tla0pGSv7z/v76/js6O1kqWjIeM14qYl4wYUstTamdqlosXlYuWkEkRKOQpa+ksEclSzwkP5qEnVYlXV4qZloqYl4wZlAvVVc0XU80U2REaXZZe66ascCzwlAZW1ohZGAlbEofUk4hV1IkW2QsblYqXlouYlYuXmxLcoFnhkQaTlsmZl8sa1ApWUwoVGM0bVw4ZJF6loh2jLaoubuyvVoqZlovZlEvWkUtS1UmY1YtYlIqX1IuYBEME00lX1luax4cH6GfonFucxIQFhYUGkZESz8+QlZVWmZlamJhZk1NUqqqrvr6/uLj5l5gY6uustvd30ZKTK6ys6aqqxUaGhIWFk5SUmZqasDExKqurvb6+lZbWmJnZi0yMBEXEmJnYqaqpq6yrqquqvr++vb69svNy01STFZbVRAhDD5CPWZqZb7CvTY7NEZLRG5zbAUMAl5iXBYbEx4jGg0TCBIWDhoeFiwyJrKzsRUbDicrIhIYChMaBRoeEhoeBt3e2BIUBRocDh4fERYWCgsLBRISChYWDhoaEh4eFhISDhYWEiMjHRoaFjs7NUJCPkpKRlJSTlpaVmZmYmJiXmpqZjU1M9TUz6qqpqKinvr69a6uqv7++j4+PVRUU8PDwX5+fXh4d3JycWxsa1xcW+Li4bq6uba2tZ6enYmJiCwrJjQzLgcGAg4NCh4aEhcRChoUDhoWEh4aFiUkIy0sK5GQjxYRDh4WEhIODB0bGlJOTSASEBoSEh4WFiMcHCskJBoWFkpFRWJdXWZiYmpmZqqmpv76+vr29piXl4OCgv7+/vr6+vb29vLy8u7u7ujo6N7e3tjY2NDQ0MjIyL6+vq6urqqqqqSkpGZmZmJiYkxMTERERBYWFhISEgoKCgYGBgICAv///yH5BAEAAP8ALAAAAAAsASwBAAj/AP8JHEiwoMGDCBMqXMiwocOHECNKnEixosWLGDNq3Mixo8ePIEOKHEmypMmTKFOqXMmypcuXMGPKnEmzps2bOHPq3Mmzp8+fQIMKHUq0qNGjSJMqXcq0qdOnUKNKnUq1qtWrWLNq3cq1q9evYMOKHUu2rNmzaNOqXcu2rdu3cOPKnUu3rt27ePPq3cu3r9+/gAMLHky4sOHDiBMrXsy4sePHkCNLnky5suXLmDNr3sy5s+fPoEOLHk26tOnTqFOrXs26tevXsGPLnk27tu3buHPr3s27t+/fwIMLH068uPHjyJMrX868ufPn0KNLn069uvXr2LNr3869u/fv4MOL/x9Pvrz58+jTq1/Pvr379/Djy59Pv779+/jz69/Pv7///wAGKOCABBZo4IEIJqjgggw26OCDEEYo4YQUVmjhhRhmqOGGHHbo4YcghijiiBIGYOKJKJ6YYIostujiizDGuF6MNNZo440tZodjiugEgE466aizDjvttDEMHO/AU0g88fQijzzEFCPlJVReUkyVVhLzZC/xFAJPLe+4M0w77KijRzojoKPmjs/V+GOQQxbpThvtKNkkMZfMQ089xhhjzjTHBHrMOef4YuihiB5KaKDTNGqOMfXUs0Yx8nAJDxzsDNMGO+uogyaNxsWoppojpKOmkOy04c47hchzCT1+/v8SQj75mLHLrbuQsIsZtprRSiu0BvtNsPl8YyyxxLaCq6247gKsMOaEQQ8x8YTZjgLqqInmmi4CR2OQqcIBzzvy/HmML7/8IoY999zjhjD4INtPCPSGgM+9ahjiBC3O5OKAAALl4dwjzB6HdM4L3obcey/V+dTNiznUutOxjKe9eHamGvcShjnnAnOHG7/mDjc2vOwtC9D2KDLLLIocvvghn79iCNzf/JoIK9AzksyEydBC3fW0ZM/I9tA7a6y9vBNAgM7hJO734H7/AckeUlftvB13VDzNLb20w3E6H38W8gh6qON/O54oRDHCMI1zGOJlu5iXGnhBgL3hTBb3CMfQYlE+WQgDFrxYXtV2wQpa9EEa0kBGNFTBDTBcAxoCeIYznNGMFpKCGtaIoTWoQcMaluIZz1jFNbihimh0AxkHqN4A/7znCkP0TnG/K1oa7rGzzcECg/FKBAkYQYJvHKMe8nhHO/qnB26p6DJuSocC3FGIXhgjGGmAWtR4kTB8LNBfbkCDHEEQjGDIMY1nUMOsdjGAZEijG9HghgO80QAOFOCQHGiAIhW5gEYycgHb2MYiJ9nIBTzyGanIZCkoUYpNcrIUmRQAGHwoDQmQYF4d+EAaPGA5OtojaMLg1yvohY9X8EIY9wDGJeLxNXLASDKuQ1s72hEPYozDHOcQQxx6pUBefMANaUADCNAQDg+gIQ1u+EAey2AGEtBCGiO8xjW2oY1DmvOQXUCnDGO4jHa6EwGjQIA850nPesJzFI/I5yNGwf/PUUzin/8sAAUW6QAIQCACEhjiNzrgTFyGg3LiCEcs8fENZu3hF+a4xDvg0IZ1jCBHjWGRttJBCHW0oxbyoMcxakWCmMVBDWf4AAE+sLNVWm5y4CAANkLAzW9Ggw51QMUy+snPdlrjhgKAhlIjGclUUEITmgAoUfm5z6la9arLAKgmKIGJrmIiEoRsQAGs4U53UmMbqkCGBHYRAmwQQBaY25k2+WWIfLQUGNOYRyHagKaxoUgxLkrHOsgYj0D4AhizuAcv8lEGesE0jpOrYzA8EEtsfGMXPgUDGOhAB33UwQ+UCC0pNEGKSRBVGcrwh2pVCwB/oFafj/inJr5aCUn/qEIVmcgtMizB295aIbeqkIQkrrEKAaRCqPh8xGr9AYDWulYZRV0GKaa71VR4Q5xppQVbbxkOBjAgGHxwA/viZYcz3CMYvigGPNqgB7IRpkVnw9Yw4lEMYxzjF6/QVStCsEBctiuaabAgFFsxAHByYxXPgGE7JzHUq/YztpPYKiZqm1ZkJGOIrWhEIwyhN0j8bRYTo1i6fpEoQ6ULGCj2LggkygtsxGsX0hOhJE4hAEqUdhKwhW0/l4GKVFwju/lwq4f/EDA+COMQ+GiFruzgi3rUj1Mf/StfYpQOdqB0Dfao2rzwMbA9QCJideSDLGBhiEawQhqqqISN3YkKZzxD/wDM4AQoRPGJUaA2ta4dBSlEwQlVWIIVrTAELGIRDBIf42LGCEM9DJCARk+hGFSItKQnPekeWDrSlr40FabwAhWowFzomoUwXtGKZGRCEpjAsWr1uQxKRMK4xx0qKUpxCmSwohG3JPQsYgGJz9lBj7Q6xyXgwQ6PpSgvLfoRO1ZFj2n4QgzgsNWWeQFNNNwhGHfQHC9ckQhGWCK4lcAEJf5Z2gaj9rmoHcUnmJHWAQSZAN019MUeFYZ629sF+M63C2TAb35H4d8AD3jA+83vfKuABwjnwQumwPApzMMW4/DToH6hiEOY2RKSoISdmdvafPJzErOuBG77sAt8wEIWIP9O7KgrGgJ7+MIchVAd/qQ8FxbxL061IIY57pCrlrZ1fDiDJh+wKQw7NIIRyEhzVHNMblKE1saoKIUpuNGNA7DiG/BmgC+OIQN8e/oFnVZBvmUQBSlIIQlJ2IHakcB2HTzh7TawAQqMQPcjHKEIdqc73W0AhSdAAQo60AHb1Y52KUSh6y5Q+BQmXYx5pOy+9rA4LTJRiUiM+59ThS4qBKCKZLTiFZAAWs/AsQc12JUEbphGL8aUrWOzBUboGGMvBGEOcAjMxXcjADjEEYxZiENzdsgH0iURidKS4qucELeqmevaZQigG+7mBTgYYDFzeF3s+y672HeAhMBDAQc4uML/DcbvBCc0YQhCSL/6hTCE9rv//eufhqTglOIExlgdAEKUhgB15AB15AB25AB15AB2RADq7ABnRgB3jABVzABVCgB2RADq7ABnRgB3jABVzABVCgB2RADq7ABnRgB3jABVzABVCgB2RADq7ABnRgB3jABVzABVCgB2RADq7ABnRgB3jABVzABVCgB2QADq7ABnRgB3jABVzABVCgB2QADq7ABnRgB3jABVzABVCgB2QADq7ABnRgB3jABVzABVCgB2QADq7ABnRgB3jABVzABVCgBwQAOw==" alt="Black Hawks" class="header-logo">
     <div class="header-text">
       <div class="header-team">Bloomfield Hills Black Hawks</div>
       <div class="header-sub">Freshman Football</div>
     </div>
-    <div class="header-badge">2025 Schedule</div>
+    <div class="header-badge">Summer 2025</div>
   </div>
 </header>
 
-<main class="main">
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <div class="top-nav-inner">
+    <button class="top-tab active" onclick="showPage('philosophy', this)">Philosophy</button>
+    <button class="top-tab" onclick="showPage('conditioning', this)">Conditioning</button>
+    <button class="top-tab" onclick="showPage('schedule', this)">Schedule</button>
+  </div>
+</nav>
 
-<!-- ========== JUNE ========== -->
+<!-- ===================== PHILOSOPHY PAGE ===================== -->
+<div class="page active" id="page-philosophy">
+
+  <div class="phil-section">
+    <div class="phil-card">
+      <div class="phil-card-header">
+        <div class="phil-card-title">Five Expectations of Being Human</div>
+        <div class="phil-card-subtitle">The foundation of how we operate</div>
+      </div>
+      <div class="phil-card-body">
+        <ul class="expect-list">
+          <li class="expect-item"><span class="expect-icon">&#10003;</span><span class="expect-text">Take care of yourself</span></li>
+          <li class="expect-item"><span class="expect-icon">&#10003;</span><span class="expect-text">Take care of others</span></li>
+          <li class="expect-item"><span class="expect-icon">&#10003;</span><span class="expect-text">Tell the truth, even when it&rsquo;s hard</span></li>
+          <li class="expect-item"><span class="expect-icon">&#10003;</span><span class="expect-text">We learn by making mistakes</span></li>
+          <li class="expect-item"><span class="expect-icon">&#10003;</span><span class="expect-text">Show gratitude</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phil-card">
+      <div class="phil-card-header">
+        <div class="phil-card-title">Six Standards of Football</div>
+        <div class="phil-card-subtitle">How we play — every rep, every play</div>
+      </div>
+      <div class="phil-card-body">
+        <div class="standard-grid">
+          <div class="standard-item body">
+            <div class="standard-label">Body &mdash; Fast, Physical, Relentless</div>
+            <div class="standard-text">Not based on outcome, stats, or talent. Based on character. Something anyone can always work towards.</div>
+          </div>
+          <div class="standard-item mind">
+            <div class="standard-label">Mind &mdash; Educated, Disciplined, Composed</div>
+            <div class="standard-text">Take the coaching given and study your craft. Know what you must do and do it. Regulate your emotions.</div>
+          </div>
+          <div class="standard-item principle">
+            <div class="standard-label">Play to the Standard, Not the Circumstance</div>
+            <div class="standard-text">How you play never changes. All the little things matter, every single time.</div>
+          </div>
+          <div class="standard-item principle">
+            <div class="standard-label">6 Seconds of Memory</div>
+            <div class="standard-text">One play at a time. Each play ends when it ends. We don&rsquo;t worry about the past, we don&rsquo;t think beyond right now, this play.</div>
+          </div>
+          <div class="standard-item principle">
+            <div class="standard-label">Repetition to Production</div>
+            <div class="standard-text">Create good habits on and off the field. Neural pathways. Muscle memory.</div>
+          </div>
+          <div class="standard-item principle">
+            <div class="standard-label">Process to Progress</div>
+            <div class="standard-text">Immerse yourself in the process. A desire to work and be on the journey. Crave the discomfort &mdash; it leads to growth.</div>
+          </div>
+        </div>
+        <div class="identity-block">
+          <div class="identity-text">None of this is about talent.<br>It&rsquo;s effort. It&rsquo;s mental control.<br>Always working to be better.</div>
+          <div class="identity-sub">It&rsquo;s identity.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phil-card">
+      <div class="phil-card-header">
+        <div class="phil-card-title">The GOOD Standard &mdash; Defense</div>
+        <div class="phil-card-subtitle">What it means to be a Black Hawk on defense</div>
+      </div>
+      <div class="phil-card-body">
+        <div class="good-grid">
+          <div class="good-item">
+            <div class="good-letter">G</div>
+            <div class="good-word">Great Effort</div>
+          </div>
+          <div class="good-item">
+            <div class="good-letter">O</div>
+            <div class="good-word">Outstanding Communication</div>
+          </div>
+          <div class="good-item">
+            <div class="good-letter">O</div>
+            <div class="good-word">Own Your Job</div>
+          </div>
+          <div class="good-item">
+            <div class="good-letter">D</div>
+            <div class="good-word">Dominate Your Role</div>
+          </div>
+        </div>
+        <div class="good-tagline">If every player is <strong>GOOD</strong>, the defense becomes great.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== CONDITIONING PAGE ===================== -->
+<div class="page" id="page-conditioning">
+
+  <div class="cond-card" id="c1">
+    <button class="cond-toggle" onclick="toggleCond('c1')">
+      <div class="cond-toggle-inner">
+        <span class="cond-num">Practice 1</span>
+        <span class="cond-name">Blackhawk Day</span>
+        <span class="cond-chevron">&#9662;</span>
+      </div>
+    </button>
+    <div class="cond-content">
+      <div class="cond-drill">Blackhawk Shuttles &mdash; <strong>8 reps, 30 sec rest</strong></div>
+      <div class="cond-drill">Finish with <strong>4 x 40-yard sprints</strong></div>
+    </div>
+  </div>
+
+  <div class="cond-card" id="c2">
+    <button class="cond-toggle" onclick="toggleCond('c2')">
+      <div class="cond-toggle-inner">
+        <span class="cond-num">Practice 2</span>
+        <span class="cond-name">Pursuit Day</span>
+        <span class="cond-chevron">&#9662;</span>
+      </div>
+    </button>
+    <div class="cond-content">
+      <div class="cond-drill">Partner Chase &mdash; <strong>8 reps</strong></div>
+      <div class="cond-drill">100-yard Shuttles &mdash; <strong>3 rounds</strong></div>
+      <div class="cond-drill">Bear Crawl / Sprint Combo &mdash; <strong>3 rounds</strong></div>
+    </div>
+  </div>
+
+  <div class="cond-card" id="c3">
+    <button class="cond-toggle" onclick="toggleCond('c3')">
+      <div class="cond-toggle-inner">
+        <span class="cond-num">Practice 3</span>
+        <span class="cond-name">Fourth Quarter Circuit</span>
+        <span class="cond-chevron">&#9662;</span>
+      </div>
+    </button>
+    <div class="cond-content">
+      <div class="cond-drill"><strong>15-minute rotation</strong> of sprints, up-downs, backpedals, shuffles, and sprint finishes</div>
+    </div>
+  </div>
+
+  <div class="cond-card" id="c4">
+    <button class="cond-toggle" onclick="toggleCond('c4')">
+      <div class="cond-toggle-inner">
+        <span class="cond-num">Practice 4</span>
+        <span class="cond-name">Blackhawk Plus</span>
+        <span class="cond-chevron">&#9662;</span>
+      </div>
+    </button>
+    <div class="cond-content">
+      <div class="cond-drill">Blackhawk Shuttles &mdash; <strong>8 reps</strong></div>
+      <div class="cond-drill">Finish with <strong>4 goal-line-to-20-yard sprints</strong></div>
+    </div>
+  </div>
+
+  <div class="cond-card" id="c5">
+    <button class="cond-toggle" onclick="toggleCond('c5')">
+      <div class="cond-toggle-inner">
+        <span class="cond-num">Practice 5</span>
+        <span class="cond-name">Game Speed</span>
+        <span class="cond-chevron">&#9662;</span>
+      </div>
+    </button>
+    <div class="cond-content">
+      <div class="cond-drill"><strong>12 x 40-yard sprints</strong> with 24 seconds rest</div>
+      <div class="cond-drill">Finish with <strong>4 consecutive gassers</strong></div>
+    </div>
+  </div>
+
+  <div class="cond-card" id="c6">
+    <button class="cond-toggle" onclick="toggleCond('c6')">
+      <div class="cond-toggle-inner">
+        <span class="cond-num">Practice 6</span>
+        <span class="cond-name">Competition Day</span>
+        <span class="cond-chevron">&#9662;</span>
+      </div>
+    </button>
+    <div class="cond-content">
+      <div class="cond-drill">Relay races</div>
+      <div class="cond-drill">Blackhawk Championship</div>
+      <div class="cond-drill">Timed gasser competition</div>
+    </div>
+  </div>
+
+  <div class="standards-card">
+    <div class="standards-title">Program Standards</div>
+    <div class="standard-rule">Sprint through every line.</div>
+    <div class="standard-rule">Touch every line with your hand.</div>
+    <div class="standard-rule">Give full effort every rep.</div>
+    <div class="standard-rule">During Blackhawk Shuttles, if one player misses a line, cuts a rep short, or quits before the whistle &mdash; the team returns to 0 reps.</div>
+    <div class="standard-rule">The team finishes together.</div>
+    <div class="standard-rule">If players are failing due to excessive fatigue, heat, or safety concerns, coaches should adjust volume, rest periods, or rep totals accordingly while maintaining effort standards.</div>
+  </div>
+
+</div>
+
+<!-- ===================== SCHEDULE PAGE ===================== -->
+<div class="page" id="page-schedule">
+
+<!-- JUNE -->
 <div class="month-section">
   <div class="month-label">June 2025</div>
 
@@ -127,54 +390,50 @@
       <div class="practice-toggle-inner">
         <span class="practice-num-badge">Intro</span>
         <div class="practice-header-text">
-          <div class="practice-date">June 16 — Basic Foundations</div>
-          <div class="practice-theme">6:00 – 7:30 PM</div>
+          <div class="practice-date">June 16 &mdash; Basic Foundations</div>
+          <div class="practice-theme">6:00 &ndash; 7:30 PM</div>
         </div>
-        <span class="practice-chevron">▾</span>
+        <span class="practice-chevron">&#9662;</span>
       </div>
     </button>
     <div class="practice-content">
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:00–6:15</div></div>
-        <div class="period-body"><div class="period-title">Warm Up</div><div class="period-note">Teaching it — may run longer</div></div>
+        <div class="period-time"><div class="period-time-text">6:00&ndash;6:15</div></div>
+        <div class="period-body"><div class="period-title">Warm Up</div><div class="period-note">Teaching it &mdash; may run longer</div></div>
       </div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:15–6:40</div></div>
+        <div class="period-time"><div class="period-time-text">6:15&ndash;6:40</div></div>
         <div class="period-body"><div class="period-title">Conditioning</div>
           <div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div>
-            <div class="drill-item">Blackhawk Day</div>
-            <div class="drill-item">Push Ups</div>
-            <div class="drill-item">Core</div>
+            <div class="drill-item">Blackhawk Day &mdash; Push Ups &mdash; Core</div>
           </div></div>
         </div>
       </div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:40–6:45</div></div>
+        <div class="period-time"><div class="period-time-text">6:40&ndash;6:45</div></div>
         <div class="period-body"><div class="period-title">Water / Rest</div></div>
       </div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:45–7:05</div></div>
-        <div class="period-body"><div class="period-title">Offense — Intro <span class="hudl">📲 HUDL</span></div>
+        <div class="period-time"><div class="period-time-text">6:45&ndash;7:05</div></div>
+        <div class="period-body"><div class="period-title">Offense &mdash; Intro <span class="hudl">&#128242; HUDL</span></div>
           <div class="drills"><div class="drill-group offense"><div class="drill-label">Full Group</div>
-            <div class="drill-item">Formations &amp; Terminology</div>
-            <div class="drill-item">Positions</div>
-            <div class="drill-item">Route Tree</div>
+            <div class="drill-item">Formations &amp; Terminology &mdash; Positions &mdash; Route Tree</div>
           </div></div>
         </div>
       </div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:05–7:20</div></div>
-        <div class="period-body"><div class="period-title">Defense — Intro <span class="hudl">📲 HUDL</span></div>
+        <div class="period-time"><div class="period-time-text">7:05&ndash;7:20</div></div>
+        <div class="period-body"><div class="period-title">Defense &mdash; Intro <span class="hudl">&#128242; HUDL</span></div>
           <div class="drills"><div class="drill-group defense"><div class="drill-label">Full Group</div>
-            <div class="drill-item">Alignment &amp; Terminology</div>
+            <div class="drill-item">Odd and Even fronts, Position philosophy, Alignment</div>
           </div></div>
         </div>
       </div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:20–7:30</div></div>
+        <div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div>
         <div class="period-body"><div class="period-title">End Talk</div>
-          <div class="drills"><div class="drill-group team"><div class="drill-label">Coach's Talk</div>
-            <div class="drill-item">The 6 Foundations — concepts covered each day</div>
+          <div class="drills"><div class="drill-group team"><div class="drill-label">Coach&rsquo;s Talk</div>
+            <div class="drill-item">The 6 Foundations &mdash; concepts covered each day</div>
             <div class="drill-item">Attendance &amp; timeliness is important</div>
           </div></div>
         </div>
@@ -188,66 +447,65 @@
       <div class="practice-toggle-inner">
         <span class="practice-num-badge">#1</span>
         <div class="practice-header-text">
-          <div class="practice-date">June 18 — IZ &amp; Quick Game</div>
-          <div class="practice-theme">6:00 – 7:30 PM</div>
+          <div class="practice-date">June 18 &mdash; Quick Game &amp; Pass Pro</div>
+          <div class="practice-theme">6:00 &ndash; 7:30 PM</div>
         </div>
-        <span class="practice-chevron">▾</span>
+        <span class="practice-chevron">&#9662;</span>
       </div>
     </button>
     <div class="practice-content">
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:00–6:10</div></div>
-        <div class="period-body"><div class="period-title">Warm Up</div></div>
-      </div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:15–6:35</div></div>
+        <div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div>
         <div class="period-body"><div class="period-title">Conditioning</div>
-          <div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div>
-            <div class="drill-item">Pursuit Day</div><div class="drill-item">Body Weight</div><div class="drill-item">Core</div>
+          <div class="drills"><div class="drill-group special"><div class="drill-label">Pursuit Day</div>
+            <div class="drill-item">Pursuit Day &mdash; Body Weight &mdash; Core</div>
           </div></div>
         </div>
       </div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:35–6:40</div></div>
-        <div class="period-body"><div class="period-title">Water / Rest</div></div>
-      </div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:40–7:00</div></div>
-        <div class="period-body"><div class="period-title">Offense — Individual</div>
+        <div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div>
+        <div class="period-body"><div class="period-title">Offense &mdash; Individual</div>
+          <div class="period-note">Pass routes and inside zone</div>
           <div class="drills">
             <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div>
-              <div class="drill-item">Stance &amp; Starts</div>
-              <div class="drill-item">Quick Routes — Hitch, Slant, Out, In</div>
-              <div class="drill-item">Signals</div>
+              <div class="drill-item">Stance &amp; Starts &mdash; Quick Routes (Hitch, Slant, Out, In) &mdash; Signals</div>
             </div>
             <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div>
-              <div class="drill-item">Quicks — 1 Step Drop</div>
+              <div class="drill-item">Quicks &mdash; 1 Step Drop</div>
             </div>
             <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div>
-              <div class="drill-item">Inside Zone — Slide Step</div>
-              <div class="drill-item">Signal</div>
+              <div class="drill-item">Quick Protection &mdash; Ram / Lion &mdash; Solid Protection &mdash; Rhino / Leopard &mdash; Signals</div>
+            </div>
+            <div class="drill-group goal"><div class="drill-label">Overall Goal &mdash; Offense</div>
+              <div class="drill-item">Offense understands importance of speed and detail for quick</div>
             </div>
           </div>
         </div>
       </div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:00–7:20</div></div>
-        <div class="period-body"><div class="period-title">Defense — Individual</div>
+        <div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div>
+        <div class="period-body"><div class="period-title">Defense &mdash; Individual</div>
+          <div class="period-note">Cover 3 &mdash; Stance, Base odd front, gap responsibility, pursuit, signals</div>
           <div class="drills">
-            <div class="drill-group defense"><div class="drill-label"><span class="cn">Lubs</span> DB</div><div class="drill-item tbd">TBD</div></div>
-            <div class="drill-group defense"><div class="drill-label"><span class="cn">Erv</span> LB</div><div class="drill-item tbd">TBD</div></div>
-            <div class="drill-group defense"><div class="drill-label"><span class="cn">Dontez</span> D-Line</div><div class="drill-item tbd">TBD</div></div>
+            <div class="drill-group defense"><div class="drill-label"><span class="cn">Lubs</span> DB</div>
+              <div class="drill-item">Cover 3 drops</div>
+            </div>
+            <div class="drill-group defense"><div class="drill-label"><span class="cn">Erv</span> LB</div>
+              <div class="drill-item">Read triangle / fits</div>
+            </div>
+            <div class="drill-group defense"><div class="drill-label"><span class="cn">Dontez</span> D-Line</div>
+              <div class="drill-item">Stance, alignment, get off</div>
+            </div>
+            <div class="drill-group goal"><div class="drill-label">Overall Goal &mdash; Defense</div>
+              <div class="drill-item">Every player can align correctly and communicate the call</div>
+            </div>
           </div>
         </div>
       </div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:20–7:30</div></div>
-        <div class="period-body"><div class="period-title">Tackle Technique Drill</div></div>
-      </div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:30</div></div>
-        <div class="period-body"><div class="period-title">End — Motivation &amp; Info</div></div>
-      </div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div>
     </div>
   </div>
 
@@ -257,54 +515,59 @@
       <div class="practice-toggle-inner">
         <span class="practice-num-badge">#2</span>
         <div class="practice-header-text">
-          <div class="practice-date">June 23 — Pass Pro &amp; Drop Game</div>
-          <div class="practice-theme">6:00 – 7:30 PM</div>
+          <div class="practice-date">June 23 &mdash; Inside Zone &amp; Drop Game</div>
+          <div class="practice-theme">6:00 &ndash; 7:30 PM</div>
         </div>
-        <span class="practice-chevron">▾</span>
+        <span class="practice-chevron">&#9662;</span>
       </div>
     </button>
     <div class="practice-content">
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00–6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:15–6:35</div></div>
+        <div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div>
         <div class="period-body"><div class="period-title">Conditioning</div>
-          <div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div>
-            <div class="drill-item">4th Quarter Circuit</div><div class="drill-item">Body Weight</div><div class="drill-item">Core</div>
+          <div class="drills"><div class="drill-group special"><div class="drill-label">4th Quarter Circuit</div>
+            <div class="drill-item">4th Quarter Circuit &mdash; Body Weight &mdash; Core</div>
           </div></div>
         </div>
       </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35–6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:40–7:00</div></div>
-        <div class="period-body"><div class="period-title">Offense — Individual</div>
+        <div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div>
+        <div class="period-body"><div class="period-title">Offense &mdash; Individual</div>
+          <div class="period-note">Drop routes and Inside Zone intro</div>
           <div class="drills">
             <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div>
-              <div class="drill-item">Drop Routes — Curl, In, Out, Verts, Spot, Mesh, Smash</div>
-              <div class="drill-item">Signals</div>
+              <div class="drill-item">Drop Routes &mdash; Curl, In, Out, Verts, Spot, Mesh, Smash &mdash; Signals</div>
             </div>
             <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div>
               <div class="drill-item">Quick / Drop Back</div>
             </div>
             <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div>
-              <div class="drill-item">Quick Protection — Ram / Lion</div>
-              <div class="drill-item">Solid Protection — Rhino / Leopard</div>
-              <div class="drill-item">Signals</div>
+              <div class="drill-item">Inside Zone &mdash; Slide Step &mdash; Signal</div>
+            </div>
+            <div class="drill-group goal"><div class="drill-label">Overall Goal &mdash; Offense</div>
+              <div class="drill-item">Continued practice with Pass Pro and crisp routes, intro the slide</div>
             </div>
           </div>
         </div>
       </div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:00–7:20</div></div>
-        <div class="period-body"><div class="period-title">Defense — Individual</div>
+        <div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div>
+        <div class="period-body"><div class="period-title">Defense &mdash; Individual</div>
+          <div class="period-note">Cover 1 &mdash; Force-Fill-Spill &mdash; Motion Communication</div>
           <div class="drills">
-            <div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item tbd">TBD</div></div>
-            <div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item tbd">TBD</div></div>
-            <div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item tbd">TBD</div></div>
+            <div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item">Man coverage technique</div></div>
+            <div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item">Run / pass reads</div></div>
+            <div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item">Strike and shed</div></div>
+            <div class="drill-group goal"><div class="drill-label">Overall Goal &mdash; Defense</div>
+              <div class="drill-item">Players understand eyes, leverage and communication</div>
+            </div>
           </div>
         </div>
       </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20–7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End — Motivation &amp; Info</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div>
     </div>
   </div>
 
@@ -314,54 +577,62 @@
       <div class="practice-toggle-inner">
         <span class="practice-num-badge">#3</span>
         <div class="practice-header-text">
-          <div class="practice-date">June 25 — Roll Coverage &amp; Rollout Game</div>
-          <div class="practice-theme">6:00 – 7:30 PM</div>
+          <div class="practice-date">June 25 &mdash; Roll Coverage &amp; Rollout Game</div>
+          <div class="practice-theme">6:00 &ndash; 7:30 PM</div>
         </div>
-        <span class="practice-chevron">▾</span>
+        <span class="practice-chevron">&#9662;</span>
       </div>
     </button>
     <div class="practice-content">
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00–6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:15–6:35</div></div>
+        <div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div>
         <div class="period-body"><div class="period-title">Conditioning</div>
-          <div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div><div class="drill-item">Blackhawk Plus</div></div></div>
+          <div class="drills"><div class="drill-group special"><div class="drill-label">Blackhawk Plus</div><div class="drill-item">Blackhawk Plus</div></div></div>
         </div>
       </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35–6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:40–7:00</div></div>
-        <div class="period-body"><div class="period-title">Offense — Individual</div>
+        <div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div>
+        <div class="period-body"><div class="period-title">Offense &mdash; Individual</div>
+          <div class="period-note">Roll out all around</div>
           <div class="drills">
             <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div>
-              <div class="drill-item">Flood and Wheel</div><div class="drill-item">Signals</div>
+              <div class="drill-item">Flood and Wheel &mdash; Signals</div>
             </div>
             <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div>
-              <div class="drill-item">Roll — Ringo / Lucky</div>
+              <div class="drill-item">Roll &mdash; Ringo / Lucky</div>
             </div>
             <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div>
               <div class="drill-item">Roll Out Coverage</div>
             </div>
+            <div class="drill-group goal"><div class="drill-label">Overall Goal &mdash; Offense</div>
+              <div class="drill-item">Offense understands the need for depth, speed, and eyes for rollout</div>
+            </div>
           </div>
         </div>
       </div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:00–7:20</div></div>
-        <div class="period-body"><div class="period-title">Defense — Individual</div>
+        <div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div>
+        <div class="period-body"><div class="period-title">Defense &mdash; Individual</div>
+          <div class="period-note">Even Front Installation &mdash; Blitz #1</div>
           <div class="drills">
-            <div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item tbd">TBD</div></div>
-            <div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item tbd">TBD</div></div>
-            <div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item tbd">TBD</div></div>
+            <div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item">Rotation and communication</div></div>
+            <div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item">Blitz path and timing</div></div>
+            <div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item">Even front alignments</div></div>
+            <div class="drill-group goal"><div class="drill-label">Overall Goal &mdash; Defense</div>
+              <div class="drill-item">Players can adjust between fronts without confusion</div>
+            </div>
           </div>
         </div>
       </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20–7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End — Motivation &amp; Info</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div>
     </div>
   </div>
 </div>
 
-<!-- ========== JULY ========== -->
+<!-- JULY -->
 <div class="month-section">
   <div class="month-label">July 2025</div>
 
@@ -371,58 +642,63 @@
       <div class="practice-toggle-inner">
         <span class="practice-num-badge">#4</span>
         <div class="practice-header-text">
-          <div class="practice-date">July 7 — OZ &amp; 7v7 Prep</div>
-          <div class="practice-theme">6:00 – 7:30 PM</div>
+          <div class="practice-date">July 7 &mdash; OZ &amp; 7v7 Prep</div>
+          <div class="practice-theme">6:00 &ndash; 7:30 PM</div>
         </div>
-        <span class="practice-chevron">▾</span>
+        <span class="practice-chevron">&#9662;</span>
       </div>
     </button>
     <div class="practice-content">
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00–6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:15–6:35</div></div>
+        <div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div>
         <div class="period-body"><div class="period-title">Conditioning</div>
-          <div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div><div class="drill-item">Game Speed</div></div></div>
+          <div class="drills"><div class="drill-group special"><div class="drill-label">Game Speed</div><div class="drill-item">Game Speed</div></div></div>
         </div>
       </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35–6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:40–7:20</div></div>
-        <div class="period-body"><div class="period-title">Offense &amp; Line — Individual</div>
+        <div class="period-time"><div class="period-time-text">6:40&ndash;7:20</div></div>
+        <div class="period-body"><div class="period-title">Offense &amp; D-Line &mdash; Individual</div>
+          <div class="period-note">Preparing for 7v7 &mdash; play sheets and personnel groups</div>
           <div class="drills">
             <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs / Erv</span> WR / RB / QB</div>
-              <div class="drill-item">7v7 Practice — Quicks, Drops, Roll, Empty w/ Defense</div>
+              <div class="drill-item">7v7 Practice &mdash; Quicks, Drops, Roll, Empty w/ Defense</div>
             </div>
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line (6:40–7:00)</div>
-              <div class="drill-item">Outside Zone — Bucket Step</div>
+            <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line (6:40&ndash;7:00)</div>
+              <div class="drill-item">Outside Zone &mdash; Bucket Step</div>
             </div>
-            <div class="drill-group defense"><div class="drill-label">D-Line (7:00–7:20)</div>
-              <div class="drill-item">D-Line Work</div>
+            <div class="drill-group defense"><div class="drill-label">D-Line (7:00&ndash;7:20)</div>
+              <div class="drill-item">Cover 2 &mdash; Blitz #2 &mdash; Pressure Checks</div>
+              <div class="drill-item">DB: Cover 2 responsibilities &mdash; LB: Blitz timing and tackling &mdash; Line: Slants and movement</div>
+            </div>
+            <div class="drill-group goal"><div class="drill-label">Overall Goal</div>
+              <div class="drill-item">Execute the pass game &mdash; Defense communicates and executes at full speed</div>
             </div>
           </div>
         </div>
       </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20–7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End — Motivation &amp; Info</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div>
     </div>
   </div>
 
-  <!-- JULY 8 — GAME -->
+  <!-- JULY 8 GAME -->
   <div class="practice gameday" id="p-jul8">
     <button class="practice-toggle" onclick="togglePractice('p-jul8')">
       <div class="practice-toggle-inner">
         <span class="practice-num-badge">#5</span>
         <div class="practice-header-text">
-          <div class="practice-date">July 8 — 7v7 vs JV</div>
+          <div class="practice-date">July 8 &mdash; 7v7 vs JV</div>
           <div class="practice-theme">6:00 PM @ BH</div>
         </div>
-        <span class="practice-chevron">▾</span>
+        <span class="practice-chevron">&#9662;</span>
       </div>
     </button>
     <div class="practice-content">
       <div class="game-detail">
-        <div class="game-detail-title">🏈 7v7 vs JV</div>
-        <div class="game-detail-sub">6:00 PM · Bloomfield Hills</div>
+        <div class="game-detail-title">&#127944; 7v7 vs JV</div>
+        <div class="game-detail-sub">6:00 PM &mdash; Bloomfield Hills</div>
       </div>
     </div>
   </div>
@@ -433,323 +709,63 @@
       <div class="practice-toggle-inner">
         <span class="practice-num-badge">#6</span>
         <div class="practice-header-text">
-          <div class="practice-date">July 9 — Power &amp; Blocking</div>
-          <div class="practice-theme">6:00 – 7:30 PM</div>
-        </div>
-        <span class="practice-chevron">▾</span>
-      </div>
-    </button>
-    <div class="practice-content">
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00–6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:10–6:30</div></div>
-        <div class="period-body"><div class="period-title">Conditioning</div>
-          <div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div><div class="drill-item">Competition Day</div></div></div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30–6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:35–7:00</div></div>
-        <div class="period-body"><div class="period-title">Offense — Individual</div>
-          <div class="drills">
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div>
-              <div class="drill-item">Routes / Blocking Technique</div>
-            </div>
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">RE</span> QB</div>
-              <div class="drill-item">Drop and Roll Technique</div>
-            </div>
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div>
-              <div class="drill-item">Power</div>
-            </div>
-          </div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:00–7:20</div></div>
-        <div class="period-body"><div class="period-title">Defense — Individual</div>
-          <div class="drills">
-            <div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item tbd">TBD</div></div>
-            <div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item tbd">TBD</div></div>
-            <div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item tbd">TBD</div></div>
-          </div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20–7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End — Motivation &amp; Info</div></div></div></div>
-    </div>
-  </div>
-
-  <!-- JULY 14 -->
-  <div class="practice" id="p-jul14">
-    <button class="practice-toggle" onclick="togglePractice('p-jul14')">
-      <div class="practice-toggle-inner">
-        <span class="practice-num-badge">#7</span>
-        <div class="practice-header-text">
-          <div class="practice-date">July 14 — Lead, Routes &amp; Blocking</div>
-          <div class="practice-theme">6:00 – 7:30 PM · Offense Focus</div>
-        </div>
-        <span class="practice-chevron">▾</span>
-      </div>
-    </button>
-    <div class="practice-content">
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00–6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:10–6:30</div></div>
-        <div class="period-body"><div class="period-title">Conditioning</div>
-          <div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div><div class="drill-item">Blackhawk</div></div></div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30–6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:35–7:00</div></div>
-        <div class="period-body"><div class="period-title">Offense — Individual</div>
-          <div class="drills">
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> QB / WR</div>
-              <div class="drill-item">Routes and Hands</div>
-            </div>
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> RB</div>
-              <div class="drill-item">Lead Blocking — Fundamental Focus</div>
-              <div class="drill-item">Drills, Ball Security</div>
-            </div>
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div>
-              <div class="drill-item">Lead (Power)</div>
-            </div>
-          </div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:00–7:20</div></div>
-        <div class="period-body"><div class="period-title">Team O w/ D</div>
-          <div class="drills"><div class="drill-group team"><div class="drill-label">Team Period</div>
-            <div class="drill-item">Power, Lead, Quicks</div>
-          </div></div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20–7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End — Motivation &amp; Info</div></div></div></div>
-    </div>
-  </div>
-
-  <!-- JULY 15 — GAME -->
-  <div class="practice gameday" id="p-jul15">
-    <button class="practice-toggle" onclick="togglePractice('p-jul15')">
-      <div class="practice-toggle-inner">
-        <span class="practice-num-badge">#8</span>
-        <div class="practice-header-text">
-          <div class="practice-date">July 15 — 7v7 vs JV</div>
-          <div class="practice-theme">6:00 PM @ BH</div>
-        </div>
-        <span class="practice-chevron">▾</span>
-      </div>
-    </button>
-    <div class="practice-content">
-      <div class="game-detail">
-        <div class="game-detail-title">🏈 7v7 vs JV</div>
-        <div class="game-detail-sub">6:00 PM · Bloomfield Hills</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- JULY 16 -->
-  <div class="practice" id="p-jul16">
-    <button class="practice-toggle" onclick="togglePractice('p-jul16')">
-      <div class="practice-toggle-inner">
-        <span class="practice-num-badge">#9</span>
-        <div class="practice-header-text">
-          <div class="practice-date">July 16 — Defense Focus</div>
-          <div class="practice-theme">6:00 – 7:30 PM</div>
-        </div>
-        <span class="practice-chevron">▾</span>
-      </div>
-    </button>
-    <div class="practice-content">
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00–6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:10–6:30</div></div>
-        <div class="period-body"><div class="period-title">Conditioning</div>
-          <div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div>
-            <div class="drill-item">Pursuit Day</div><div class="drill-item">Body Weight</div><div class="drill-item">Core</div>
-          </div></div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30–6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:35–7:00</div></div>
-        <div class="period-body"><div class="period-title">Defense — Individual</div>
-          <div class="drills">
-            <div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item tbd">TBD</div></div>
-            <div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item tbd">TBD</div></div>
-            <div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item tbd">TBD</div></div>
-          </div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:00–7:20</div></div>
-        <div class="period-body"><div class="period-title">Team D w/ O</div></div>
-      </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20–7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End — Motivation &amp; Info</div></div></div></div>
-    </div>
-  </div>
-
-  <!-- JULY 21 -->
-  <div class="practice" id="p-jul21">
-    <button class="practice-toggle" onclick="togglePractice('p-jul21')">
-      <div class="practice-toggle-inner">
-        <span class="practice-num-badge">#10</span>
-        <div class="practice-header-text">
-          <div class="practice-date">July 21 — Screens</div>
-          <div class="practice-theme">6:00 – 7:30 PM · Offense Focus</div>
-        </div>
-        <span class="practice-chevron">▾</span>
-      </div>
-    </button>
-    <div class="practice-content">
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00–6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:10–6:30</div></div>
-        <div class="period-body"><div class="period-title">Conditioning</div>
-          <div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div>
-            <div class="drill-item">4th Quarter Circuit</div><div class="drill-item">Core</div>
-          </div></div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30–6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:35–7:00</div></div>
-        <div class="period-body"><div class="period-title">Offense — Individual</div>
-          <div class="drills">
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR</div>
-              <div class="drill-item">Screen Routes — Numbering, Blocking Techniques</div>
-            </div>
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB / RB</div>
-              <div class="drill-item">Option</div>
-            </div>
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div>
-              <div class="drill-item">OZ and IZ</div>
-            </div>
-          </div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:00–7:20</div></div>
-        <div class="period-body"><div class="period-title">Team O w/ D</div>
-          <div class="drills"><div class="drill-group team"><div class="drill-label">Team Period</div>
-            <div class="drill-item">OZ, IZ, Screens</div>
-          </div></div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20–7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End — Motivation &amp; Info</div></div></div></div>
-    </div>
-  </div>
-
-  <!-- JULY 23 -->
-  <div class="practice" id="p-jul23">
-    <button class="practice-toggle" onclick="togglePractice('p-jul23')">
-      <div class="practice-toggle-inner">
-        <span class="practice-num-badge">#11</span>
-        <div class="practice-header-text">
-          <div class="practice-date">July 23 — Defense Focus</div>
-          <div class="practice-theme">6:00 – 7:30 PM</div>
-        </div>
-        <span class="practice-chevron">▾</span>
-      </div>
-    </button>
-    <div class="practice-content">
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">Full Practice</div></div>
-        <div class="period-body"><div class="period-title">Blackhawk Plus</div>
-          <div class="period-note">Defense focus — full details TBD</div>
-        </div>
-      </div></div>
-    </div>
-  </div>
-
-  <!-- JULY 28 -->
-  <div class="practice" id="p-jul28">
-    <button class="practice-toggle" onclick="togglePractice('p-jul28')">
-      <div class="practice-toggle-inner">
-        <span class="practice-num-badge">#12</span>
-        <div class="practice-header-text">
-          <div class="practice-date">July 28 — Jets / Orbits</div>
-          <div class="practice-theme">6:00 – 7:30 PM · Offense Focus</div>
-        </div>
-        <span class="practice-chevron">▾</span>
-      </div>
-    </button>
-    <div class="practice-content">
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00–6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></        </div>
-      </div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:10–6:30</div></div>
-        <div class="period-body"><div class="period-title">Conditioning</div>
-          <div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div>
-            <div class="drill-item">Game Speed</div><div class="drill-item">Body Weight</div><div class="drill-item">Core</div>
-          </div></div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30–6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">6:35–7:00</div></div>
-        <div class="period-body"><div class="period-title">Offense - Individual</div>
-          <div class="drills">
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR</div>
-              <div class="drill-item">Route Work with Jets and Orbits (Roam)</div>
-            </div>
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB / RB</div>
-              <div class="drill-item">Jets and Orbits, Toss</div>
-            </div>
-            <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div>
-              <div class="drill-item">Power and Lead, OZ Toss</div>
-            </div>
-          </div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">7:00–7:20</div></div>
-        <div class="period-body"><div class="period-title">Team O w/ D</div>
-          <div class="drills"><div class="drill-group team"><div class="drill-label">Team Period</div>
-            <div class="drill-item">Power, Lead, Jets, Orbits, Toss</div>
-          </div></div>
-        </div>
-      </div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20–7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End - Motivation &amp; Info</div></div></div></div>
-    </div>
-  </div>
-
-  <!-- JULY 30 -->
-  <div class="practice" id="p-jul30">
-    <button class="practice-toggle" onclick="togglePractice('p-jul30')">
-      <div class="practice-toggle-inner">
-        <span class="practice-num-badge">#13</span>
-        <div class="practice-header-text">
-          <div class="practice-date">July 30 - Defense Focus</div>
-          <div class="practice-theme">6:00 - 7:30 PM</div>
+          <div class="practice-date">July 9 &mdash; Power &amp; Blocking</div>
+          <div class="practice-theme">6:00 &ndash; 7:30 PM</div>
         </div>
         <span class="practice-chevron">&#9662;</span>
       </div>
     </button>
     <div class="practice-content">
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
       <div class="period"><div class="period-row">
-        <div class="period-time"><div class="period-time-text">Full Practice</div></div>
-        <div class="period-body"><div class="period-title">Competition Day</div>
-          <div class="period-note">Defense focus - full details TBD</div>
+        <div class="period-time"><div class="period-time-text">6:10&ndash;6:30</div></div>
+        <div class="period-body"><div class="period-title">Conditioning</div>
+          <div class="drills"><div class="drill-group special"><div class="drill-label">Competition Day</div><div class="drill-item">Competition Day</div></div></div>
         </div>
       </div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
+      <div class="period"><div class="period-row">
+        <div class="period-time"><div class="period-time-text">6:35&ndash;7:00</div></div>
+        <div class="period-body"><div class="period-title">Offense &mdash; Individual</div>
+          <div class="drills">
+            <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Routes / Blocking Technique</div></div>
+            <div class="drill-group offense"><div class="drill-label"><span class="cn">RE</span> QB</div><div class="drill-item">Drop and Roll Technique</div></div>
+            <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Power</div></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="period"><div class="period-row">
+        <div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div>
+        <div class="period-body"><div class="period-title">Defense &mdash; Individual</div>
+          <div class="drills">
+            <div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item tbd">TBD</div></div>
+            <div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item tbd">TBD</div></div>
+            <div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item tbd">TBD</div></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
+      <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div>
     </div>
   </div>
 
-</div>
+</div><!-- end july -->
 
-<p style="text-align:center;font-size:11px;color:#333;margin-top:28px;text-transform:uppercase;letter-spacing:0.05em;">Bloomfield Hills Black Hawks &middot; Freshman Football &middot; Summer 2025</p>
+<p class="footer-note">Bloomfield Hills Black Hawks &middot; Freshman Football &middot; Summer 2025</p>
+</div><!-- end schedule page -->
 
-</main>
 <script>
+function showPage(name, btn) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.querySelectorAll(".top-tab").forEach(t => t.classList.remove("active"));
+  document.getElementById("page-" + name).classList.add("active");
+  btn.classList.add("active");
+}
 function togglePractice(id) {
-  const el = document.getElementById(id);
-  el.classList.toggle('open');
+  document.getElementById(id).classList.toggle("open");
+}
+function toggleCond(id) {
+  document.getElementById(id).classList.toggle("open");
 }
 </script>
 </body>
