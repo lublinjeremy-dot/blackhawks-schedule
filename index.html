@@ -7,30 +7,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0d0d0f;
-    --purple: #5c2d91;
-    --purple-mid: #7c3fbf;
-    --purple-light: #a56fd4;
-    --gray-dark: #1e1c22;
-    --gray-mid: #3a3642;
-    --white: #ffffff;
-    --accent: #c8a2e8;
-    --green: #50c878;
-    --blue: #4a9eff;
-    --orange: #f0a030;
-    --red: #e05c5c;
+    --black: #0d0d0f; --purple: #5c2d91; --purple-mid: #7c3fbf; --purple-light: #a56fd4;
+    --gray-dark: #1e1c22; --gray-mid: #3a3642; --white: #ffffff; --accent: #c8a2e8;
+    --green: #50c878; --blue: #4a9eff; --orange: #f0a030; --red: #e05c5c;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: "Barlow", sans-serif; background: var(--black); color: var(--white); min-height: 100vh; }
 
-  /* HEADER */
   .site-header { background: var(--black); border-bottom: 3px solid var(--purple); position: sticky; top: 0; z-index: 100; }
   .header-inner { max-width: 720px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
   .header-logo { width: 48px; height: 48px; object-fit: contain; flex-shrink: 0; }
   .header-text { flex: 1; }
   .header-team { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); line-height: 1; }
   .header-sub { font-size: 11px; font-weight: 500; color: var(--purple-light); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; }
-  .header-badge { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; background: rgba(92,45,145,0.35); border: 1px solid rgba(92,45,145,0.5); padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
+  .header-badge { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; color: var(--accent); text-transform: uppercase; background: rgba(92,45,145,0.35); border: 1px solid rgba(92,45,145,0.5); padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
 
   /* TOP NAV */
   .top-nav { background: #111013; border-bottom: 1px solid rgba(255,255,255,0.07); }
@@ -41,51 +31,60 @@
   .top-tab.coaches-tab { color: var(--accent); }
   .top-tab.coaches-tab.active { color: var(--white); border-bottom-color: var(--accent); }
 
-  /* PAGES */
   .page { display: none; max-width: 720px; margin: 0 auto; padding: 20px 12px 48px; }
   .page.active { display: block; }
 
   /* ===== CALENDAR ===== */
-  .month-block { margin-bottom: 16px; }
-  .month-toggle { width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left; display: block; margin-bottom: 0; }
-  .month-heading { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 22px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--white); padding: 12px 16px; background: linear-gradient(135deg, rgba(92,45,145,0.6) 0%, rgba(40,20,70,0.6) 100%); border-radius: 10px; border-left: 4px solid var(--purple); display: flex; align-items: center; justify-content: space-between; }
-  .month-heading:hover { background: linear-gradient(135deg, rgba(92,45,145,0.8) 0%, rgba(40,20,70,0.8) 100%); }
-  .month-chevron { font-size: 18px; color: var(--accent); transition: transform 0.25s; flex-shrink: 0; }
-  .month-block.open .month-chevron { transform: rotate(180deg); }
-  .month-block .events-list { display: none; margin-top: 10px; }
-  .month-block.open .events-list { display: flex; flex-direction: column; gap: 8px; }
-  .month-note { font-size: 12px; color: var(--accent); margin-top: 4px; font-style: italic; font-weight: 400; }
+  .month-tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin-bottom: 16px; padding-bottom: 2px; }
+  .month-tabs::-webkit-scrollbar { display: none; }
+  .month-tab { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; background: var(--gray-dark); border: 1px solid var(--gray-mid); color: #888; padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: all 0.18s; }
+  .month-tab:hover { border-color: var(--purple-light); color: var(--purple-light); }
+  .month-tab.active { background: var(--purple); border-color: var(--purple); color: var(--white); }
 
-  .events-list { display: flex; flex-direction: column; gap: 8px; }
-  .event-card { display: flex; align-items: stretch; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
-  .event-date { width: 60px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 6px; background: rgba(0,0,0,0.35); }
-  .event-day-name { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #888; }
-  .event-day-num { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 24px; color: var(--white); line-height: 1; }
-  .event-body { flex: 1; padding: 10px 14px; display: flex; flex-direction: column; justify-content: center; }
-  .event-title { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--white); }
-  .event-detail { font-size: 12px; color: #aaa; margin-top: 2px; }
-  .event-badge { width: 4px; flex-shrink: 0; }
+  .cal-grid-wrap { display: none; }
+  .cal-grid-wrap.active { display: block; }
 
-  .event-card.practice .event-badge { background: var(--purple-mid); }
-  .event-card.practice .event-date { border-left: 3px solid var(--purple-mid); }
-  .event-card.game .event-badge { background: var(--green); }
-  .event-card.game .event-date { border-left: 3px solid var(--green); }
-  .event-card.game .event-day-num { color: var(--green); }
-  .event-card.special .event-badge { background: var(--orange); }
-  .event-card.special .event-date { border-left: 3px solid var(--orange); }
-  .event-card.special .event-day-num { color: var(--orange); }
-  .event-card.scrimmage .event-badge { background: var(--blue); }
-  .event-card.scrimmage .event-date { border-left: 3px solid var(--blue); }
-  .event-card.scrimmage .event-day-num { color: var(--blue); }
+  .cal-legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; padding: 10px 14px; background: var(--gray-dark); border-radius: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #aaa; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
 
-  .cal-legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; padding: 12px 14px; background: var(--gray-dark); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #aaa; }
-  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .cal-grid { background: var(--gray-dark); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+  .cal-header { display: grid; grid-template-columns: repeat(7, 1fr); background: rgba(92,45,145,0.4); }
+  .cal-dow { text-align: center; padding: 8px 2px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+  .cal-body { display: grid; grid-template-columns: repeat(7, 1fr); }
+  .cal-cell { min-height: 64px; padding: 5px 4px; border-right: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); position: relative; vertical-align: top; }
+  .cal-cell:nth-child(7n) { border-right: none; }
+  .cal-cell.empty { background: rgba(0,0,0,0.15); }
+  .cal-cell.today { background: rgba(92,45,145,0.12); }
+  .cal-num { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; color: #ccc; line-height: 1; margin-bottom: 4px; }
+  .cal-cell.empty .cal-num { color: transparent; }
+  .cal-dots { display: flex; flex-direction: column; gap: 2px; }
+  .cal-dot { font-size: 10px; line-height: 1.3; border-radius: 3px; padding: 1px 3px; color: var(--white); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cal-dot.practice { background: rgba(92,45,145,0.7); }
+  .cal-dot.game { background: rgba(80,200,120,0.75); color: #000; }
+  .cal-dot.scrimmage { background: rgba(74,158,255,0.7); }
+  .cal-dot.special { background: rgba(240,160,48,0.75); color: #000; }
+  .cal-dot.gameday { background: rgba(80,200,120,0.9); color: #000; font-weight: 700; }
+
+  /* Event detail popup */
+  .cal-cell { cursor: pointer; }
+  .cal-cell:hover { background: rgba(92,45,145,0.1); }
+  .event-detail-panel { background: var(--gray-dark); border: 1px solid rgba(92,45,145,0.4); border-radius: 10px; padding: 14px 16px; margin-top: 12px; display: none; }
+  .event-detail-panel.active { display: block; }
+  .edp-date { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 16px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .edp-event { padding: 8px 12px; border-radius: 6px; margin-bottom: 6px; border-left: 3px solid var(--purple-mid); background: rgba(0,0,0,0.2); }
+  .edp-event:last-child { margin-bottom: 0; }
+  .edp-event.practice { border-left-color: var(--purple-mid); }
+  .edp-event.game { border-left-color: var(--green); }
+  .edp-event.scrimmage { border-left-color: var(--blue); }
+  .edp-event.special { border-left-color: var(--orange); }
+  .edp-title { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; color: var(--white); }
+  .edp-detail { font-size: 12px; color: #aaa; margin-top: 2px; }
 
   /* ===== PHILOSOPHY ===== */
   .phil-card { background: var(--gray-dark); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 14px; }
   .phil-card-header { background: linear-gradient(135deg, rgba(92,45,145,0.55) 0%, rgba(40,20,70,0.55) 100%); padding: 16px 20px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .phil-card-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 20px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); }
+  .phil-card-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 20px; text-transform: uppercase; color: var(--white); }
   .phil-card-subtitle { font-size: 12px; color: var(--purple-light); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.08em; }
   .phil-card-body { padding: 16px 20px; }
   .expect-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
@@ -97,37 +96,34 @@
   .standard-item.body { border-left-color: var(--red); }
   .standard-item.mind { border-left-color: var(--blue); }
   .standard-item.principle { border-left-color: var(--purple-light); }
-  .standard-label { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .standard-label { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
   .standard-item.body .standard-label { color: var(--red); }
   .standard-item.mind .standard-label { color: var(--blue); }
   .standard-item.principle .standard-label { color: var(--accent); }
   .standard-text { font-size: 13px; color: #ccc; line-height: 1.5; }
   .identity-block { background: linear-gradient(135deg, rgba(92,45,145,0.3) 0%, rgba(40,20,70,0.3) 100%); border: 1px solid rgba(92,45,145,0.4); border-radius: 8px; padding: 16px 20px; margin-top: 14px; text-align: center; }
-  .identity-text { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 18px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--white); line-height: 1.4; }
+  .identity-text { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 18px; text-transform: uppercase; color: var(--white); line-height: 1.4; }
   .identity-sub { font-size: 13px; color: var(--accent); margin-top: 6px; font-style: italic; }
   .good-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .good-item { background: rgba(0,0,0,0.25); border-radius: 8px; padding: 14px; text-align: center; }
   .good-letter { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 42px; color: var(--purple-light); line-height: 1; }
-  .good-word { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--white); margin-top: 4px; }
+  .good-word { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; color: var(--white); margin-top: 4px; }
   .good-tagline { background: rgba(92,45,145,0.2); border: 1px solid rgba(92,45,145,0.3); border-radius: 6px; padding: 12px 16px; margin-top: 12px; text-align: center; font-size: 13px; color: #ccc; font-style: italic; }
   .good-tagline strong { color: var(--accent); font-style: normal; }
 
-  /* ===== COACHES LOCK SCREEN ===== */
+  /* ===== COACHES LOCK ===== */
   .lock-screen { text-align: center; padding: 48px 24px; }
   .lock-icon { font-size: 48px; margin-bottom: 16px; }
-  .lock-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--white); margin-bottom: 8px; }
+  .lock-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
   .lock-sub { font-size: 14px; color: #888; margin-bottom: 24px; }
-  .lock-input { width: 100%; max-width: 280px; background: var(--gray-dark); border: 1px solid var(--gray-mid); border-radius: 8px; padding: 12px 16px; font-size: 16px; color: var(--white); text-align: center; letter-spacing: 0.08em; margin-bottom: 12px; outline: none; }
+  .lock-input { width: 100%; max-width: 280px; background: var(--gray-dark); border: 1px solid var(--gray-mid); border-radius: 8px; padding: 12px 16px; font-size: 16px; color: var(--white); text-align: center; letter-spacing: 0.08em; outline: none; margin-bottom: 12px; }
   .lock-input:focus { border-color: var(--purple); }
-  .lock-btn { background: var(--purple); color: var(--white); border: none; border-radius: 8px; padding: 12px 32px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; }
+  .lock-btn { background: var(--purple); color: var(--white); border: none; border-radius: 8px; padding: 12px 32px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; cursor: pointer; }
   .lock-btn:hover { background: var(--purple-mid); }
   .lock-error { font-size: 13px; color: var(--red); margin-top: 8px; display: none; }
-
-  /* ===== COACHES CONTENT ===== */
   .coaches-content { display: none; }
-  .coaches-subnav { display: flex; gap: 6px; margin-bottom: 20px; overflow-x: auto; scrollbar-width: none; }
-  .coaches-subnav::-webkit-scrollbar { display: none; }
-  .sub-tab { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; background: var(--gray-dark); border: 1px solid var(--gray-mid); color: #888; padding: 7px 14px; border-radius: 6px; cursor: pointer; }
+  .coaches-subnav { display: flex; gap: 6px; margin-bottom: 20px; }
+  .sub-tab { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; background: var(--gray-dark); border: 1px solid var(--gray-mid); color: #888; padding: 7px 14px; border-radius: 6px; cursor: pointer; }
   .sub-tab.active { background: var(--purple); border-color: var(--purple); color: var(--white); }
   .sub-page { display: none; }
   .sub-page.active { display: block; }
@@ -150,7 +146,7 @@
   .standard-rule { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; font-size: 13px; color: #ccc; line-height: 1.5; }
   .standard-rule::before { content: "\25B8"; color: var(--purple-light); flex-shrink: 0; margin-top: 1px; }
 
-  /* ===== SCHEDULE ===== */
+  /* ===== PRACTICE SCHEDULE ===== */
   .month-section { margin-bottom: 28px; }
   .month-label { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 10px; border-left: 3px solid var(--purple); padding-left: 10px; }
   .practice { background: var(--gray-dark); border-radius: 10px; margin-bottom: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
@@ -192,21 +188,20 @@
   .drill-item { font-size: 13px; color: #ccc; line-height: 1.5; }
   .drill-item .cn { display: inline-block; font-size: 10px; font-weight: 700; color: var(--accent); background: rgba(92,45,145,0.35); padding: 1px 6px; border-radius: 3px; margin-right: 5px; text-transform: uppercase; letter-spacing: 0.06em; vertical-align: middle; }
   .drill-item.tbd { color: #555; font-style: italic; }
-  .hudl { display: inline-flex; align-items: center; font-size: 10px; font-weight: 600; color: var(--orange); background: rgba(240,160,48,0.12); border: 1px solid rgba(240,160,48,0.3); padding: 1px 7px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .hudl { display: inline-flex; font-size: 10px; font-weight: 600; color: var(--orange); background: rgba(240,160,48,0.12); border: 1px solid rgba(240,160,48,0.3); padding: 1px 7px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
   .game-detail { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 16px; margin: 14px; border: 1px solid rgba(100,220,100,0.2); text-align: center; }
   .game-detail-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 22px; color: #7eff7e; text-transform: uppercase; }
   .game-detail-sub { font-size: 13px; color: #aaa; margin-top: 4px; }
 
-  /* FOOTER */
-  .coaches-footer { text-align: center; padding: 32px 16px 16px; }
-  .lock-link { font-size: 12px; color: #333; cursor: pointer; background: none; border: none; text-decoration: underline; }
-  .lock-link:hover { color: #666; }
-  .footer-note { text-align: center; font-size: 11px; color: #333; margin-top: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .map-link { color: var(--blue); text-decoration: none; font-weight: 600; }
+  .map-link:hover { text-decoration: underline; }
+  .footer-note { text-align: center; font-size: 11px; color: #333; margin-top: 28px; text-transform: uppercase; letter-spacing: 0.05em; }
 
   @media (max-width: 480px) {
     .header-badge { display: none; }
-    .good-grid { grid-template-columns: 1fr 1fr; }
-    .period-row { grid-template-columns: 72px 1fr; }
+    .cal-cell { min-height: 54px; padding: 4px 2px; }
+    .cal-num { font-size: 12px; }
+    .cal-dot { font-size: 9px; }
     .top-tab { font-size: 11px; padding: 10px 4px; }
   }
 </style>
@@ -226,145 +221,284 @@
 
 <nav class="top-nav">
   <div class="top-nav-inner">
-    <button class="top-tab active" onclick="showPage('calendar', this)">Calendar</button>
-    <button class="top-tab" onclick="showPage('philosophy', this)">Philosophy</button>
-    <button class="top-tab coaches-tab" onclick="showPage('coaches', this)">&#128274; Coaches</button>
+    <button class="top-tab active" onclick="showPage('calendar',this)">Calendar</button>
+    <button class="top-tab" onclick="showPage('philosophy',this)">Philosophy</button>
+    <button class="top-tab coaches-tab" onclick="showPage('coaches',this)">&#128274; Coaches</button>
   </div>
 </nav>
 
-<!-- ===================== CALENDAR PAGE ===================== -->
+<!-- ===================== CALENDAR ===================== -->
 <div class="page active" id="page-calendar">
 
+  <div class="month-tabs">
+    <button class="month-tab active" onclick="showMonth('june',this)">June</button>
+    <button class="month-tab" onclick="showMonth('july',this)">July</button>
+    <button class="month-tab" onclick="showMonth('august',this)">August</button>
+    <button class="month-tab" onclick="showMonth('september',this)">September</button>
+    <button class="month-tab" onclick="showMonth('october',this)">October</button>
+  </div>
+
   <div class="cal-legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--purple-mid)"></div>Practice</div>
+    <div class="legend-item"><div class="legend-dot" style="background:rgba(92,45,145,0.8)"></div>Practice</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Game</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>Scrimmage</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>Special Event</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>Special</div>
   </div>
 
-  <!-- JUNE -->
-  <div class="month-block open" id="mb-june">
-    <button class="month-toggle" onclick="toggleMonth('mb-june')"><div class="month-heading">June 2026 <span class="month-chevron">&#9662;</span></div></button>
-    <div class="events-list">
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">17</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Field</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">18</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Football</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">24</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Football</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">25</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Football</div></div></div>
+  <!-- JUNE 2026: Mon=1, starts col 2 (Sun=0) -->
+  <div class="cal-grid-wrap active" id="cal-june">
+    <div class="cal-grid">
+      <div class="cal-header">
+        <div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div>
+        <div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div><div class="cal-dow">Sun</div>
+      </div>
+      <div class="cal-body">
+        <div class="cal-cell" onclick="showDetail('june',1)"><div class="cal-num">1</div></div>
+        <div class="cal-cell" onclick="showDetail('june',2)"><div class="cal-num">2</div></div>
+        <div class="cal-cell" onclick="showDetail('june',3)"><div class="cal-num">3</div></div>
+        <div class="cal-cell" onclick="showDetail('june',4)"><div class="cal-num">4</div></div>
+        <div class="cal-cell" onclick="showDetail('june',5)"><div class="cal-num">5</div></div>
+        <div class="cal-cell" onclick="showDetail('june',6)"><div class="cal-num">6</div></div>
+        <div class="cal-cell" onclick="showDetail('june',7)"><div class="cal-num">7</div></div>
+        <div class="cal-cell" onclick="showDetail('june',8)"><div class="cal-num">8</div></div>
+        <div class="cal-cell" onclick="showDetail('june',9)"><div class="cal-num">9</div></div>
+        <div class="cal-cell" onclick="showDetail('june',10)"><div class="cal-num">10</div></div>
+        <div class="cal-cell" onclick="showDetail('june',11)"><div class="cal-num">11</div></div>
+        <div class="cal-cell" onclick="showDetail('june',12)"><div class="cal-num">12</div></div>
+        <div class="cal-cell" onclick="showDetail('june',13)"><div class="cal-num">13</div></div>
+        <div class="cal-cell" onclick="showDetail('june',14)"><div class="cal-num">14</div></div>
+        <div class="cal-cell" onclick="showDetail('june',15)"><div class="cal-num">15</div></div>
+        <div class="cal-cell" onclick="showDetail('june',16)"><div class="cal-num">16<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('june',17)"><div class="cal-num">17</div></div>
+        <div class="cal-cell" onclick="showDetail('june',18)"><div class="cal-num">18<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('june',19)"><div class="cal-num">19</div></div>
+        <div class="cal-cell" onclick="showDetail('june',20)"><div class="cal-num">20</div></div>
+        <div class="cal-cell" onclick="showDetail('june',21)"><div class="cal-num">21</div></div>
+        <div class="cal-cell" onclick="showDetail('june',22)"><div class="cal-num">22</div></div>
+        <div class="cal-cell" onclick="showDetail('june',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('june',24)"><div class="cal-num">24</div></div>
+        <div class="cal-cell" onclick="showDetail('june',25)"><div class="cal-num">25<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('june',26)"><div class="cal-num">26</div></div>
+        <div class="cal-cell" onclick="showDetail('june',27)"><div class="cal-num">27</div></div>
+        <div class="cal-cell" onclick="showDetail('june',28)"><div class="cal-num">28</div></div>
+        <div class="cal-cell" onclick="showDetail('june',29)"><div class="cal-num">29</div></div>
+        <div class="cal-cell" onclick="showDetail('june',30)"><div class="cal-num">30</div></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+      </div>
     </div>
+    <div class="event-detail-panel" id="detail-june"></div>
   </div>
 
-  <!-- JULY -->
-  <div class="month-block" id="mb-july">
-    <button class="month-toggle" onclick="toggleMonth('mb-july')"><div class="month-heading">July 2026 <span class="month-chevron">&#9662;</span></div></button>
-    <div class="events-list">
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">6</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Football</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">7</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Football</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">13</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Football</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">14</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Football</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">20</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Football</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">21</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Football</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">27</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Football</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">28</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">6:00 &ndash; 7:30 PM &mdash; Strength / Football</div></div></div>
-      <div class="event-card special"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">28</div></div><div class="event-body"><div class="event-title">Equipment Handout</div><div class="event-detail">11:00 AM &ndash; 12:00 PM</div></div></div>
+  <!-- JULY 2026: Jul 1 = Wed, col index 4 (Sun=0) -->
+  <div class="cal-grid-wrap" id="cal-july">
+    <div class="cal-grid">
+      <div class="cal-header">
+        <div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div>
+        <div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div><div class="cal-dow">Sun</div>
+      </div>
+      <div class="cal-body">
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell" onclick="showDetail('july',1)"><div class="cal-num">1</div></div>
+        <div class="cal-cell" onclick="showDetail('july',2)"><div class="cal-num">2</div></div>
+        <div class="cal-cell" onclick="showDetail('july',3)"><div class="cal-num">3</div></div>
+        <div class="cal-cell" onclick="showDetail('july',4)"><div class="cal-num">4</div></div>
+        <div class="cal-cell" onclick="showDetail('july',5)"><div class="cal-num">5</div></div>
+        <div class="cal-cell" onclick="showDetail('july',6)"><div class="cal-num">6</div></div>
+        <div class="cal-cell" onclick="showDetail('july',7)"><div class="cal-num">7<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('july',8)"><div class="cal-num">8<div class="cal-dots"><div class="cal-dot scrimmage">7v7 vs JV 6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('july',9)"><div class="cal-num">9<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('july',10)"><div class="cal-num">10</div></div>
+        <div class="cal-cell" onclick="showDetail('july',11)"><div class="cal-num">11</div></div>
+        <div class="cal-cell" onclick="showDetail('july',12)"><div class="cal-num">12</div></div>
+        <div class="cal-cell" onclick="showDetail('july',13)"><div class="cal-num">13</div></div>
+        <div class="cal-cell" onclick="showDetail('july',14)"><div class="cal-num">14<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('july',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot scrimmage">7v7 vs JV 6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('july',16)"><div class="cal-num">16<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('july',17)"><div class="cal-num">17</div></div>
+        <div class="cal-cell" onclick="showDetail('july',18)"><div class="cal-num">18</div></div>
+        <div class="cal-cell" onclick="showDetail('july',19)"><div class="cal-num">19</div></div>
+        <div class="cal-cell" onclick="showDetail('july',20)"><div class="cal-num">20</div></div>
+        <div class="cal-cell" onclick="showDetail('july',21)"><div class="cal-num">21<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('july',22)"><div class="cal-num">22</div></div>
+        <div class="cal-cell" onclick="showDetail('july',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('july',24)"><div class="cal-num">24</div></div>
+        <div class="cal-cell" onclick="showDetail('july',25)"><div class="cal-num">25</div></div>
+        <div class="cal-cell" onclick="showDetail('july',26)"><div class="cal-num">26</div></div>
+        <div class="cal-cell" onclick="showDetail('july',27)"><div class="cal-num">27</div></div>
+        <div class="cal-cell" onclick="showDetail('july',28)"><div class="cal-num">28<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('july',29)"><div class="cal-num">29</div></div>
+        <div class="cal-cell" onclick="showDetail('july',30)"><div class="cal-num">30<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('july',31)"><div class="cal-num">31<div class="cal-dots"><div class="cal-dot special">Equipment 11am</div></div></div></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+      </div>
     </div>
+    <div class="event-detail-panel" id="detail-july"></div>
   </div>
 
-  <!-- AUGUST -->
-  <div class="month-block" id="mb-aug">
-    <button class="month-toggle" onclick="toggleMonth('mb-aug')"><div class="month-heading">August 2026 <span class="month-chevron">&#9662;</span></div></button>
-    <div class="events-list">
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">10</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">4:00 &ndash; 8:00 PM &mdash; Valid physical required!</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">11</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">4:00 &ndash; 8:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">12</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">4:00 &ndash; 8:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">13</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">4:00 &ndash; 8:00 PM</div></div></div>
-      <div class="event-card scrimmage"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Sat</div><div class="event-day-num">15</div></div><div class="event-body"><div class="event-title">Scrimmage</div><div class="event-detail">8:30 &ndash; 10:00 AM &mdash; Uniform Handout 10:00 &ndash; 10:30 &mdash; BBQ 11:00 AM &ndash; 12:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">17</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:15 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">18</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:15 PM</div></div></div>
-      <div class="event-card special"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">19</div></div><div class="event-body"><div class="event-title">Freshman Pictures</div><div class="event-detail">2:00 &ndash; 4:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">20</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">4:00 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card scrimmage"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">21</div></div><div class="event-body"><div class="event-title">Scrimmage @ Plymouth HS</div><div class="event-detail">Freshman 4:00 PM &mdash; Varsity 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Sat</div><div class="event-day-num">22</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">24</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">25</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:30 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">26</div></div><div class="event-body"><div class="event-title">Freshman @ L&apos;Anse Creuse</div><div class="event-detail">4:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">27</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:00 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">28</div></div><div class="event-body"><div class="event-title">Varsity (Home) vs L&apos;Anse Creuse</div><div class="event-detail">7:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Sat</div><div class="event-day-num">29</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">31</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
+  <!-- AUGUST 2026: Aug 1 = Sat, col index 6 -->
+  <div class="cal-grid-wrap" id="cal-august">
+    <div class="cal-grid">
+      <div class="cal-header">
+        <div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div>
+        <div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div><div class="cal-dow">Sun</div>
+      </div>
+      <div class="cal-body">
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell" onclick="showDetail('august',1)"><div class="cal-num">1</div></div>
+        <div class="cal-cell" onclick="showDetail('august',2)"><div class="cal-num">2</div></div>
+        <div class="cal-cell" onclick="showDetail('august',3)"><div class="cal-num">3</div></div>
+        <div class="cal-cell" onclick="showDetail('august',4)"><div class="cal-num">4</div></div>
+        <div class="cal-cell" onclick="showDetail('august',5)"><div class="cal-num">5</div></div>
+        <div class="cal-cell" onclick="showDetail('august',6)"><div class="cal-num">6</div></div>
+        <div class="cal-cell" onclick="showDetail('august',7)"><div class="cal-num">7</div></div>
+        <div class="cal-cell" onclick="showDetail('august',8)"><div class="cal-num">8</div></div>
+        <div class="cal-cell" onclick="showDetail('august',9)"><div class="cal-num">9</div></div>
+        <div class="cal-cell" onclick="showDetail('august',10)"><div class="cal-num">10<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',11)"><div class="cal-num">11<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',12)"><div class="cal-num">12<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',13)"><div class="cal-num">13<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',14)"><div class="cal-num">14<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot scrimmage">Scrimmage</div><div class="cal-dot special">BBQ 11am</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',16)"><div class="cal-num">16</div></div>
+        <div class="cal-cell" onclick="showDetail('august',17)"><div class="cal-num">17<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6:15</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',18)"><div class="cal-num">18<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6:15</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',19)"><div class="cal-num">19<div class="cal-dots"><div class="cal-dot special">Pictures 2pm</div><div class="cal-dot practice">Practice 4-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',20)"><div class="cal-num">20<div class="cal-dots"><div class="cal-dot scrimmage">Scrim @ Plymouth 4pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',21)"><div class="cal-num">21</div></div>
+        <div class="cal-cell" onclick="showDetail('august',22)"><div class="cal-num">22</div></div>
+        <div class="cal-cell" onclick="showDetail('august',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',24)"><div class="cal-num">24<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',25)"><div class="cal-num">25<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',26)"><div class="cal-num">26<div class="cal-dots"><div class="cal-dot game">&#128205; @ L'Anse Creuse</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',27)"><div class="cal-num">27<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',28)"><div class="cal-num">28</div></div>
+        <div class="cal-cell" onclick="showDetail('august',29)"><div class="cal-num">29</div></div>
+        <div class="cal-cell" onclick="showDetail('august',30)"><div class="cal-num">30<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',31)"><div class="cal-num">31<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+      </div>
     </div>
+    <div class="event-detail-panel" id="detail-august"></div>
   </div>
 
-  <!-- SEPTEMBER -->
-  <div class="month-block" id="mb-sep">
-    <button class="month-toggle" onclick="toggleMonth('mb-sep')"><div class="month-heading">September 2026 <span class="month-chevron">&#9662;</span></div></button>
-    <div class="events-list">
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">1</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:30 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">2</div></div><div class="event-body"><div class="event-title">Freshman (Home) vs Lake Orion</div><div class="event-detail">4:30 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">3</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:00 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">4</div></div><div class="event-body"><div class="event-title">Varsity @ Lake Orion</div><div class="event-detail">7:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Sat</div><div class="event-day-num">5</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">7</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card special"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">7</div></div><div class="event-body"><div class="event-title">Labor Day</div><div class="event-detail"></div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">8</div></div><div class="event-body"><div class="event-title">Freshman Practice &mdash; School Starts</div><div class="event-detail">3:30 &ndash; 5:30 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">10</div></div><div class="event-body"><div class="event-title">Freshman @ Rochester</div><div class="event-detail">4:30 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">11</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:00 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">11</div></div><div class="event-body"><div class="event-title">Varsity (Home) vs Rochester</div><div class="event-detail">7:00 PM &mdash; Community Night</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">14</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">15</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">16</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:30 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">17</div></div><div class="event-body"><div class="event-title">Freshman (Home) vs Stoney Creek</div><div class="event-detail">4:30 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">18</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:00 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">18</div></div><div class="event-body"><div class="event-title">Varsity @ Stoney Creek</div><div class="event-detail">7:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">21</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">22</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">23</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:30 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">24</div></div><div class="event-body"><div class="event-title">Freshman @ West Bloomfield</div><div class="event-detail">4:30 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">25</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:00 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">25</div></div><div class="event-body"><div class="event-title">Varsity (Home) vs West Bloomfield</div><div class="event-detail">7:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">28</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">29</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">30</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:30 PM</div></div></div>
+  <!-- SEPTEMBER 2026: Sep 1 = Tue, col index 2 -->
+  <div class="cal-grid-wrap" id="cal-september">
+    <div class="cal-grid">
+      <div class="cal-header">
+        <div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div>
+        <div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div><div class="cal-dow">Sun</div>
+      </div>
+      <div class="cal-body">
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell" onclick="showDetail('september',1)"><div class="cal-num">1<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',2)"><div class="cal-num">2<div class="cal-dots"><div class="cal-dot game">Home vs Lake Orion 4:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',3)"><div class="cal-num">3<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity @ Lake Orion 7pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',4)"><div class="cal-num">4</div></div>
+        <div class="cal-cell" onclick="showDetail('september',5)"><div class="cal-num">5</div></div>
+        <div class="cal-cell" onclick="showDetail('september',6)"><div class="cal-num">6<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',7)"><div class="cal-num">7<div class="cal-dots"><div class="cal-dot special">Labor Day</div><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',8)"><div class="cal-num">8<div class="cal-dots"><div class="cal-dot practice">Practice/School Starts</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',9)"><div class="cal-num">9<div class="cal-dots"><div class="cal-dot game">&#128205; @ Rochester</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',10)"><div class="cal-num">10<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',11)"><div class="cal-num">11</div></div>
+        <div class="cal-cell" onclick="showDetail('september',12)"><div class="cal-num">12</div></div>
+        <div class="cal-cell" onclick="showDetail('september',13)"><div class="cal-num">13</div></div>
+        <div class="cal-cell" onclick="showDetail('september',14)"><div class="cal-num">14<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',16)"><div class="cal-num">16<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',17)"><div class="cal-num">17<div class="cal-dots"><div class="cal-dot game">Home vs Stoney Creek 4:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',18)"><div class="cal-num">18<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity @ Stoney Creek 7pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',19)"><div class="cal-num">19</div></div>
+        <div class="cal-cell" onclick="showDetail('september',20)"><div class="cal-num">20</div></div>
+        <div class="cal-cell" onclick="showDetail('september',21)"><div class="cal-num">21<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',22)"><div class="cal-num">22<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',24)"><div class="cal-num">24<div class="cal-dots"><div class="cal-dot game">&#128205; @ W.Bloomfield</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',25)"><div class="cal-num">25<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',26)"><div class="cal-num">26</div></div>
+        <div class="cal-cell" onclick="showDetail('september',27)"><div class="cal-num">27</div></div>
+        <div class="cal-cell" onclick="showDetail('september',28)"><div class="cal-num">28<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',29)"><div class="cal-num">29<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',30)"><div class="cal-num">30<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+      </div>
     </div>
+    <div class="event-detail-panel" id="detail-september"></div>
   </div>
 
-  <!-- OCTOBER -->
-  <div class="month-block" id="mb-oct">
-    <button class="month-toggle" onclick="toggleMonth('mb-oct')"><div class="month-heading">October 2026 <span class="month-chevron">&#9662;</span></div></button>
-    <div class="events-list">
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">1</div></div><div class="event-body"><div class="event-title">Freshman (Home) vs Athens</div><div class="event-detail">4:30 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">2</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:00 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">2</div></div><div class="event-body"><div class="event-title">Varsity @ Athens</div><div class="event-detail">7:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">5</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">6</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">7</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:30 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">8</div></div><div class="event-body"><div class="event-title">Freshman @ Troy</div><div class="event-detail">4:30 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">9</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:00 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">9</div></div><div class="event-body"><div class="event-title">Varsity (Home) vs Troy</div><div class="event-detail">7:00 PM &mdash; Homecoming</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">12</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">13</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">14</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:30 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">15</div></div><div class="event-body"><div class="event-title">Freshman @ Gold Crossover</div><div class="event-detail">4:30 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">16</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:00 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">16</div></div><div class="event-body"><div class="event-title">Varsity Crossover TBD</div><div class="event-detail">7:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Mon</div><div class="event-day-num">19</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Tue</div><div class="event-day-num">20</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 6:00 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Wed</div><div class="event-day-num">21</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:30 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Thu</div><div class="event-day-num">22</div></div><div class="event-body"><div class="event-title">Freshman @ AA Pioneer</div><div class="event-detail">4:30 PM</div></div></div>
-      <div class="event-card practice"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">23</div></div><div class="event-body"><div class="event-title">Freshman Practice</div><div class="event-detail">3:30 &ndash; 5:00 PM</div></div></div>
-      <div class="event-card game"><div class="event-badge"></div><div class="event-date"><div class="event-day-name">Fri</div><div class="event-day-num">23</div></div><div class="event-body"><div class="event-title">Varsity (Home) vs AA Pioneer</div><div class="event-detail">7:00 PM &mdash; Senior Night</div></div></div>
+  <!-- OCTOBER 2026: Oct 1 = Thu, col index 4 -->
+  <div class="cal-grid-wrap" id="cal-october">
+    <div class="cal-grid">
+      <div class="cal-header">
+        <div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div>
+        <div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div><div class="cal-dow">Sun</div>
+      </div>
+      <div class="cal-body">
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell" onclick="showDetail('october',1)"><div class="cal-num">1<div class="cal-dots"><div class="cal-dot game">Home vs Athens 4:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',2)"><div class="cal-num">2<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity @ Athens 7pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',3)"><div class="cal-num">3</div></div>
+        <div class="cal-cell" onclick="showDetail('october',4)"><div class="cal-num">4</div></div>
+        <div class="cal-cell" onclick="showDetail('october',5)"><div class="cal-num">5<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',6)"><div class="cal-num">6<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',7)"><div class="cal-num">7<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',8)"><div class="cal-num">8<div class="cal-dots"><div class="cal-dot game">&#128205; @ Troy</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',9)"><div class="cal-num">9<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',10)"><div class="cal-num">10</div></div>
+        <div class="cal-cell" onclick="showDetail('october',11)"><div class="cal-num">11</div></div>
+        <div class="cal-cell" onclick="showDetail('october',12)"><div class="cal-num">12<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',13)"><div class="cal-num">13<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',14)"><div class="cal-num">14<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot game">&#128205; @ Gold Crossover</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',16)"><div class="cal-num">16<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity TBD 7pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',17)"><div class="cal-num">17</div></div>
+        <div class="cal-cell" onclick="showDetail('october',18)"><div class="cal-num">18</div></div>
+        <div class="cal-cell" onclick="showDetail('october',19)"><div class="cal-num">19<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',20)"><div class="cal-num">20<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',21)"><div class="cal-num">21<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',22)"><div class="cal-num">22<div class="cal-dots"><div class="cal-dot game">&#128205; @ AA Pioneer</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',24)"><div class="cal-num">24<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',25)"><div class="cal-num">25</div></div>
+        <div class="cal-cell" onclick="showDetail('october',26)"><div class="cal-num">26</div></div>
+        <div class="cal-cell" onclick="showDetail('october',27)"><div class="cal-num">27</div></div>
+        <div class="cal-cell" onclick="showDetail('october',28)"><div class="cal-num">28</div></div>
+        <div class="cal-cell" onclick="showDetail('october',29)"><div class="cal-num">29</div></div>
+        <div class="cal-cell" onclick="showDetail('october',30)"><div class="cal-num">30</div></div>
+        <div class="cal-cell" onclick="showDetail('october',31)"><div class="cal-num">31</div></div>
+        <div class="cal-cell empty"></div>
+      </div>
     </div>
+    <div class="event-detail-panel" id="detail-october"></div>
   </div>
 
   <p class="footer-note">Bloomfield Hills Black Hawks &middot; Freshman Football &middot; 2026</p>
 </div>
 
-<!-- ===================== PHILOSOPHY PAGE ===================== -->
+<!-- ===================== PHILOSOPHY ===================== -->
 <div class="page" id="page-philosophy">
   <div class="phil-card">
-    <div class="phil-card-header">
-      <div class="phil-card-title">Five Expectations of Being Human</div>
-      <div class="phil-card-subtitle">The foundation of how we operate</div>
-    </div>
+    <div class="phil-card-header"><div class="phil-card-title">Five Expectations of Being Human</div><div class="phil-card-subtitle">The foundation of how we operate</div></div>
     <div class="phil-card-body">
       <ul class="expect-list">
         <li class="expect-item"><span class="expect-icon">&#10003;</span><span class="expect-text">Take care of yourself</span></li>
@@ -376,10 +510,7 @@
     </div>
   </div>
   <div class="phil-card">
-    <div class="phil-card-header">
-      <div class="phil-card-title">Six Standards of Football</div>
-      <div class="phil-card-subtitle">How we play &mdash; every rep, every play</div>
-    </div>
+    <div class="phil-card-header"><div class="phil-card-title">Six Standards of Football</div><div class="phil-card-subtitle">How we play &mdash; every rep, every play</div></div>
     <div class="phil-card-body">
       <div class="standard-grid">
         <div class="standard-item body"><div class="standard-label">Body &mdash; Fast, Physical, Relentless</div><div class="standard-text">Not based on outcome, stats, or talent. Based on character. Something anyone can always work towards.</div></div>
@@ -396,10 +527,7 @@
     </div>
   </div>
   <div class="phil-card">
-    <div class="phil-card-header">
-      <div class="phil-card-title">The GOOD Standard &mdash; Defense</div>
-      <div class="phil-card-subtitle">What it means to be a Black Hawk on defense</div>
-    </div>
+    <div class="phil-card-header"><div class="phil-card-title">The GOOD Standard &mdash; Defense</div><div class="phil-card-subtitle">What it means to be a Black Hawk on defense</div></div>
     <div class="phil-card-body">
       <div class="good-grid">
         <div class="good-item"><div class="good-letter">G</div><div class="good-word">Great Effort</div></div>
@@ -413,27 +541,22 @@
   <p class="footer-note">Bloomfield Hills Black Hawks &middot; Freshman Football &middot; 2026</p>
 </div>
 
-<!-- ===================== COACHES PAGE ===================== -->
+<!-- ===================== COACHES ===================== -->
 <div class="page" id="page-coaches">
   <div class="lock-screen" id="lockScreen">
     <div class="lock-icon">&#128274;</div>
     <div class="lock-title">Coaches Area</div>
-    <div class="lock-sub">Enter your password to access the coaches section</div>
-    <br>
-    <input class="lock-input" type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()" />
-    <br>
+    <div class="lock-sub">Enter your password to access the coaches section</div><br>
+    <input class="lock-input" type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()"><br>
     <button class="lock-btn" onclick="checkPw()">Unlock</button>
     <div class="lock-error" id="lockError">Incorrect password. Try again.</div>
   </div>
-
   <div class="coaches-content" id="coachesContent">
     <div class="coaches-subnav">
-      <button class="sub-tab active" onclick="showSub('conditioning', this)">Conditioning</button>
-      <button class="sub-tab" onclick="showSub('schedule', this)">Schedule</button>
+      <button class="sub-tab active" onclick="showSub('schedule',this)">Schedule</button>
+      <button class="sub-tab" onclick="showSub('conditioning',this)">Conditioning</button>
     </div>
-
-    <!-- CONDITIONING SUB-PAGE -->
-    <div class="sub-page active" id="sub-conditioning">
+    <div class="sub-page" id="sub-conditioning">
       <div class="cond-card" id="c1"><button class="cond-toggle" onclick="toggleCond('c1')"><div class="cond-toggle-inner"><span class="cond-num">Practice 1</span><span class="cond-name">Blackhawk Day</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill">Blackhawk Shuttles &mdash; <strong>8 reps, 30 sec rest</strong></div><div class="cond-drill">Finish with <strong>4 x 40-yard sprints</strong></div></div></div>
       <div class="cond-card" id="c2"><button class="cond-toggle" onclick="toggleCond('c2')"><div class="cond-toggle-inner"><span class="cond-num">Practice 2</span><span class="cond-name">Pursuit Day</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill">Partner Chase &mdash; <strong>8 reps</strong></div><div class="cond-drill">100-yard Shuttles &mdash; <strong>3 rounds</strong></div><div class="cond-drill">Bear Crawl / Sprint Combo &mdash; <strong>3 rounds</strong></div></div></div>
       <div class="cond-card" id="c3"><button class="cond-toggle" onclick="toggleCond('c3')"><div class="cond-toggle-inner"><span class="cond-num">Practice 3</span><span class="cond-name">Fourth Quarter Circuit</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill"><strong>15-minute rotation</strong> of sprints, up-downs, backpedals, shuffles, and sprint finishes</div></div></div>
@@ -450,86 +573,19 @@
         <div class="standard-rule">If players are failing due to excessive fatigue, heat, or safety concerns, coaches should adjust volume, rest periods, or rep totals accordingly while maintaining effort standards.</div>
       </div>
     </div>
-
-    <!-- SCHEDULE SUB-PAGE -->
-    <div class="sub-page" id="sub-schedule">
+    <div class="sub-page active" id="sub-schedule">
       <div class="month-section">
         <div class="month-label">June 2026</div>
-
-        <div class="practice" id="p-jun16"><button class="practice-toggle" onclick="togglePractice('p-jun16')"><div class="practice-toggle-inner"><span class="practice-num-badge">Intro</span><div class="practice-header-text"><div class="practice-date">June 16 &mdash; Basic Foundations</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:15</div></div><div class="period-body"><div class="period-title">Warm Up</div><div class="period-note">Teaching it &mdash; may run longer</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:40</div></div><div class="period-body"><div class="period-title">Conditioning</div><div class="drills"><div class="drill-group special"><div class="drill-label">Blackhawk Day</div><div class="drill-item">Blackhawk Day &mdash; Push Ups &mdash; Core</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;6:45</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:45&ndash;7:05</div></div><div class="period-body"><div class="period-title">Offense &mdash; Intro <span class="hudl">&#128242; HUDL</span></div><div class="drills"><div class="drill-group offense"><div class="drill-label">Full Group</div><div class="drill-item">Formations &amp; Terminology &mdash; Positions &mdash; Route Tree</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:05&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Intro <span class="hudl">&#128242; HUDL</span></div><div class="drills"><div class="drill-group defense"><div class="drill-label">Full Group</div><div class="drill-item">Odd and Even fronts &mdash; Position philosophy &mdash; Alignment</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">End Talk</div><div class="drills"><div class="drill-group team"><div class="drill-label">Coach&rsquo;s Talk</div><div class="drill-item">The 6 Foundations &mdash; Attendance &amp; timeliness is important</div></div></div></div></div></div>
-          </div>
-        </div>
-
-        <div class="practice" id="p-jun18"><button class="practice-toggle" onclick="togglePractice('p-jun18')"><div class="practice-toggle-inner"><span class="practice-num-badge">#1</span><div class="practice-header-text"><div class="practice-date">June 18 &mdash; Quick Game &amp; Pass Pro</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning</div><div class="drills"><div class="drill-group special"><div class="drill-label">Pursuit Day</div><div class="drill-item">Pursuit Day &mdash; Body Weight &mdash; Core</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="period-note">Pass routes and inside zone</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Stance &amp; Starts &mdash; Quick Routes (Hitch, Slant, Out, In) &mdash; Signals</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Quicks &mdash; 1 Step Drop</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Quick Protection &mdash; Ram / Lion &mdash; Solid Protection &mdash; Rhino / Leopard &mdash; Signals</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Offense understands importance of speed and detail for quick</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="period-note">Cover 3 &mdash; Stance, Base odd front, gap responsibility, pursuit, signals</div><div class="drills"><div class="drill-group defense"><div class="drill-label"><span class="cn">Lubs</span> DB</div><div class="drill-item">Cover 3 drops</div></div><div class="drill-group defense"><div class="drill-label"><span class="cn">Erv</span> LB</div><div class="drill-item">Read triangle / fits</div></div><div class="drill-group defense"><div class="drill-label"><span class="cn">Dontez</span> D-Line</div><div class="drill-item">Stance, alignment, get off</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Every player can align correctly and communicate the call</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div>
-          </div>
-        </div>
-
-        <div class="practice" id="p-jun23"><button class="practice-toggle" onclick="togglePractice('p-jun23')"><div class="practice-toggle-inner"><span class="practice-num-badge">#2</span><div class="practice-header-text"><div class="practice-date">June 23 &mdash; Inside Zone &amp; Drop Game</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning</div><div class="drills"><div class="drill-group special"><div class="drill-label">4th Quarter Circuit</div><div class="drill-item">4th Quarter Circuit &mdash; Body Weight &mdash; Core</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="period-note">Drop routes and Inside Zone intro</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Drop Routes &mdash; Curl, In, Out, Verts, Spot, Mesh, Smash &mdash; Signals</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Quick / Drop Back</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Inside Zone &mdash; Slide Step &mdash; Signal</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Continued practice with Pass Pro and crisp routes, intro the slide</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="period-note">Cover 1 &mdash; Force-Fill-Spill &mdash; Motion Communication</div><div class="drills"><div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item">Man coverage technique</div></div><div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item">Run / pass reads</div></div><div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item">Strike and shed</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Players understand eyes, leverage and communication</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div>
-          </div>
-        </div>
-
-        <div class="practice" id="p-jun25"><button class="practice-toggle" onclick="togglePractice('p-jun25')"><div class="practice-toggle-inner"><span class="practice-num-badge">#3</span><div class="practice-header-text"><div class="practice-date">June 25 &mdash; Roll Coverage &amp; Rollout Game</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning</div><div class="drills"><div class="drill-group special"><div class="drill-label">Blackhawk Plus</div><div class="drill-item">Blackhawk Plus</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Flood and Wheel &mdash; Signals</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Roll &mdash; Ringo / Lucky</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Roll Out Coverage</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Offense understands the need for depth, speed, and eyes for rollout</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="period-note">Even Front Installation &mdash; Blitz #1</div><div class="drills"><div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item">Rotation and communication</div></div><div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item">Blitz path and timing</div></div><div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item">Even front alignments</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Players can adjust between fronts without confusion</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div>
-          </div>
-        </div>
+        <div class="practice" id="p-jun16"><button class="practice-toggle" onclick="togglePractice('p-jun16')"><div class="practice-toggle-inner"><span class="practice-num-badge">Intro</span><div class="practice-header-text"><div class="practice-date">June 16 &mdash; Basic Foundations</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:15</div></div><div class="period-body"><div class="period-title">Warm Up</div><div class="period-note">Teaching it &mdash; may run longer</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:40</div></div><div class="period-body"><div class="period-title">Conditioning</div><div class="drills"><div class="drill-group special"><div class="drill-label">Blackhawk Day</div><div class="drill-item">Blackhawk Day &mdash; Push Ups &mdash; Core</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;6:45</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:45&ndash;7:05</div></div><div class="period-body"><div class="period-title">Offense &mdash; Intro <span class="hudl">&#128242; HUDL</span></div><div class="drills"><div class="drill-group offense"><div class="drill-label">Full Group</div><div class="drill-item">Formations &amp; Terminology &mdash; Positions &mdash; Route Tree</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:05&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Intro <span class="hudl">&#128242; HUDL</span></div><div class="drills"><div class="drill-group defense"><div class="drill-label">Full Group</div><div class="drill-item">Odd &amp; Even fronts &mdash; Position philosophy &mdash; Alignment</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">End Talk</div><div class="drills"><div class="drill-group team"><div class="drill-label">Coach&rsquo;s Talk</div><div class="drill-item">The 6 Foundations &mdash; Attendance &amp; timeliness is important</div></div></div></div></div></div></div></div>
+        <div class="practice" id="p-jun18"><button class="practice-toggle" onclick="togglePractice('p-jun18')"><div class="practice-toggle-inner"><span class="practice-num-badge">#1</span><div class="practice-header-text"><div class="practice-date">June 18 &mdash; Quick Game &amp; Pass Pro</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Pursuit Day</div><div class="drills"><div class="drill-group special"><div class="drill-label">Pursuit Day</div><div class="drill-item">Pursuit Day &mdash; Body Weight &mdash; Core</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="period-note">Pass routes and inside zone</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Stance &amp; Starts &mdash; Quick Routes (Hitch, Slant, Out, In) &mdash; Signals</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Quicks &mdash; 1 Step Drop</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Quick Protection &mdash; Ram/Lion &mdash; Solid Protection &mdash; Rhino/Leopard &mdash; Signals</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Offense understands importance of speed and detail for quick</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="period-note">Cover 3 &mdash; Stance, Base odd front, gap responsibility, pursuit, signals</div><div class="drills"><div class="drill-group defense"><div class="drill-label"><span class="cn">Lubs</span> DB</div><div class="drill-item">Cover 3 drops</div></div><div class="drill-group defense"><div class="drill-label"><span class="cn">Erv</span> LB</div><div class="drill-item">Read triangle / fits</div></div><div class="drill-group defense"><div class="drill-label"><span class="cn">Dontez</span> D-Line</div><div class="drill-item">Stance, alignment, get off</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Every player can align correctly and communicate the call</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div></div></div>
+        <div class="practice" id="p-jun23"><button class="practice-toggle" onclick="togglePractice('p-jun23')"><div class="practice-toggle-inner"><span class="practice-num-badge">#2</span><div class="practice-header-text"><div class="practice-date">June 23 &mdash; Inside Zone &amp; Drop Game</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; 4th Quarter Circuit</div><div class="drills"><div class="drill-group special"><div class="drill-label">4th Quarter Circuit</div><div class="drill-item">4th Quarter Circuit &mdash; Body Weight &mdash; Core</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="period-note">Drop routes and Inside Zone intro</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Drop Routes &mdash; Curl, In, Out, Verts, Spot, Mesh, Smash &mdash; Signals</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Quick / Drop Back</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Inside Zone &mdash; Slide Step &mdash; Signal</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Continued practice with Pass Pro and crisp routes, intro the slide</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="period-note">Cover 1 &mdash; Force-Fill-Spill &mdash; Motion Communication</div><div class="drills"><div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item">Man coverage technique</div></div><div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item">Run / pass reads</div></div><div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item">Strike and shed</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Players understand eyes, leverage and communication</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div></div></div>
+        <div class="practice" id="p-jun25"><button class="practice-toggle" onclick="togglePractice('p-jun25')"><div class="practice-toggle-inner"><span class="practice-num-badge">#3</span><div class="practice-header-text"><div class="practice-date">June 25 &mdash; Roll Coverage &amp; Rollout Game</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Blackhawk Plus</div><div class="drills"><div class="drill-group special"><div class="drill-label">Blackhawk Plus</div><div class="drill-item">Blackhawk Plus</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Flood and Wheel &mdash; Signals</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Roll &mdash; Ringo / Lucky</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Roll Out Coverage</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Offense understands the need for depth, speed, and eyes for rollout</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="period-note">Even Front Installation &mdash; Blitz #1</div><div class="drills"><div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item">Rotation and communication</div></div><div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item">Blitz path and timing</div></div><div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item">Even front alignments</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Players can adjust between fronts without confusion</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div></div></div>
       </div>
-
       <div class="month-section">
         <div class="month-label">July 2026</div>
-        <div class="practice" id="p-jul7"><button class="practice-toggle" onclick="togglePractice('p-jul7')"><div class="practice-toggle-inner"><span class="practice-num-badge">#4</span><div class="practice-header-text"><div class="practice-date">July 7 &mdash; OZ &amp; 7v7 Prep</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning</div><div class="drills"><div class="drill-group special"><div class="drill-label">Game Speed</div><div class="drill-item">Game Speed</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:20</div></div><div class="period-body"><div class="period-title">Offense &amp; D-Line</div><div class="period-note">Preparing for 7v7 &mdash; play sheets and personnel groups</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs / Erv</span> WR / RB / QB</div><div class="drill-item">7v7 Practice &mdash; Quicks, Drops, Roll, Empty w/ Defense</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line (6:40&ndash;7:00)</div><div class="drill-item">Outside Zone &mdash; Bucket Step</div></div><div class="drill-group defense"><div class="drill-label">D-Line (7:00&ndash;7:20)</div><div class="drill-item">Cover 2 &mdash; Blitz #2 &mdash; Pressure Checks</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Execute the pass game &mdash; Defense communicates at full speed</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div>
-          </div>
-        </div>
-
+        <div class="practice" id="p-jul7"><button class="practice-toggle" onclick="togglePractice('p-jul7')"><div class="practice-toggle-inner"><span class="practice-num-badge">#4</span><div class="practice-header-text"><div class="practice-date">July 7 &mdash; OZ &amp; 7v7 Prep</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Game Speed</div><div class="drills"><div class="drill-group special"><div class="drill-label">Game Speed</div><div class="drill-item">Game Speed</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:20</div></div><div class="period-body"><div class="period-title">Offense &amp; D-Line</div><div class="period-note">Preparing for 7v7 &mdash; play sheets and personnel groups</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs/Erv</span> WR/RB/QB</div><div class="drill-item">7v7 Practice &mdash; Quicks, Drops, Roll, Empty w/ Defense</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line (6:40&ndash;7:00)</div><div class="drill-item">Outside Zone &mdash; Bucket Step</div></div><div class="drill-group defense"><div class="drill-label">D-Line (7:00&ndash;7:20)</div><div class="drill-item">Cover 2 &mdash; Blitz #2 &mdash; Pressure Checks</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Execute the pass game &mdash; Defense communicates at full speed</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div></div></div>
         <div class="practice gameday" id="p-jul8"><button class="practice-toggle" onclick="togglePractice('p-jul8')"><div class="practice-toggle-inner"><span class="practice-num-badge">#5</span><div class="practice-header-text"><div class="practice-date">July 8 &mdash; 7v7 vs JV</div><div class="practice-theme">6:00 PM @ BH</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="game-detail"><div class="game-detail-title">&#127944; 7v7 vs JV</div><div class="game-detail-sub">6:00 PM &mdash; Bloomfield Hills</div></div></div></div>
-
-        <div class="practice" id="p-jul9"><button class="practice-toggle" onclick="togglePractice('p-jul9')"><div class="practice-toggle-inner"><span class="practice-num-badge">#6</span><div class="practice-header-text"><div class="practice-date">July 9 &mdash; Power &amp; Blocking</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:10&ndash;6:30</div></div><div class="period-body"><div class="period-title">Conditioning</div><div class="drills"><div class="drill-group special"><div class="drill-label">Competition Day</div><div class="drill-item">Competition Day</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Routes / Blocking Technique</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">RE</span> QB</div><div class="drill-item">Drop and Roll Technique</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Power</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="drills"><div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item tbd">TBD</div></div><div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item tbd">TBD</div></div><div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item tbd">TBD</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div>
-          </div>
-        </div>
+        <div class="practice" id="p-jul9"><button class="practice-toggle" onclick="togglePractice('p-jul9')"><div class="practice-toggle-inner"><span class="practice-num-badge">#6</span><div class="practice-header-text"><div class="practice-date">July 9 &mdash; Power &amp; Blocking</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:10&ndash;6:30</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Competition Day</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR/RB</div><div class="drill-item">Routes / Blocking Technique</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">RE</span> QB</div><div class="drill-item">Drop and Roll Technique</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Power</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="drills"><div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item tbd">TBD</div></div><div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item tbd">TBD</div></div><div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item tbd">TBD</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div></div></div>
       </div>
       <p class="footer-note">Bloomfield Hills Black Hawks &middot; Coaches Page &middot; 2026</p>
     </div>
@@ -539,46 +595,172 @@
 <script>
 var unlocked = false;
 
+// Event data for calendar detail popups
+var events = {
+  june: {
+    16: [{type:'practice', title:'Freshman Practice', detail:'Tuesday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Field &mdash; Basic Foundations'}],
+    18: [{type:'practice', title:'Freshman Practice', detail:'Thursday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    23: [{type:'practice', title:'Freshman Practice', detail:'Tuesday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    25: [{type:'practice', title:'Freshman Practice', detail:'Thursday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}]
+  },
+  july: {
+    7:  [{type:'practice', title:'Freshman Practice', detail:'Tuesday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    8:  [{type:'scrimmage', title:'7v7 vs JV', detail:'Wednesday &mdash; 6:00 PM @ Home'}],
+    9:  [{type:'practice', title:'Freshman Practice', detail:'Thursday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    14: [{type:'practice', title:'Freshman Practice', detail:'Tuesday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    15: [{type:'scrimmage', title:'7v7 vs JV', detail:'Wednesday &mdash; 6:00 PM @ TBD'}],
+    16: [{type:'practice', title:'Freshman Practice', detail:'Thursday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    21: [{type:'practice', title:'Freshman Practice', detail:'Tuesday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    23: [{type:'practice', title:'Freshman Practice', detail:'Thursday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    28: [{type:'practice', title:'Freshman Practice', detail:'Tuesday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    30: [{type:'practice', title:'Freshman Practice', detail:'Thursday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    31: [{type:'special', title:'Equipment Handout', detail:'Friday &mdash; 11:00 AM&ndash;12:00 PM'}]
+  },
+  august: {
+    10: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 8:00 PM &mdash; Valid physical required to practice!'}],
+    11: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 8:00 PM'}],
+    12: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 8:00 PM'}],
+    13: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 8:00 PM'}],
+    14: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 8:00 PM'}],
+    15: [{type:'scrimmage', title:'Scrimmage', detail:'8:30 &ndash; 10:00 AM'},{type:'special', title:'Uniform Handout', detail:'10:00 &ndash; 10:30 AM'},{type:'special', title:'BBQ', detail:'11:00 AM &ndash; 12:00 PM'}],
+    17: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:15 PM'}],
+    18: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:15 PM'}],
+    19: [{type:'special', title:'Freshman Pictures', detail:'2:00 &ndash; 4:00 PM'}],
+    20: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 6:00 PM'}],
+    21: [{type:'scrimmage', title:'Scrimmage @ Plymouth HS', detail:'Freshman 4:00 PM &mdash; Varsity 6:00 PM'}],
+    22: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    24: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    25: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    26: [{type:'game', title:'Freshman @ L\'Anse Creuse', detail:'4:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=38495%20L%27Anse%20Creuse%20Rd%20Harrison%20Township%20MI%2048045" target="_blank">Get Directions</a>'}],
+    27: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'}],
+    28: [{type:'game', title:'Varsity (Home) vs L\'Anse Creuse', detail:'7:00 PM'}],
+    29: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    31: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}]
+  },
+  september: {
+    1:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    2:  [{type:'game', title:'Freshman (Home) vs Lake Orion', detail:'4:30 PM'}],
+    3:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'}],
+    4:  [{type:'game', title:'Varsity @ Lake Orion', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=1565%20E%20Walton%20Blvd%20Auburn%20Hills%20MI%2048326" target="_blank">Get Directions</a>'}],
+    5:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    7:  [{type:'special', title:'Labor Day', detail:''},{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    8:  [{type:'practice', title:'Freshman Practice &mdash; School Starts', detail:'3:30 &ndash; 5:30 PM'}],
+    10: [{type:'game', title:'Freshman @ Rochester', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=1361%20Walton%20Blvd%20Rochester%20Hills%20MI%2048309" target="_blank">Get Directions</a>'}],
+    11: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs Rochester', detail:'7:00 PM &mdash; Community Night'}],
+    12: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    14: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    15: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    16: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    17: [{type:'game', title:'Freshman (Home) vs Stoney Creek', detail:'4:30 PM'}],
+    18: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity @ Stoney Creek', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=6755%20Sheldon%20Rd%20Rochester%20Hills%20MI%2048306" target="_blank">Get Directions</a>'}],
+    19: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    21: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    22: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    23: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    24: [{type:'game', title:'Freshman @ West Bloomfield', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4925%20Orchard%20Lake%20Rd%20West%20Bloomfield%20MI%2048323" target="_blank">Get Directions</a>'}],
+    25: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs West Bloomfield', detail:'7:00 PM'}],
+    26: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    28: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    29: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    30: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}]
+  },
+  october: {
+    1:  [{type:'game', title:'Freshman (Home) vs Athens', detail:'4:30 PM'}],
+    2:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity @ Athens', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4333%20John%20R%20Rd%20Troy%20MI%2048085" target="_blank">Get Directions</a>'}],
+    3:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    5:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    6:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    7:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    8:  [{type:'game', title:'Freshman @ Troy', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4777%20Northfield%20Pkwy%20Troy%20MI%2048098" target="_blank">Get Directions</a>'}],
+    9:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs Troy', detail:'7:00 PM &mdash; Homecoming'}],
+    10: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    12: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    13: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    14: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    15: [{type:'game', title:'Freshman @ Gold Crossover', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4777%20Northfield%20Pkwy%20Troy%20MI%2048098" target="_blank">Get Directions (Troy HS)</a>'}],
+    16: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity Crossover TBD', detail:'7:00 PM'}],
+    17: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    19: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    20: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    21: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    22: [{type:'game', title:'Freshman @ AA Pioneer', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=601%20W%20Stadium%20Blvd%20Ann%20Arbor%20MI%2048103" target="_blank">Get Directions</a>'}],
+    23: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs AA Pioneer', detail:'7:00 PM &mdash; Senior Night'}],
+    24: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}]
+  }
+};
+
+var dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var monthNames = {june:'June',july:'July',august:'August',september:'September',october:'October'};
+var monthNums  = {june:6,july:7,august:8,september:9,october:10};
+
 function showPage(name, btn) {
-  if (name === "coaches" && !unlocked) {
-    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    document.querySelectorAll(".top-tab").forEach(t => t.classList.remove("active"));
-    document.getElementById("page-coaches").classList.add("active");
-    btn.classList.add("active");
-    document.getElementById("lockScreen").style.display = "block";
-    document.getElementById("coachesContent").style.display = "none";
-    setTimeout(() => document.getElementById("pwInput").focus(), 100);
+  if (name === 'coaches' && !unlocked) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.top-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('page-coaches').classList.add('active');
+    btn.classList.add('active');
+    document.getElementById('lockScreen').style.display = 'block';
+    document.getElementById('coachesContent').style.display = 'none';
+    setTimeout(() => document.getElementById('pwInput').focus(), 100);
     return;
   }
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.querySelectorAll(".top-tab").forEach(t => t.classList.remove("active"));
-  document.getElementById("page-" + name).classList.add("active");
-  btn.classList.add("active");
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.top-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  btn.classList.add('active');
 }
 
 function checkPw() {
-  var pw = document.getElementById("pwInput").value;
-  if (pw === "lubervdon") {
+  if (document.getElementById('pwInput').value === 'lubervdon') {
     unlocked = true;
-    document.getElementById("lockScreen").style.display = "none";
-    document.getElementById("coachesContent").style.display = "block";
+    document.getElementById('lockScreen').style.display = 'none';
+    document.getElementById('coachesContent').style.display = 'block';
   } else {
-    document.getElementById("lockError").style.display = "block";
-    document.getElementById("pwInput").value = "";
-    setTimeout(() => { document.getElementById("lockError").style.display = "none"; }, 3000);
+    document.getElementById('lockError').style.display = 'block';
+    document.getElementById('pwInput').value = '';
+    setTimeout(() => { document.getElementById('lockError').style.display = 'none'; }, 3000);
   }
 }
 
-function showSub(name, btn) {
-  document.querySelectorAll(".sub-page").forEach(p => p.classList.remove("active"));
-  document.querySelectorAll(".sub-tab").forEach(t => t.classList.remove("active"));
-  document.getElementById("sub-" + name).classList.add("active");
-  btn.classList.add("active");
+function showMonth(name, btn) {
+  document.querySelectorAll('.cal-grid-wrap').forEach(g => g.classList.remove('active'));
+  document.querySelectorAll('.month-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('cal-' + name).classList.add('active');
+  btn.classList.add('active');
+  // Hide all detail panels
+  document.querySelectorAll('.event-detail-panel').forEach(p => { p.classList.remove('active'); p.innerHTML = ''; });
 }
 
-function toggleMonth(id) { document.getElementById(id).classList.toggle("open"); }
-function togglePractice(id) { document.getElementById(id).classList.toggle("open"); }
-function toggleCond(id) { document.getElementById(id).classList.toggle("open"); }
+function showDetail(month, day) {
+  var panel = document.getElementById('detail-' + month);
+  var evList = (events[month] || {})[day];
+  if (!evList || evList.length === 0) {
+    panel.classList.remove('active');
+    panel.innerHTML = '';
+    return;
+  }
+  // Get day of week
+  var d = new Date(2026, monthNums[month]-1, day);
+  var dayName = dayNames[d.getDay()];
+  var html = '<div class="edp-date">' + dayName + ', ' + monthNames[month] + ' ' + day + ', 2026</div>';
+  evList.forEach(function(ev) {
+    html += '<div class="edp-event ' + ev.type + '"><div class="edp-title">' + ev.title + '</div>';
+    if (ev.detail) html += '<div class="edp-detail">' + ev.detail + '</div>';
+    html += '</div>';
+  });
+  panel.innerHTML = html;
+  panel.classList.add('active');
+}
+
+function showSub(name, btn) {
+  document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sub-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+function togglePractice(id) { document.getElementById(id).classList.toggle('open'); }
+function toggleCond(id) { document.getElementById(id).classList.toggle('open'); }
 </script>
 </body>
 </html>
