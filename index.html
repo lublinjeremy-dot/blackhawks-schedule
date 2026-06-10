@@ -197,12 +197,27 @@
   .map-link:hover { text-decoration: underline; }
   .footer-note { text-align: center; font-size: 11px; color: #333; margin-top: 28px; text-transform: uppercase; letter-spacing: 0.05em; }
 
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     .header-badge { display: none; }
-    .cal-cell { min-height: 54px; padding: 4px 2px; }
-    .cal-num { font-size: 12px; }
-    .cal-dot { font-size: 9px; }
     .top-tab { font-size: 11px; padding: 10px 4px; }
+
+    /* Make calendar fit phone width exactly */
+    .cal-grid { width: 100%; table-layout: fixed; }
+    .cal-header { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .cal-body { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .cal-dow { font-size: 10px; padding: 6px 1px; }
+    .cal-cell { min-height: 48px; padding: 3px 2px; }
+    .cal-num { font-size: 11px; font-weight: 700; }
+    .cal-dots { display: flex; flex-direction: column; gap: 1px; margin-top: 2px; }
+    .cal-dot { font-size: 0px; width: 6px; height: 6px; border-radius: 50%; padding: 0; margin: 0 auto; }
+    .cal-dot.practice { background: var(--purple-mid); }
+    .cal-dot.game { background: var(--green); }
+    .cal-dot.scrimmage { background: var(--blue); }
+    .cal-dot.special { background: var(--orange); }
+
+    /* Period grid on coaches page */
+    .period-row { grid-template-columns: 65px 1fr; }
+    .period-time-text { font-size: 10px; }
   }
 </style>
 </head>
