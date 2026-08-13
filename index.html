@@ -246,9 +246,7 @@
 <div class="page active" id="page-calendar">
 
   <div class="month-tabs">
-    <button class="month-tab active" onclick="showMonth('june',this)">June</button>
-    <button class="month-tab" onclick="showMonth('july',this)">July</button>
-    <button class="month-tab" onclick="showMonth('august',this)">August</button>
+    <button class="month-tab active" onclick="showMonth('august',this)">August</button>
     <button class="month-tab" onclick="showMonth('september',this)">September</button>
     <button class="month-tab" onclick="showMonth('october',this)">October</button>
   </div>
@@ -260,104 +258,8 @@
     <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>Special</div>
   </div>
 
-  <!-- JUNE 2026: Mon=1, starts col 2 (Sun=0) -->
-  <div class="cal-grid-wrap active" id="cal-june">
-    <div class="cal-grid">
-      <div class="cal-header">
-        <div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div>
-        <div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div><div class="cal-dow">Sun</div>
-      </div>
-      <div class="cal-body">
-        <div class="cal-cell" onclick="showDetail('june',1)"><div class="cal-num">1</div></div>
-        <div class="cal-cell" onclick="showDetail('june',2)"><div class="cal-num">2</div></div>
-        <div class="cal-cell" onclick="showDetail('june',3)"><div class="cal-num">3</div></div>
-        <div class="cal-cell" onclick="showDetail('june',4)"><div class="cal-num">4</div></div>
-        <div class="cal-cell" onclick="showDetail('june',5)"><div class="cal-num">5</div></div>
-        <div class="cal-cell" onclick="showDetail('june',6)"><div class="cal-num">6</div></div>
-        <div class="cal-cell" onclick="showDetail('june',7)"><div class="cal-num">7</div></div>
-        <div class="cal-cell" onclick="showDetail('june',8)"><div class="cal-num">8</div></div>
-        <div class="cal-cell" onclick="showDetail('june',9)"><div class="cal-num">9</div></div>
-        <div class="cal-cell" onclick="showDetail('june',10)"><div class="cal-num">10</div></div>
-        <div class="cal-cell" onclick="showDetail('june',11)"><div class="cal-num">11</div></div>
-        <div class="cal-cell" onclick="showDetail('june',12)"><div class="cal-num">12</div></div>
-        <div class="cal-cell" onclick="showDetail('june',13)"><div class="cal-num">13</div></div>
-        <div class="cal-cell" onclick="showDetail('june',14)"><div class="cal-num">14</div></div>
-        <div class="cal-cell" onclick="showDetail('june',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot special">Conditioning 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('june',16)"><div class="cal-num">16<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('june',17)"><div class="cal-num">17</div></div>
-        <div class="cal-cell" onclick="showDetail('june',18)"><div class="cal-num">18<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('june',19)"><div class="cal-num">19</div></div>
-        <div class="cal-cell" onclick="showDetail('june',20)"><div class="cal-num">20</div></div>
-        <div class="cal-cell" onclick="showDetail('june',21)"><div class="cal-num">21</div></div>
-        <div class="cal-cell" onclick="showDetail('june',22)"><div class="cal-num">22<div class="cal-dots"><div class="cal-dot special">Conditioning 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('june',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('june',24)"><div class="cal-num">24</div></div>
-        <div class="cal-cell" onclick="showDetail('june',25)"><div class="cal-num">25<div class="cal-dots"><div class="cal-dot practice">Practice 6-7:30pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('june',26)"><div class="cal-num">26</div></div>
-        <div class="cal-cell" onclick="showDetail('june',27)"><div class="cal-num">27</div></div>
-        <div class="cal-cell" onclick="showDetail('june',28)"><div class="cal-num">28</div></div>
-        <div class="cal-cell" onclick="showDetail('june',29)"><div class="cal-num">29</div></div>
-        <div class="cal-cell" onclick="showDetail('june',30)"><div class="cal-num">30</div></div>
-        <div class="cal-cell empty"></div>
-        <div class="cal-cell empty"></div>
-        <div class="cal-cell empty"></div>
-        <div class="cal-cell empty"></div>
-        <div class="cal-cell empty"></div>
-      </div>
-    </div>
-    <div class="event-detail-panel" id="detail-june"></div>
-  </div>
-
-  <!-- JULY 2026: Jul 1 = Wed, col index 4 (Sun=0) -->
-  <div class="cal-grid-wrap" id="cal-july">
-    <div class="cal-grid">
-      <div class="cal-header">
-        <div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div>
-        <div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div><div class="cal-dow">Sun</div>
-      </div>
-      <div class="cal-body">
-        <div class="cal-cell empty"></div>
-        <div class="cal-cell empty"></div>
-        <div class="cal-cell" onclick="showDetail('july',1)"><div class="cal-num">1</div></div>
-        <div class="cal-cell" onclick="showDetail('july',2)"><div class="cal-num">2</div></div>
-        <div class="cal-cell" onclick="showDetail('july',3)"><div class="cal-num">3</div></div>
-        <div class="cal-cell" onclick="showDetail('july',4)"><div class="cal-num">4</div></div>
-        <div class="cal-cell" onclick="showDetail('july',5)"><div class="cal-num">5</div></div>
-        <div class="cal-cell" onclick="showDetail('july',6)"><div class="cal-num">6<div class="cal-dots"><div class="cal-dot special">Conditioning 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',7)"><div class="cal-num">7<div class="cal-dots"><div class="cal-dot practice">Practice 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',8)"><div class="cal-num">8<div class="cal-dots"><div class="cal-dot scrimmage">7v7 vs JV 6pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',9)"><div class="cal-num">9<div class="cal-dots"><div class="cal-dot practice">Practice 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',10)"><div class="cal-num">10</div></div>
-        <div class="cal-cell" onclick="showDetail('july',11)"><div class="cal-num">11</div></div>
-        <div class="cal-cell" onclick="showDetail('july',12)"><div class="cal-num">12</div></div>
-        <div class="cal-cell" onclick="showDetail('july',13)"><div class="cal-num">13<div class="cal-dots"><div class="cal-dot special">Conditioning 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',14)"><div class="cal-num">14<div class="cal-dots"><div class="cal-dot practice">Practice 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot scrimmage">7v7 vs JV 6pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',16)"><div class="cal-num">16<div class="cal-dots"><div class="cal-dot practice">Practice 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',17)"><div class="cal-num">17</div></div>
-        <div class="cal-cell" onclick="showDetail('july',18)"><div class="cal-num">18</div></div>
-        <div class="cal-cell" onclick="showDetail('july',19)"><div class="cal-num">19</div></div>
-        <div class="cal-cell" onclick="showDetail('july',20)"><div class="cal-num">20<div class="cal-dots"><div class="cal-dot special">Conditioning 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',21)"><div class="cal-num">21<div class="cal-dots"><div class="cal-dot practice">Practice 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',22)"><div class="cal-num">22</div></div>
-        <div class="cal-cell" onclick="showDetail('july',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',24)"><div class="cal-num">24</div></div>
-        <div class="cal-cell" onclick="showDetail('july',25)"><div class="cal-num">25</div></div>
-        <div class="cal-cell" onclick="showDetail('july',26)"><div class="cal-num">26</div></div>
-        <div class="cal-cell" onclick="showDetail('july',27)"><div class="cal-num">27<div class="cal-dots"><div class="cal-dot special">Conditioning 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',28)"><div class="cal-num">28<div class="cal-dots"><div class="cal-dot practice">Practice 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',29)"><div class="cal-num">29</div></div>
-        <div class="cal-cell" onclick="showDetail('july',30)"><div class="cal-num">30<div class="cal-dots"><div class="cal-dot practice">Practice 8-10am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('july',31)"><div class="cal-num">31<div class="cal-dots"><div class="cal-dot special">Equipment 11am</div></div></div></div>
-        <div class="cal-cell empty"></div>
-        <div class="cal-cell empty"></div>
-      </div>
-    </div>
-    <div class="event-detail-panel" id="detail-july"></div>
-  </div>
-
   <!-- AUGUST 2026: Aug 1 = Sat, col index 6 -->
-  <div class="cal-grid-wrap" id="cal-august">
+  <div class="cal-grid-wrap active" id="cal-august">
     <div class="cal-grid">
       <div class="cal-header">
         <div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div>
@@ -369,35 +271,35 @@
         <div class="cal-cell empty"></div>
         <div class="cal-cell empty"></div>
         <div class="cal-cell empty"></div>
-        <div class="cal-cell" onclick="showDetail('august',1)"><div class="cal-num">1</div></div>
-        <div class="cal-cell" onclick="showDetail('august',2)"><div class="cal-num">2</div></div>
-        <div class="cal-cell" onclick="showDetail('august',3)"><div class="cal-num">3</div></div>
-        <div class="cal-cell" onclick="showDetail('august',4)"><div class="cal-num">4</div></div>
-        <div class="cal-cell" onclick="showDetail('august',5)"><div class="cal-num">5</div></div>
-        <div class="cal-cell" onclick="showDetail('august',6)"><div class="cal-num">6</div></div>
-        <div class="cal-cell" onclick="showDetail('august',7)"><div class="cal-num">7</div></div>
-        <div class="cal-cell" onclick="showDetail('august',8)"><div class="cal-num">8</div></div>
-        <div class="cal-cell" onclick="showDetail('august',9)"><div class="cal-num">9</div></div>
+        <div class="cal-cell"><div class="cal-num">1</div></div>
+        <div class="cal-cell"><div class="cal-num">2</div></div>
+        <div class="cal-cell"><div class="cal-num">3</div></div>
+        <div class="cal-cell"><div class="cal-num">4</div></div>
+        <div class="cal-cell"><div class="cal-num">5</div></div>
+        <div class="cal-cell"><div class="cal-num">6</div></div>
+        <div class="cal-cell"><div class="cal-num">7</div></div>
+        <div class="cal-cell"><div class="cal-num">8</div></div>
+        <div class="cal-cell"><div class="cal-num">9</div></div>
         <div class="cal-cell" onclick="showDetail('august',10)"><div class="cal-num">10<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',11)"><div class="cal-num">11<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',12)"><div class="cal-num">12<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',13)"><div class="cal-num">13<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',14)"><div class="cal-num">14<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot scrimmage">Scrimmage</div><div class="cal-dot special">BBQ 11am</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('august',16)"><div class="cal-num">16</div></div>
+        <div class="cal-cell"><div class="cal-num">16</div></div>
         <div class="cal-cell" onclick="showDetail('august',17)"><div class="cal-num">17<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6:15</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',18)"><div class="cal-num">18<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6:15</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',19)"><div class="cal-num">19<div class="cal-dots"><div class="cal-dot special">Pictures 2pm</div><div class="cal-dot practice">Practice 4-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',20)"><div class="cal-num">20<div class="cal-dots"><div class="cal-dot scrimmage">Scrim @ Plymouth 4pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('august',21)"><div class="cal-num">21</div></div>
-        <div class="cal-cell" onclick="showDetail('august',22)"><div class="cal-num">22</div></div>
+        <div class="cal-cell"><div class="cal-num">21</div></div>
+        <div class="cal-cell"><div class="cal-num">22</div></div>
         <div class="cal-cell" onclick="showDetail('august',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',24)"><div class="cal-num">24<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',25)"><div class="cal-num">25<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',26)"><div class="cal-num">26<div class="cal-dots"><div class="cal-dot game">&#128205; @ L'Anse Creuse</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',27)"><div class="cal-num">27<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('august',28)"><div class="cal-num">28</div></div>
-        <div class="cal-cell" onclick="showDetail('august',29)"><div class="cal-num">29</div></div>
+        <div class="cal-cell"><div class="cal-num">28</div></div>
+        <div class="cal-cell"><div class="cal-num">29</div></div>
         <div class="cal-cell" onclick="showDetail('august',30)"><div class="cal-num">30<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('august',31)"><div class="cal-num">31<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell empty"></div>
@@ -423,30 +325,30 @@
         <div class="cal-cell" onclick="showDetail('september',1)"><div class="cal-num">1<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',2)"><div class="cal-num">2<div class="cal-dots"><div class="cal-dot game">Home vs Lake Orion 4:30</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',3)"><div class="cal-num">3<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity @ Lake Orion 7pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('september',4)"><div class="cal-num">4</div></div>
-        <div class="cal-cell" onclick="showDetail('september',5)"><div class="cal-num">5</div></div>
+        <div class="cal-cell"><div class="cal-num">4</div></div>
+        <div class="cal-cell"><div class="cal-num">5</div></div>
         <div class="cal-cell" onclick="showDetail('september',6)"><div class="cal-num">6<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',7)"><div class="cal-num">7<div class="cal-dots"><div class="cal-dot special">Labor Day</div><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',8)"><div class="cal-num">8<div class="cal-dots"><div class="cal-dot practice">Practice/School Starts</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',9)"><div class="cal-num">9<div class="cal-dots"><div class="cal-dot game">&#128205; @ Rochester</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',10)"><div class="cal-num">10<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('september',11)"><div class="cal-num">11</div></div>
-        <div class="cal-cell" onclick="showDetail('september',12)"><div class="cal-num">12</div></div>
-        <div class="cal-cell" onclick="showDetail('september',13)"><div class="cal-num">13</div></div>
+        <div class="cal-cell"><div class="cal-num">11</div></div>
+        <div class="cal-cell"><div class="cal-num">12</div></div>
+        <div class="cal-cell"><div class="cal-num">13</div></div>
         <div class="cal-cell" onclick="showDetail('september',14)"><div class="cal-num">14<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',16)"><div class="cal-num">16<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',17)"><div class="cal-num">17<div class="cal-dots"><div class="cal-dot game">Home vs Stoney Creek 4:30</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',18)"><div class="cal-num">18<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity @ Stoney Creek 7pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('september',19)"><div class="cal-num">19</div></div>
-        <div class="cal-cell" onclick="showDetail('september',20)"><div class="cal-num">20</div></div>
+        <div class="cal-cell"><div class="cal-num">19</div></div>
+        <div class="cal-cell"><div class="cal-num">20</div></div>
         <div class="cal-cell" onclick="showDetail('september',21)"><div class="cal-num">21<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',22)"><div class="cal-num">22<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',24)"><div class="cal-num">24<div class="cal-dots"><div class="cal-dot game">&#128205; @ W.Bloomfield</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',25)"><div class="cal-num">25<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('september',26)"><div class="cal-num">26</div></div>
-        <div class="cal-cell" onclick="showDetail('september',27)"><div class="cal-num">27</div></div>
+        <div class="cal-cell"><div class="cal-num">26</div></div>
+        <div class="cal-cell"><div class="cal-num">27</div></div>
         <div class="cal-cell" onclick="showDetail('september',28)"><div class="cal-num">28<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',29)"><div class="cal-num">29<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('september',30)"><div class="cal-num">30<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
@@ -472,35 +374,35 @@
         <div class="cal-cell empty"></div>
         <div class="cal-cell" onclick="showDetail('october',1)"><div class="cal-num">1<div class="cal-dots"><div class="cal-dot game">Home vs Athens 4:30</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',2)"><div class="cal-num">2<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity @ Athens 7pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('october',3)"><div class="cal-num">3</div></div>
-        <div class="cal-cell" onclick="showDetail('october',4)"><div class="cal-num">4</div></div>
+        <div class="cal-cell"><div class="cal-num">3</div></div>
+        <div class="cal-cell"><div class="cal-num">4</div></div>
         <div class="cal-cell" onclick="showDetail('october',5)"><div class="cal-num">5<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',6)"><div class="cal-num">6<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',7)"><div class="cal-num">7<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',8)"><div class="cal-num">8<div class="cal-dots"><div class="cal-dot game">&#128205; @ Troy</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',9)"><div class="cal-num">9<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('october',10)"><div class="cal-num">10</div></div>
-        <div class="cal-cell" onclick="showDetail('october',11)"><div class="cal-num">11</div></div>
+        <div class="cal-cell"><div class="cal-num">10</div></div>
+        <div class="cal-cell"><div class="cal-num">11</div></div>
         <div class="cal-cell" onclick="showDetail('october',12)"><div class="cal-num">12<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',13)"><div class="cal-num">13<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',14)"><div class="cal-num">14<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot game">&#128205; @ Gold Crossover</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',16)"><div class="cal-num">16<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity TBD 7pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('october',17)"><div class="cal-num">17</div></div>
-        <div class="cal-cell" onclick="showDetail('october',18)"><div class="cal-num">18</div></div>
+        <div class="cal-cell"><div class="cal-num">17</div></div>
+        <div class="cal-cell"><div class="cal-num">18</div></div>
         <div class="cal-cell" onclick="showDetail('october',19)"><div class="cal-num">19<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',20)"><div class="cal-num">20<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',21)"><div class="cal-num">21<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',22)"><div class="cal-num">22<div class="cal-dots"><div class="cal-dot game">&#128205; @ AA Pioneer</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',24)"><div class="cal-num">24<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('october',25)"><div class="cal-num">25</div></div>
-        <div class="cal-cell" onclick="showDetail('october',26)"><div class="cal-num">26</div></div>
-        <div class="cal-cell" onclick="showDetail('october',27)"><div class="cal-num">27</div></div>
-        <div class="cal-cell" onclick="showDetail('october',28)"><div class="cal-num">28</div></div>
-        <div class="cal-cell" onclick="showDetail('october',29)"><div class="cal-num">29</div></div>
-        <div class="cal-cell" onclick="showDetail('october',30)"><div class="cal-num">30</div></div>
-        <div class="cal-cell" onclick="showDetail('october',31)"><div class="cal-num">31</div></div>
+        <div class="cal-cell"><div class="cal-num">25</div></div>
+        <div class="cal-cell"><div class="cal-num">26</div></div>
+        <div class="cal-cell"><div class="cal-num">27</div></div>
+        <div class="cal-cell"><div class="cal-num">28</div></div>
+        <div class="cal-cell"><div class="cal-num">29</div></div>
+        <div class="cal-cell"><div class="cal-num">30</div></div>
+        <div class="cal-cell"><div class="cal-num">31</div></div>
         <div class="cal-cell empty"></div>
       </div>
     </div>
@@ -589,216 +491,6 @@
       </div>
     </div>
     <div class="sub-page active" id="sub-schedule">
-      <div class="month-section">
-        <div class="month-label">June 2026</div>
-
-        <div class="practice" id="p-jun16"><button class="practice-toggle" onclick="togglePractice('p-jun16')"><div class="practice-toggle-inner"><span class="practice-num-badge">Intro</span><div class="practice-header-text"><div class="practice-date">June 16 &mdash; Basic Foundations</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:15</div></div><div class="period-body"><div class="period-title">Warm Up</div><div class="period-note">Teaching it &mdash; may run longer</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:40</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Blackhawk Day</div><div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div><div class="drill-item">Blackhawk Day &mdash; Push Ups &mdash; Core</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;6:45</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:45&ndash;7:05</div></div><div class="period-body"><div class="period-title">Offense &mdash; Intro <span class="hudl">&#128242; HUDL</span></div><div class="drills"><div class="drill-group offense"><div class="drill-label">Full Group</div><div class="drill-item">Formations &amp; Terminology &mdash; Positions &mdash; Route Tree</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:05&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Intro <span class="hudl">&#128242; HUDL</span></div><div class="drills"><div class="drill-group defense"><div class="drill-label">Full Group</div><div class="drill-item">Odd &amp; Even fronts &mdash; Position philosophy &mdash; Alignment</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">End Talk</div><div class="drills"><div class="drill-group team"><div class="drill-label">Coach&rsquo;s Talk</div><div class="drill-item">The 6 Foundations &mdash; Attendance &amp; timeliness is important</div></div></div></div></div></div>
-          </div>
-        </div>
-
-        <div class="practice" id="p-jun18"><button class="practice-toggle" onclick="togglePractice('p-jun18')"><div class="practice-toggle-inner"><span class="practice-num-badge">#1</span><div class="practice-header-text"><div class="practice-date">June 18 &mdash; Quick Game &amp; Power</div><div class="practice-theme">6:00 &ndash; 7:30 PM &mdash; Offense Day</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:30</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Pursuit Day</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:50</div></div><div class="period-body"><div class="period-title">O &mdash; Indy #1 &mdash; Pass Routes &amp; Quick</div>
-              <div class="drills">
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Quicks: Hitch, Slant, Out, In, Pump &mdash; Motion, Jet, Signals</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Quicks &mdash; 1 Step Drop (everything looks like Read), Jet, Motions &mdash; Signals</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Quick &mdash; Slide Protection (Ram/Lion)</div></div>
-                <div class="drill-group goal"><div class="drill-label">Formations &amp; Personnel</div><div class="drill-item">Dubs, Trips, Strong/Weak &mdash; Personnel 10/20</div></div>
-              </div>
-            </div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:50&ndash;7:05</div></div><div class="period-body"><div class="period-title">O &mdash; Indy #2 &mdash; Power &amp; ROA</div>
-              <div class="drills">
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB / WR</div><div class="drill-item">ROA &mdash; Signals and Motions</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> Line</div><div class="drill-item">Power w/ Read &mdash; Signals</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> RB</div><div class="drill-item">Alignment, Ball Security, Flip &mdash; Signals</div></div>
-                <div class="drill-group goal"><div class="drill-label">Formations &amp; Personnel</div><div class="drill-item">Dubs, Trips, Strong/Weak &mdash; Personnel 10/20</div></div>
-              </div>
-            </div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:05&ndash;7:30</div></div><div class="period-body"><div class="period-title">Team Walk Through</div>
-              <div class="drills"><div class="drill-group team"><div class="drill-label">Plays</div><div class="drill-item">Pwr Rt &mdash; Pwr Lt &mdash; Pwr Rt Read Lt &mdash; Pwr Lt Read Rt &mdash; Pwr Rt Jet Lt Flip (Dubs/Trips) &mdash; Pwr Lt Jet Rt Flip (Dubs/Trips) &mdash; All Quicks</div></div></div>
-            </div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End Motivation</div>
-              <div class="drills"><div class="drill-group team"><div class="drill-label">Culture Beats Talent</div></div></div>
-            </div></div></div>
-          </div>
-        </div>
-
-        <div class="practice" id="p-jun23"><button class="practice-toggle" onclick="togglePractice('p-jun23')"><div class="practice-toggle-inner"><span class="practice-num-badge">#2</span><div class="practice-header-text"><div class="practice-date">June 23 &mdash; Defense Day &mdash; Purple Coverage &amp; Odd</div><div class="practice-theme">6:00 &ndash; 7:30 PM &mdash; Defense Day</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:30</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; 4th Quarter Circuit</div><div class="drills"><div class="drill-group special"><div class="drill-label">Conditioning</div><div class="drill-item">4th Quarter Circuit &mdash; Body Weight &mdash; Core</div></div></div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:55</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div>
-              <div class="period-note">Purple Coverage &mdash; Signals, Stance, Base Odd Front, Gap Responsibility</div>
-              <div class="drills">
-                <div class="drill-group defense"><div class="drill-label"><span class="cn">Dontez</span> D-Line</div><div class="drill-item">Stance &mdash; Alignment &mdash; Get-Off &mdash; VIOLENT HANDS</div></div>
-                <div class="drill-group defense"><div class="drill-label"><span class="cn">Erv</span> LB</div><div class="drill-item">Read Triangle &mdash; Fits &mdash; Signals</div></div>
-                <div class="drill-group defense"><div class="drill-label"><span class="cn">Lubs</span> DB</div><div class="drill-item">Purple Reads &mdash; Zones, Alignment, Signal</div></div>
-              </div>
-            </div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:55&ndash;7:20</div></div><div class="period-body"><div class="period-title">Walk Through</div>
-              <div class="drills">
-                <div class="drill-group defense"><div class="drill-label"><span class="cn">Erv / Lubs</span> DB / LB w/ Scout O</div><div class="drill-item">Explain and Defend &mdash; Dubs, Trips</div></div>
-                <div class="drill-group defense"><div class="drill-label"><span class="cn">Dontez</span> O &amp; D-Line w/ RB</div><div class="drill-item">Power</div></div>
-              </div>
-            </div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20</div></div><div class="period-body"><div class="period-title">Pursuit Drill</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End Motivation</div>
-              <div class="drills"><div class="drill-group team"><div class="drill-label">1D, 2D, 3D Warrior</div></div></div>
-            </div></div></div>
-          </div>
-        </div>
-
-        <div class="practice" id="p-jun25"><button class="practice-toggle" onclick="togglePractice('p-jun25')"><div class="practice-toggle-inner"><span class="practice-num-badge">#3</span><div class="practice-header-text"><div class="practice-date">June 25 &mdash; Inside Zone &amp; Drop Game</div><div class="practice-theme">6:00 &ndash; 7:30 PM &mdash; Offense Day</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:30</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Blackhawk Plus</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:55</div></div><div class="period-body"><div class="period-title">O &mdash; Indy #1 &mdash; Pass Routes &amp; Drop</div>
-              <div class="drills">
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Stance &amp; Starts &mdash; Drops: Curl, Deep In, Deep Out, Vert &mdash; Signals for all</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">3 Step Drop, Keep, Motion, Read, Roam &mdash; Signals for all</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Drop &mdash; Solid Protection (Rhino/Leopard) &mdash; Signals</div></div>
-                <div class="drill-group goal"><div class="drill-label">Formations &amp; Personnel</div><div class="drill-item">Dubs, Trips, Strong/Weak &mdash; Personnel 10/20</div></div>
-              </div>
-            </div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:55&ndash;7:15</div></div><div class="period-body"><div class="period-title">O &mdash; Indy #2 &mdash; Inside Zone &amp; ROA</div>
-              <div class="drills">
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB / WR</div><div class="drill-item">ROA &mdash; Signals and Jets</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez / Lubs</span> Line / RB</div><div class="drill-item">Inside Zone w/ Read, Roam, Keep &mdash; Signals for all</div></div>
-                <div class="drill-group goal"><div class="drill-label">Formations &amp; Personnel</div><div class="drill-item">Dubs, Trips, Strong/Weak &mdash; Personnel 10/20</div></div>
-              </div>
-            </div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:15&ndash;7:30</div></div><div class="period-body"><div class="period-title">Team Walk Through</div>
-              <div class="drills">
-                <div class="drill-group team"><div class="drill-label">IZ &amp; Power</div><div class="drill-item">IZ R/L &mdash; w/ Read &mdash; w/ Roam &mdash; w/ Keep</div></div>
-                <div class="drill-group team"><div class="drill-label">Power</div><div class="drill-item">Power R/L &mdash; w/ Read &mdash; w/ Keep &mdash; w/ Roam</div></div>
-                <div class="drill-group team"><div class="drill-label">Pass Game w/ Motions</div><div class="drill-item">Quick: Slants, Outs, Ins, Hitch &mdash; Drop: Curl, In, Out, Vert</div></div>
-              </div>
-            </div></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="month-section">
-        <div class="month-label">July 2026</div>
-
-        <div class="practice" id="p-jul7"><button class="practice-toggle" onclick="togglePractice('p-jul7')"><div class="practice-toggle-inner"><span class="practice-num-badge">#4</span><div class="practice-header-text"><div class="practice-date">July 7 &mdash; OZ &amp; Drop / 7v7 Prep</div><div class="practice-theme">8:00 &ndash; 10:00 AM &mdash; Offense Day</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:30</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Game Speed</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:55</div></div><div class="period-body"><div class="period-title">O &mdash; Indy #1 &mdash; Pass Routes &amp; Roll Out</div>
-              <div class="drills">
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Stance &amp; Starts &mdash; Drop/Roll: Spot, Cross, Flood, Wheel &mdash; Signals</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Spot, Cross &amp; Roll Out and Naked &mdash; Signals</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Roll Out Protection</div></div>
-                <div class="drill-group goal"><div class="drill-label">Formations &amp; Personnel</div><div class="drill-item">Dubs, Trips, Strong/Weak &mdash; Personnel 10/20</div></div>
-              </div>
-            </div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:55&ndash;7:15</div></div><div class="period-body"><div class="period-title">O &mdash; Indy #2 &mdash; Outside Zone &amp; ROA</div>
-              <div class="drills">
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB / WR</div><div class="drill-item">ROA &mdash; Jets, Quicks, Drops, Flood &amp; Wheel &mdash; Signals</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> Line</div><div class="drill-item">Outside Zone &mdash; Signals</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> RB</div><div class="drill-item">Alignment, Ball Security, Jet, Flip/Toss &mdash; Signals</div></div>
-                <div class="drill-group goal"><div class="drill-label">Formations &amp; Personnel</div><div class="drill-item">Dubs, Trips, Strong/Weak &mdash; Personnel 10/20</div></div>
-              </div>
-            </div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:15&ndash;7:30</div></div><div class="period-body"><div class="period-title">Team Walk Through</div>
-              <div class="drills"><div class="drill-group team"><div class="drill-label">Plays</div><div class="drill-item">OZ Rt &mdash; OZ Lt &mdash; OZ Rt Read Lt &mdash; OZ Lt Read Rt &mdash; OZ Rt Jet Lt &mdash; OZ Lt Jet Rt &mdash; Spot, Cross, Flood, Wheel</div></div></div>
-            </div></div></div>
-          </div>
-        </div>
-
-        <div class="practice gameday" id="p-jul8"><button class="practice-toggle" onclick="togglePractice('p-jul8')"><div class="practice-toggle-inner"><span class="practice-num-badge">#5</span><div class="practice-header-text"><div class="practice-date">July 8 &mdash; 7v7 vs JV</div><div class="practice-theme">6:00 PM @ BH</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="game-detail"><div class="game-detail-title">&#127944; 7v7 vs JV</div><div class="game-detail-sub">6:00 PM &mdash; Bloomfield Hills</div></div></div></div>
-
-        <div class="practice" id="p-jul9"><button class="practice-toggle" onclick="togglePractice('p-jul9')"><div class="practice-toggle-inner"><span class="practice-num-badge">#6</span><div class="practice-header-text"><div class="practice-date">July 9 &mdash; Defense Day</div><div class="practice-theme">8:00 &ndash; 10:00 AM</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:10&ndash;6:30</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Competition Day</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;7:00</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="drills"><div class="drill-group defense"><div class="drill-label">D &mdash; Indy</div><div class="drill-item tbd">Details TBD</div></div></div></div></div></div>
-          </div>
-        </div>
-
-        <div class="practice" id="p-jul14"><button class="practice-toggle" onclick="togglePractice('p-jul14')"><div class="practice-toggle-inner"><span class="practice-num-badge">#7</span><div class="practice-header-text"><div class="practice-date">July 14 &mdash; Lead, Routes &amp; Blocking</div><div class="practice-theme">8:00 &ndash; 10:00 AM &mdash; Offense Focus</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:30</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Blackhawk Day</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:55</div></div><div class="period-body"><div class="period-title">O &mdash; Indy #1 &mdash; Pass Routes &amp; Lead</div>
-              <div class="drills">
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Stance &amp; Starts &mdash; Drop and Cluster and Orbit: Smash, Mesh &mdash; Signals</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Drop and Cluster &mdash; Smash, Mesh &mdash; Signals</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Lead</div></div>
-                <div class="drill-group goal"><div class="drill-label">Formations &amp; Personnel</div><div class="drill-item">Dubs, Trips, Strong/Weak &mdash; Personnel 10/20</div></div>
-              </div>
-            </div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:55&ndash;7:15</div></div><div class="period-body"><div class="period-title">O &mdash; Indy #2 &mdash; Outside Zone &amp; ROA</div>
-              <div class="drills">
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB / WR</div><div class="drill-item">ROA &mdash; Jets, Smash, Mesh and Cluster &mdash; Signals</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> Line</div><div class="drill-item">Review All 4 &mdash; Signals</div></div>
-                <div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> RB</div><div class="drill-item">Alignment, Ball Security, Lead &mdash; Signals</div></div>
-                <div class="drill-group goal"><div class="drill-label">Formations &amp; Personnel</div><div class="drill-item">Dubs, Trips, Strong/Weak &mdash; Personnel 10/20</div></div>
-              </div>
-            </div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:15&ndash;7:30</div></div><div class="period-body"><div class="period-title">Team Walk Through</div>
-              <div class="drills"><div class="drill-group team"><div class="drill-label">Plays</div><div class="drill-item">Lead Rt &mdash; Lead Lt &mdash; Lead Rt 2 Orbit &mdash; Lead Lt 2 Orbit &mdash; Lead Rt 2 Orbit Keep &mdash; Lead Lt 2 Orbit Keep &mdash; Smash, Mesh, Cluster</div></div></div>
-            </div></div></div>
-          </div>
-        </div>
-
-        <div class="practice gameday" id="p-jul15"><button class="practice-toggle" onclick="togglePractice('p-jul15')"><div class="practice-toggle-inner"><span class="practice-num-badge">#8</span><div class="practice-header-text"><div class="practice-date">July 15 &mdash; 7v7 vs JV</div><div class="practice-theme">6:00 PM @ BH</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="game-detail"><div class="game-detail-title">&#127944; 7v7 vs JV</div><div class="game-detail-sub">6:00 PM &mdash; Bloomfield Hills</div></div></div></div>
-
-        <div class="practice" id="p-jul16"><button class="practice-toggle" onclick="togglePractice('p-jul16')"><div class="practice-toggle-inner"><span class="practice-num-badge">#9</span><div class="practice-header-text"><div class="practice-date">July 16 &mdash; Defense Focus</div><div class="practice-theme">8:00 &ndash; 10:00 AM</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Pursuit Day</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="drills"><div class="drill-group defense"><div class="drill-label">D &mdash; Indy</div><div class="drill-item tbd">Details TBD</div></div></div></div></div></div>
-          </div>
-        </div>
-
-        <div class="practice" id="p-jul21"><button class="practice-toggle" onclick="togglePractice('p-jul21')"><div class="practice-toggle-inner"><span class="practice-num-badge">#10</span><div class="practice-header-text"><div class="practice-date">July 21 &mdash; Offense TBD</div><div class="practice-theme">8:00 &ndash; 10:00 AM</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:10&ndash;6:30</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; 4th Quarter Circuit</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="drills"><div class="drill-group offense"><div class="drill-label">O &mdash; Indy</div><div class="drill-item tbd">Details TBD</div></div></div></div></div></div>
-          </div>
-        </div>
-
-        <div class="practice" id="p-jul23"><button class="practice-toggle" onclick="togglePractice('p-jul23')"><div class="practice-toggle-inner"><span class="practice-num-badge">#11</span><div class="practice-header-text"><div class="practice-date">July 23 &mdash; Defense Focus</div><div class="practice-theme">8:00 &ndash; 10:00 AM &mdash; Blackhawk Plus</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">Full Practice</div></div><div class="period-body"><div class="period-title">Blackhawk Plus</div><div class="period-note">Defense focus &mdash; details TBD</div></div></div></div>
-          </div>
-        </div>
-
-        <div class="practice" id="p-jul28"><button class="practice-toggle" onclick="togglePractice('p-jul28')"><div class="practice-toggle-inner"><span class="practice-num-badge">#12</span><div class="practice-header-text"><div class="practice-date">July 28 &mdash; Offense TBD</div><div class="practice-theme">8:00 &ndash; 10:00 AM</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:10&ndash;6:30</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Game Speed, Body Weight, Core</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div>
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="drills"><div class="drill-group offense"><div class="drill-label">O &mdash; Indy</div><div class="drill-item tbd">Details TBD</div></div></div></div></div></div>
-          </div>
-        </div>
-
-        <div class="practice" id="p-jul30"><button class="practice-toggle" onclick="togglePractice('p-jul30')"><div class="practice-toggle-inner"><span class="practice-num-badge">#13</span><div class="practice-header-text"><div class="practice-date">July 30 &mdash; Defense Focus</div><div class="practice-theme">8:00 &ndash; 10:00 AM &mdash; Competition Day</div></div><span class="practice-chevron">&#9662;</span></div></button>
-          <div class="practice-content">
-            <div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">Full Practice</div></div><div class="period-body"><div class="period-title">Competition Day</div><div class="period-note">Defense focus &mdash; details TBD</div></div></div></div>
-          </div>
-        </div>
-      </div>
       <p class="footer-note">Bloomfield Hills Black Hawks &middot; Coaches Page &middot; 2026</p>
     </div>
 
@@ -878,7 +570,7 @@ var events = {
     17: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:15 PM'}],
     18: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:15 PM'}],
     19: [{type:'special', title:'Freshman Pictures', detail:'2:00 &ndash; 4:00 PM'},{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 6:00 PM'}],
-    20: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 6:00 PM'}],
+    20: [{type:'scrimmage', title:'Scrimmage @ Plymouth HS', detail:'Freshman 4:00 PM &mdash; Varsity 6:00 PM'}],
     21: [{type:'scrimmage', title:'Scrimmage @ Plymouth HS', detail:'Freshman 4:00 PM &mdash; Varsity 6:00 PM'}],
     22: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     23: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
@@ -926,7 +618,6 @@ var events = {
     3:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     5:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     6:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
-    6:  [{type:'special', title:'Conditioning', detail:'8:00 &ndash; 10:00 AM'}],
     7:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
     8:  [{type:'game', title:'Freshman @ Troy', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4777%20Northfield%20Pkwy%20Troy%20MI%2048098" target="_blank">Get Directions</a>'}],
     9:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs Troy', detail:'7:00 PM &mdash; Homecoming'}],
@@ -989,11 +680,14 @@ function showMonth(name, btn) {
 }
 
 function showDetail(month, day) {
+  // Hide all panels first
+  document.querySelectorAll('.event-detail-panel').forEach(function(p) {
+    p.classList.remove('active');
+    p.innerHTML = '';
+  });
   var panel = document.getElementById('detail-' + month);
   var evList = (events[month] || {})[day];
   if (!evList || evList.length === 0) {
-    panel.classList.remove('active');
-    panel.innerHTML = '';
     return;
   }
   // Get day of week
