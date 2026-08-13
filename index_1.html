@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BH Black Hawks Freshman Football 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0d0d0f; --purple: #5c2d91; --purple-mid: #7c3fbf; --purple-light: #a56fd4;
+    --gray-dark: #1e1c22; --gray-mid: #3a3642; --white: #ffffff; --accent: #c8a2e8;
+    --green: #50c878; --blue: #4a9eff; --orange: #f0a030; --red: #e05c5c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Barlow", sans-serif; background: var(--black); color: var(--white); min-height: 100vh; }
+
+  .site-header { background: var(--black); border-bottom: 3px solid var(--purple); position: sticky; top: 0; z-index: 100; }
+  .header-inner { max-width: 720px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
+  .header-logo { width: 48px; height: 48px; object-fit: contain; flex-shrink: 0; }
+  .header-text { flex: 1; }
+  .header-team { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); line-height: 1; }
+  .header-sub { font-size: 11px; font-weight: 500; color: var(--purple-light); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; }
+  .header-badge { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; color: var(--accent); text-transform: uppercase; background: rgba(92,45,145,0.35); border: 1px solid rgba(92,45,145,0.5); padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
+
+  /* TOP NAV */
+  .top-nav { background: #111013; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .top-nav-inner { max-width: 720px; margin: 0 auto; display: flex; }
+  .top-tab { flex: 1; padding: 12px 8px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; text-align: center; color: #666; background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.18s; white-space: nowrap; }
+  .top-tab:hover { color: var(--purple-light); }
+  .top-tab.active { color: var(--white); border-bottom-color: var(--purple); }
+  .top-tab.coaches-tab { color: var(--accent); }
+  .top-tab.coaches-tab.active { color: var(--white); border-bottom-color: var(--accent); }
+
+  .page { display: none; max-width: 720px; margin: 0 auto; padding: 20px 12px 48px; }
+  .page.active { display: block; }
+
+  /* ===== CALENDAR ===== */
+  .month-tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin-bottom: 16px; padding-bottom: 2px; }
+  .month-tabs::-webkit-scrollbar { display: none; }
+  .month-tab { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; background: var(--gray-dark); border: 1px solid var(--gray-mid); color: #888; padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: all 0.18s; }
+  .month-tab:hover { border-color: var(--purple-light); color: var(--purple-light); }
+  .month-tab.active { background: var(--purple); border-color: var(--purple); color: var(--white); }
+
+  .cal-grid-wrap { display: none; }
+  .cal-grid-wrap.active { display: block; }
+
+  .cal-legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; padding: 10px 14px; background: var(--gray-dark); border-radius: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #aaa; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  .cal-grid { background: var(--gray-dark); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+  .cal-header { display: grid; grid-template-columns: repeat(7, 1fr); background: rgba(92,45,145,0.4); }
+  .cal-dow { text-align: center; padding: 8px 2px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+  .cal-body { display: grid; grid-template-columns: repeat(7, 1fr); }
+  .cal-cell { min-height: 64px; padding: 5px 4px; border-right: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); position: relative; vertical-align: top; }
+  .cal-cell:nth-child(7n) { border-right: none; }
+  .cal-cell.empty { background: rgba(0,0,0,0.15); }
+  .cal-cell.today { background: rgba(92,45,145,0.12); }
+  .cal-num { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; color: #ccc; line-height: 1; margin-bottom: 4px; }
+  .cal-cell.empty .cal-num { color: transparent; }
+  .cal-dots { display: flex; flex-direction: column; gap: 2px; }
+  .cal-dot { font-size: 10px; line-height: 1.3; border-radius: 3px; padding: 1px 3px; color: var(--white); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cal-dot.practice { background: rgba(92,45,145,0.7); }
+  .cal-dot.game { background: rgba(80,200,120,0.75); color: #000; }
+  .cal-dot.scrimmage { background: rgba(74,158,255,0.7); }
+  .cal-dot.special { background: rgba(240,160,48,0.75); color: #000; }
+  .cal-dot.gameday { background: rgba(80,200,120,0.9); color: #000; font-weight: 700; }
+
+  /* Event detail popup */
+  .cal-cell { cursor: pointer; }
+  .cal-cell:hover { background: rgba(92,45,145,0.1); }
+  .event-detail-panel { background: var(--gray-dark); border: 1px solid rgba(92,45,145,0.4); border-radius: 10px; padding: 14px 16px; margin-top: 12px; display: none; }
+  .event-detail-panel.active { display: block; }
+  .edp-date { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 16px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .edp-event { padding: 8px 12px; border-radius: 6px; margin-bottom: 6px; border-left: 3px solid var(--purple-mid); background: rgba(0,0,0,0.2); }
+  .edp-event:last-child { margin-bottom: 0; }
+  .edp-event.practice { border-left-color: var(--purple-mid); }
+  .edp-event.game { border-left-color: var(--green); }
+  .edp-event.scrimmage { border-left-color: var(--blue); }
+  .edp-event.special { border-left-color: var(--orange); }
+  .edp-title { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; color: var(--white); }
+  .edp-detail { font-size: 12px; color: #aaa; margin-top: 2px; }
+
+  /* ===== PHILOSOPHY ===== */
+  .phil-card { background: var(--gray-dark); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 14px; }
+  .phil-card-header { background: linear-gradient(135deg, rgba(92,45,145,0.55) 0%, rgba(40,20,70,0.55) 100%); padding: 16px 20px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .phil-card-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 20px; text-transform: uppercase; color: var(--white); }
+  .phil-card-subtitle { font-size: 12px; color: var(--purple-light); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .phil-card-body { padding: 16px 20px; }
+  .expect-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .expect-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--purple-mid); }
+  .expect-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .expect-text { font-size: 14px; color: #ddd; line-height: 1.4; font-weight: 500; }
+  .standard-grid { display: flex; flex-direction: column; gap: 10px; }
+  .standard-item { background: rgba(0,0,0,0.2); border-radius: 6px; padding: 12px 14px; border-left: 3px solid var(--purple-mid); }
+  .standard-item.body { border-left-color: var(--red); }
+  .standard-item.mind { border-left-color: var(--blue); }
+  .standard-item.principle { border-left-color: var(--purple-light); }
+  .standard-label { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .standard-item.body .standard-label { color: var(--red); }
+  .standard-item.mind .standard-label { color: var(--blue); }
+  .standard-item.principle .standard-label { color: var(--accent); }
+  .standard-text { font-size: 13px; color: #ccc; line-height: 1.5; }
+  .identity-block { background: linear-gradient(135deg, rgba(92,45,145,0.3) 0%, rgba(40,20,70,0.3) 100%); border: 1px solid rgba(92,45,145,0.4); border-radius: 8px; padding: 16px 20px; margin-top: 14px; text-align: center; }
+  .identity-text { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 18px; text-transform: uppercase; color: var(--white); line-height: 1.4; }
+  .identity-sub { font-size: 13px; color: var(--accent); margin-top: 6px; font-style: italic; }
+  .good-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .good-item { background: rgba(0,0,0,0.25); border-radius: 8px; padding: 14px; text-align: center; }
+  .good-letter { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 42px; color: var(--purple-light); line-height: 1; }
+  .good-word { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; color: var(--white); margin-top: 4px; }
+  .good-tagline { background: rgba(92,45,145,0.2); border: 1px solid rgba(92,45,145,0.3); border-radius: 6px; padding: 12px 16px; margin-top: 12px; text-align: center; font-size: 13px; color: #ccc; font-style: italic; }
+  .good-tagline strong { color: var(--accent); font-style: normal; }
+
+  /* ===== COACHES LOCK ===== */
+  .lock-screen { text-align: center; padding: 48px 24px; }
+  .lock-icon { font-size: 48px; margin-bottom: 16px; }
+  .lock-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
+  .lock-sub { font-size: 14px; color: #888; margin-bottom: 24px; }
+  .lock-input { width: 100%; max-width: 280px; background: var(--gray-dark); border: 1px solid var(--gray-mid); border-radius: 8px; padding: 12px 16px; font-size: 16px; color: var(--white); text-align: center; letter-spacing: 0.08em; outline: none; margin-bottom: 12px; }
+  .lock-input:focus { border-color: var(--purple); }
+  .lock-btn { background: var(--purple); color: var(--white); border: none; border-radius: 8px; padding: 12px 32px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; cursor: pointer; }
+  .lock-btn:hover { background: var(--purple-mid); }
+  .lock-error { font-size: 13px; color: var(--red); margin-top: 8px; display: none; }
+  .coaches-content { display: none; }
+  .coaches-subnav { display: flex; gap: 6px; margin-bottom: 20px; }
+  .sub-tab { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; background: var(--gray-dark); border: 1px solid var(--gray-mid); color: #888; padding: 7px 14px; border-radius: 6px; cursor: pointer; }
+  .sub-tab.active { background: var(--purple); border-color: var(--purple); color: var(--white); }
+  .sub-page { display: none; }
+  .sub-page.active { display: block; }
+
+  /* ===== CONDITIONING ===== */
+  .cond-card { background: var(--gray-dark); border-radius: 10px; margin-bottom: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+  .cond-toggle { width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left; }
+  .cond-toggle-inner { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: linear-gradient(135deg, rgba(92,45,145,0.4) 0%, rgba(40,20,70,0.4) 100%); }
+  .cond-toggle-inner:hover { background: linear-gradient(135deg, rgba(92,45,145,0.6) 0%, rgba(40,20,70,0.6) 100%); }
+  .cond-num { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 11px; color: var(--accent); background: rgba(0,0,0,0.3); border: 1px solid rgba(200,162,232,0.3); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; }
+  .cond-name { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 17px; text-transform: uppercase; color: var(--white); flex: 1; }
+  .cond-chevron { color: var(--purple-light); font-size: 18px; flex-shrink: 0; transition: transform 0.25s; }
+  .cond-card.open .cond-chevron { transform: rotate(180deg); }
+  .cond-content { display: none; border-top: 1px solid rgba(255,255,255,0.06); padding: 14px 16px; }
+  .cond-card.open .cond-content { display: block; }
+  .cond-drill { background: rgba(0,0,0,0.2); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; border-left: 3px solid var(--purple-mid); font-size: 13px; color: #ccc; line-height: 1.5; }
+  .cond-drill:last-child { margin-bottom: 0; }
+  .standards-card { background: var(--gray-dark); border-radius: 10px; padding: 16px 18px; border: 1px solid rgba(255,255,255,0.05); margin-top: 6px; }
+  .standards-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 16px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .standard-rule { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; font-size: 13px; color: #ccc; line-height: 1.5; }
+  .standard-rule::before { content: "\25B8"; color: var(--purple-light); flex-shrink: 0; margin-top: 1px; }
+
+  /* ===== PRACTICE SCHEDULE ===== */
+  .month-section { margin-bottom: 28px; }
+  .month-label { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 10px; border-left: 3px solid var(--purple); padding-left: 10px; }
+  .practice { background: var(--gray-dark); border-radius: 10px; margin-bottom: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+  .practice-toggle { width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left; display: block; }
+  .practice-toggle-inner { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: linear-gradient(135deg, rgba(92,45,145,0.5) 0%, rgba(40,20,70,0.5) 100%); }
+  .practice-toggle-inner:hover { background: linear-gradient(135deg, rgba(92,45,145,0.7) 0%, rgba(40,20,70,0.7) 100%); }
+  .practice-num-badge { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 11px; color: var(--accent); background: rgba(0,0,0,0.3); border: 1px solid rgba(200,162,232,0.3); padding: 3px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+  .practice-header-text { flex: 1; }
+  .practice-date { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 17px; text-transform: uppercase; color: var(--white); line-height: 1.1; }
+  .practice-theme { font-size: 12px; color: var(--purple-light); margin-top: 2px; }
+  .practice-chevron { color: var(--purple-light); font-size: 18px; flex-shrink: 0; transition: transform 0.25s; }
+  .practice.open .practice-chevron { transform: rotate(180deg); }
+  .practice.gameday .practice-toggle-inner { background: linear-gradient(135deg, rgba(30,100,30,0.6) 0%, rgba(10,40,10,0.6) 100%); }
+  .practice.gameday .practice-num-badge { border-color: rgba(100,220,100,0.3); color: #7eff7e; }
+  .practice.gameday .practice-date { color: #7eff7e; }
+  .practice-content { display: none; border-top: 1px solid rgba(255,255,255,0.06); }
+  .practice.open .practice-content { display: block; }
+  .period { border-top: 1px solid rgba(255,255,255,0.05); }
+  .period:first-child { border-top: none; }
+  .period-row { display: grid; grid-template-columns: 82px 1fr; align-items: stretch; }
+  .period-time { background: rgba(0,0,0,0.25); padding: 12px 10px; display: flex; align-items: center; justify-content: center; border-right: 2px solid var(--purple); }
+  .period-time-text { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; color: var(--accent); text-align: center; line-height: 1.3; }
+  .period-body { padding: 12px 14px; }
+  .period-title { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; color: var(--white); margin-bottom: 2px; }
+  .period-note { font-size: 11px; color: #777; font-style: italic; margin-bottom: 4px; }
+  .drills { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+  .drill-group { background: rgba(0,0,0,0.2); border-radius: 6px; padding: 9px 11px; border-left: 3px solid var(--purple-mid); }
+  .drill-group.offense { border-left-color: var(--blue); }
+  .drill-group.defense { border-left-color: var(--red); }
+  .drill-group.special { border-left-color: var(--orange); }
+  .drill-group.team { border-left-color: var(--green); }
+  .drill-group.goal { border-left-color: var(--accent); background: rgba(92,45,145,0.1); }
+  .drill-label { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; color: var(--purple-light); }
+  .drill-group.offense .drill-label { color: var(--blue); }
+  .drill-group.defense .drill-label { color: var(--red); }
+  .drill-group.special .drill-label { color: var(--orange); }
+  .drill-group.team .drill-label { color: var(--green); }
+  .drill-group.goal .drill-label { color: var(--accent); }
+  .drill-item { font-size: 13px; color: #ccc; line-height: 1.5; }
+  .drill-item .cn { display: inline-block; font-size: 10px; font-weight: 700; color: var(--accent); background: rgba(92,45,145,0.35); padding: 1px 6px; border-radius: 3px; margin-right: 5px; text-transform: uppercase; letter-spacing: 0.06em; vertical-align: middle; }
+  .drill-item.tbd { color: #555; font-style: italic; }
+  .hudl { display: inline-flex; font-size: 10px; font-weight: 600; color: var(--orange); background: rgba(240,160,48,0.12); border: 1px solid rgba(240,160,48,0.3); padding: 1px 7px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .game-detail { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 16px; margin: 14px; border: 1px solid rgba(100,220,100,0.2); text-align: center; }
+  .game-detail-title { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 22px; color: #7eff7e; text-transform: uppercase; }
+  .game-detail-sub { font-size: 13px; color: #aaa; margin-top: 4px; }
+
+  .map-link { color: var(--blue); text-decoration: none; font-weight: 600; }
+  .map-link:hover { text-decoration: underline; }
+  .footer-note { text-align: center; font-size: 11px; color: #333; margin-top: 28px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  @media (max-width: 600px) {
+    .header-badge { display: none; }
+    .top-tab { font-size: 11px; padding: 10px 4px; }
+
+    /* Make calendar fit phone width exactly */
+    .cal-grid { width: 100%; table-layout: fixed; }
+    .cal-header { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .cal-body { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .cal-dow { font-size: 10px; padding: 6px 1px; }
+    .cal-cell { min-height: 48px; padding: 3px 2px; }
+    .cal-num { font-size: 11px; font-weight: 700; }
+    .cal-dots { display: flex; flex-direction: column; gap: 1px; margin-top: 2px; }
+    .cal-dot { font-size: 0px; width: 6px; height: 6px; border-radius: 50%; padding: 0; margin: 0 auto; }
+    .cal-dot.practice { background: var(--purple-mid); }
+    .cal-dot.game { background: var(--green); }
+    .cal-dot.scrimmage { background: var(--blue); }
+    .cal-dot.special { background: var(--orange); }
+
+    /* Period grid on coaches page */
+    .period-row { grid-template-columns: 65px 1fr; }
+    .period-time-text { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <img src="data:image/png;base64,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" alt="Black Hawks" class="header-logo">
+    <div class="header-text">
+      <div class="header-team">Bloomfield Hills Black Hawks</div>
+      <div class="header-sub">Freshman Football &mdash; 2026</div>
+    </div>
+    <div class="header-badge">2026 Season</div>
+  </div>
+</header>
+
+<nav class="top-nav">
+  <div class="top-nav-inner">
+    <button class="top-tab active" onclick="showPage('calendar',this)">Calendar</button>
+    <button class="top-tab" onclick="showPage('philosophy',this)">Philosophy</button>
+    <button class="top-tab coaches-tab" onclick="showPage('coaches',this)">&#128274; Coaches</button>
+  </div>
+</nav>
+
+<!-- ===================== CALENDAR ===================== -->
+<div class="page active" id="page-calendar">
+
+  <div class="month-tabs">
+    <button class="month-tab active" onclick="showMonth('august',this)">August</button>
+    <button class="month-tab" onclick="showMonth('september',this)">September</button>
+    <button class="month-tab" onclick="showMonth('october',this)">October</button>
+  </div>
+
+  <div class="cal-legend">
+    <div class="legend-item"><div class="legend-dot" style="background:rgba(92,45,145,0.8)"></div>Practice</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Game</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>Scrimmage</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>Special</div>
+  </div>
+
+  <!-- AUGUST 2026: Aug 1 = Sat, col index 6 -->
+  <div class="cal-grid-wrap active" id="cal-august">
+    <div class="cal-grid">
+      <div class="cal-header">
+        <div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div>
+        <div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div><div class="cal-dow">Sun</div>
+      </div>
+      <div class="cal-body">
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell"><div class="cal-num">1</div></div>
+        <div class="cal-cell"><div class="cal-num">2</div></div>
+        <div class="cal-cell"><div class="cal-num">3</div></div>
+        <div class="cal-cell"><div class="cal-num">4</div></div>
+        <div class="cal-cell"><div class="cal-num">5</div></div>
+        <div class="cal-cell"><div class="cal-num">6</div></div>
+        <div class="cal-cell"><div class="cal-num">7</div></div>
+        <div class="cal-cell"><div class="cal-num">8</div></div>
+        <div class="cal-cell"><div class="cal-num">9</div></div>
+        <div class="cal-cell" onclick="showDetail('august',10)"><div class="cal-num">10<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',11)"><div class="cal-num">11<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',12)"><div class="cal-num">12<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',13)"><div class="cal-num">13<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',14)"><div class="cal-num">14<div class="cal-dots"><div class="cal-dot practice">Practice 4-8pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot scrimmage">Scrimmage</div><div class="cal-dot special">BBQ 11am</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">16</div></div>
+        <div class="cal-cell" onclick="showDetail('august',17)"><div class="cal-num">17<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6:15</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',18)"><div class="cal-num">18<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6:15</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',19)"><div class="cal-num">19<div class="cal-dots"><div class="cal-dot special">Pictures 2pm</div><div class="cal-dot practice">Practice 4-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',20)"><div class="cal-num">20<div class="cal-dots"><div class="cal-dot scrimmage">Scrim @ Plymouth 4pm</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">21</div></div>
+        <div class="cal-cell"><div class="cal-num">22</div></div>
+        <div class="cal-cell" onclick="showDetail('august',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',24)"><div class="cal-num">24<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',25)"><div class="cal-num">25<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',26)"><div class="cal-num">26<div class="cal-dots"><div class="cal-dot game">&#128205; @ L'Anse Creuse</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',27)"><div class="cal-num">27<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">28</div></div>
+        <div class="cal-cell"><div class="cal-num">29</div></div>
+        <div class="cal-cell" onclick="showDetail('august',30)"><div class="cal-num">30<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('august',31)"><div class="cal-num">31<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+      </div>
+    </div>
+    <div class="event-detail-panel" id="detail-august"></div>
+  </div>
+
+  <!-- SEPTEMBER 2026: Sep 1 = Tue, col index 2 -->
+  <div class="cal-grid-wrap" id="cal-september">
+    <div class="cal-grid">
+      <div class="cal-header">
+        <div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div>
+        <div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div><div class="cal-dow">Sun</div>
+      </div>
+      <div class="cal-body">
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell" onclick="showDetail('september',1)"><div class="cal-num">1<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',2)"><div class="cal-num">2<div class="cal-dots"><div class="cal-dot game">Home vs Lake Orion 4:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',3)"><div class="cal-num">3<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity @ Lake Orion 7pm</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">4</div></div>
+        <div class="cal-cell"><div class="cal-num">5</div></div>
+        <div class="cal-cell" onclick="showDetail('september',6)"><div class="cal-num">6<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',7)"><div class="cal-num">7<div class="cal-dots"><div class="cal-dot special">Labor Day</div><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',8)"><div class="cal-num">8<div class="cal-dots"><div class="cal-dot practice">Practice/School Starts</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',9)"><div class="cal-num">9<div class="cal-dots"><div class="cal-dot game">&#128205; @ Rochester</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',10)"><div class="cal-num">10<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">11</div></div>
+        <div class="cal-cell"><div class="cal-num">12</div></div>
+        <div class="cal-cell"><div class="cal-num">13</div></div>
+        <div class="cal-cell" onclick="showDetail('september',14)"><div class="cal-num">14<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',16)"><div class="cal-num">16<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',17)"><div class="cal-num">17<div class="cal-dots"><div class="cal-dot game">Home vs Stoney Creek 4:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',18)"><div class="cal-num">18<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity @ Stoney Creek 7pm</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">19</div></div>
+        <div class="cal-cell"><div class="cal-num">20</div></div>
+        <div class="cal-cell" onclick="showDetail('september',21)"><div class="cal-num">21<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',22)"><div class="cal-num">22<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',24)"><div class="cal-num">24<div class="cal-dots"><div class="cal-dot game">&#128205; @ W.Bloomfield</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',25)"><div class="cal-num">25<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">26</div></div>
+        <div class="cal-cell"><div class="cal-num">27</div></div>
+        <div class="cal-cell" onclick="showDetail('september',28)"><div class="cal-num">28<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',29)"><div class="cal-num">29<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('september',30)"><div class="cal-num">30<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+      </div>
+    </div>
+    <div class="event-detail-panel" id="detail-september"></div>
+  </div>
+
+  <!-- OCTOBER 2026: Oct 1 = Thu, col index 4 -->
+  <div class="cal-grid-wrap" id="cal-october">
+    <div class="cal-grid">
+      <div class="cal-header">
+        <div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div>
+        <div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div><div class="cal-dow">Sun</div>
+      </div>
+      <div class="cal-body">
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell" onclick="showDetail('october',1)"><div class="cal-num">1<div class="cal-dots"><div class="cal-dot game">Home vs Athens 4:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',2)"><div class="cal-num">2<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity @ Athens 7pm</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">3</div></div>
+        <div class="cal-cell"><div class="cal-num">4</div></div>
+        <div class="cal-cell" onclick="showDetail('october',5)"><div class="cal-num">5<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',6)"><div class="cal-num">6<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',7)"><div class="cal-num">7<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',8)"><div class="cal-num">8<div class="cal-dots"><div class="cal-dot game">&#128205; @ Troy</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',9)"><div class="cal-num">9<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">10</div></div>
+        <div class="cal-cell"><div class="cal-num">11</div></div>
+        <div class="cal-cell" onclick="showDetail('october',12)"><div class="cal-num">12<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',13)"><div class="cal-num">13<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',14)"><div class="cal-num">14<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',15)"><div class="cal-num">15<div class="cal-dots"><div class="cal-dot game">&#128205; @ Gold Crossover</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',16)"><div class="cal-num">16<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity TBD 7pm</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">17</div></div>
+        <div class="cal-cell"><div class="cal-num">18</div></div>
+        <div class="cal-cell" onclick="showDetail('october',19)"><div class="cal-num">19<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',20)"><div class="cal-num">20<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',21)"><div class="cal-num">21<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',22)"><div class="cal-num">22<div class="cal-dots"><div class="cal-dot game">&#128205; @ AA Pioneer</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',24)"><div class="cal-num">24<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">25</div></div>
+        <div class="cal-cell"><div class="cal-num">26</div></div>
+        <div class="cal-cell"><div class="cal-num">27</div></div>
+        <div class="cal-cell"><div class="cal-num">28</div></div>
+        <div class="cal-cell"><div class="cal-num">29</div></div>
+        <div class="cal-cell"><div class="cal-num">30</div></div>
+        <div class="cal-cell"><div class="cal-num">31</div></div>
+        <div class="cal-cell empty"></div>
+      </div>
+    </div>
+    <div class="event-detail-panel" id="detail-october"></div>
+  </div>
+
+  <p class="footer-note">Bloomfield Hills Black Hawks &middot; Freshman Football &middot; 2026</p>
+</div>
+
+<!-- ===================== PHILOSOPHY ===================== -->
+<div class="page" id="page-philosophy">
+  <div class="phil-card">
+    <div class="phil-card-header"><div class="phil-card-title">Five Expectations of Being Human</div><div class="phil-card-subtitle">The foundation of how we operate</div></div>
+    <div class="phil-card-body">
+      <ul class="expect-list">
+        <li class="expect-item"><span class="expect-icon">&#10003;</span><span class="expect-text">Take care of yourself</span></li>
+        <li class="expect-item"><span class="expect-icon">&#10003;</span><span class="expect-text">Take care of others</span></li>
+        <li class="expect-item"><span class="expect-icon">&#10003;</span><span class="expect-text">Tell the truth, even when it&rsquo;s hard</span></li>
+        <li class="expect-item"><span class="expect-icon">&#10003;</span><span class="expect-text">We learn by making mistakes</span></li>
+        <li class="expect-item"><span class="expect-icon">&#10003;</span><span class="expect-text">Show gratitude</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="phil-card">
+    <div class="phil-card-header"><div class="phil-card-title">Six Standards of Football</div><div class="phil-card-subtitle">How we play &mdash; every rep, every play</div></div>
+    <div class="phil-card-body">
+      <div class="standard-grid">
+        <div class="standard-item body"><div class="standard-label">Body &mdash; Fast, Physical, Relentless</div><div class="standard-text">Not based on outcome, stats, or talent. Based on character. Something anyone can always work towards.</div></div>
+        <div class="standard-item mind"><div class="standard-label">Mind &mdash; Educated, Disciplined, Composed</div><div class="standard-text">Take the coaching given and study your craft. Know what you must do and do it. Regulate your emotions.</div></div>
+        <div class="standard-item principle"><div class="standard-label">Play to the Standard, Not the Circumstance</div><div class="standard-text">How you play never changes. All the little things matter, every single time.</div></div>
+        <div class="standard-item principle"><div class="standard-label">6 Seconds of Memory</div><div class="standard-text">One play at a time. Each play ends when it ends. We don&rsquo;t worry about the past &mdash; we don&rsquo;t think beyond right now, this play.</div></div>
+        <div class="standard-item principle"><div class="standard-label">Repetition to Production</div><div class="standard-text">Create good habits on and off the field. Neural pathways. Muscle memory.</div></div>
+        <div class="standard-item principle"><div class="standard-label">Process to Progress</div><div class="standard-text">Immerse yourself in the process. A desire to work and be on the journey. Crave the discomfort &mdash; it leads to growth.</div></div>
+      </div>
+      <div class="identity-block">
+        <div class="identity-text">None of this is about talent.<br>It&rsquo;s effort. It&rsquo;s mental control.<br>Always working to be better.</div>
+        <div class="identity-sub">It&rsquo;s identity.</div>
+      </div>
+    </div>
+  </div>
+  <div class="phil-card">
+    <div class="phil-card-header"><div class="phil-card-title">The GOOD Standard &mdash; Defense</div><div class="phil-card-subtitle">What it means to be a Black Hawk on defense</div></div>
+    <div class="phil-card-body">
+      <div class="good-grid">
+        <div class="good-item"><div class="good-letter">G</div><div class="good-word">Great Effort</div></div>
+        <div class="good-item"><div class="good-letter">O</div><div class="good-word">Outstanding Communication</div></div>
+        <div class="good-item"><div class="good-letter">O</div><div class="good-word">Own Your Job</div></div>
+        <div class="good-item"><div class="good-letter">D</div><div class="good-word">Dominate Your Role</div></div>
+      </div>
+      <div class="good-tagline">If every player is <strong>GOOD</strong>, the defense becomes great.</div>
+    </div>
+  </div>
+  <p class="footer-note">Bloomfield Hills Black Hawks &middot; Freshman Football &middot; 2026</p>
+</div>
+
+<!-- ===================== COACHES ===================== -->
+<div class="page" id="page-coaches">
+  <div class="lock-screen" id="lockScreen">
+    <div class="lock-icon">&#128274;</div>
+    <div class="lock-title">Coaches Area</div>
+    <div class="lock-sub">Enter your password to access the coaches section</div><br>
+    <input class="lock-input" type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()"><br>
+    <button class="lock-btn" onclick="checkPw()">Unlock</button>
+    <div class="lock-error" id="lockError">Incorrect password. Try again.</div>
+  </div>
+  <div class="coaches-content" id="coachesContent">
+    <div class="coaches-subnav">
+      <button class="sub-tab active" onclick="showSub('schedule',this)">Schedule</button>
+      <button class="sub-tab" onclick="showSub('conditioning',this)">Conditioning</button>
+    </div>
+    <div class="sub-page" id="sub-conditioning">
+      <div class="cond-card" id="c1"><button class="cond-toggle" onclick="toggleCond('c1')"><div class="cond-toggle-inner"><span class="cond-num">Practice 1</span><span class="cond-name">Blackhawk Day</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill">Blackhawk Shuttles &mdash; <strong>8 reps, 30 sec rest</strong></div><div class="cond-drill">Finish with <strong>4 x 40-yard sprints</strong></div></div></div>
+      <div class="cond-card" id="c2"><button class="cond-toggle" onclick="toggleCond('c2')"><div class="cond-toggle-inner"><span class="cond-num">Practice 2</span><span class="cond-name">Pursuit Day</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill">Partner Chase &mdash; <strong>8 reps</strong></div><div class="cond-drill">100-yard Shuttles &mdash; <strong>3 rounds</strong></div><div class="cond-drill">Bear Crawl / Sprint Combo &mdash; <strong>3 rounds</strong></div></div></div>
+      <div class="cond-card" id="c3"><button class="cond-toggle" onclick="toggleCond('c3')"><div class="cond-toggle-inner"><span class="cond-num">Practice 3</span><span class="cond-name">Fourth Quarter Circuit</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill"><strong>15-minute rotation</strong> of sprints, up-downs, backpedals, shuffles, and sprint finishes</div></div></div>
+      <div class="cond-card" id="c4"><button class="cond-toggle" onclick="toggleCond('c4')"><div class="cond-toggle-inner"><span class="cond-num">Practice 4</span><span class="cond-name">Blackhawk Plus</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill">Blackhawk Shuttles &mdash; <strong>8 reps</strong></div><div class="cond-drill">Finish with <strong>4 goal-line-to-20-yard sprints</strong></div></div></div>
+      <div class="cond-card" id="c5"><button class="cond-toggle" onclick="toggleCond('c5')"><div class="cond-toggle-inner"><span class="cond-num">Practice 5</span><span class="cond-name">Game Speed</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill"><strong>12 x 40-yard sprints</strong> with 24 seconds rest</div><div class="cond-drill">Finish with <strong>4 consecutive gassers</strong></div></div></div>
+      <div class="cond-card" id="c6"><button class="cond-toggle" onclick="toggleCond('c6')"><div class="cond-toggle-inner"><span class="cond-num">Practice 6</span><span class="cond-name">Competition Day</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill">Relay races</div><div class="cond-drill">Blackhawk Championship</div><div class="cond-drill">Timed gasser competition</div></div></div>
+      <div class="standards-card">
+        <div class="standards-title">Program Standards</div>
+        <div class="standard-rule">Sprint through every line.</div>
+        <div class="standard-rule">Touch every line with your hand.</div>
+        <div class="standard-rule">Give full effort every rep.</div>
+        <div class="standard-rule">During Blackhawk Shuttles, if one player misses a line, cuts a rep short, or quits before the whistle &mdash; the team returns to 0 reps.</div>
+        <div class="standard-rule">The team finishes together.</div>
+        <div class="standard-rule">If players are failing due to excessive fatigue, heat, or safety concerns, coaches should adjust volume, rest periods, or rep totals accordingly while maintaining effort standards.</div>
+      </div>
+    </div>
+    <div class="sub-page active" id="sub-schedule">
+      <p class="footer-note">Bloomfield Hills Black Hawks &middot; Coaches Page &middot; 2026</p>
+    </div>
+
+    <div class="sub-page" id="sub-conditioning">
+      <div class="cond-card" id="c1"><button class="cond-toggle" onclick="toggleCond('c1')"><div class="cond-toggle-inner"><span class="cond-num">Practice 1</span><span class="cond-name">Blackhawk Day</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill">Blackhawk Shuttles &mdash; <strong>8 reps, 30 sec rest</strong></div><div class="cond-drill">Finish with <strong>4 x 40-yard sprints</strong></div></div></div>
+      <div class="cond-card" id="c2"><button class="cond-toggle" onclick="toggleCond('c2')"><div class="cond-toggle-inner"><span class="cond-num">Practice 2</span><span class="cond-name">Pursuit Day</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill">Partner Chase &mdash; <strong>8 reps</strong></div><div class="cond-drill">100-yard Shuttles &mdash; <strong>3 rounds</strong></div><div class="cond-drill">Bear Crawl / Sprint Combo &mdash; <strong>3 rounds</strong></div></div></div>
+      <div class="cond-card" id="c3"><button class="cond-toggle" onclick="toggleCond('c3')"><div class="cond-toggle-inner"><span class="cond-num">Practice 3</span><span class="cond-name">Fourth Quarter Circuit</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill"><strong>15-minute rotation</strong> of sprints, up-downs, backpedals, shuffles, and sprint finishes</div></div></div>
+      <div class="cond-card" id="c4"><button class="cond-toggle" onclick="toggleCond('c4')"><div class="cond-toggle-inner"><span class="cond-num">Practice 4</span><span class="cond-name">Blackhawk Plus</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill">Blackhawk Shuttles &mdash; <strong>8 reps</strong></div><div class="cond-drill">Finish with <strong>4 goal-line-to-20-yard sprints</strong></div></div></div>
+      <div class="cond-card" id="c5"><button class="cond-toggle" onclick="toggleCond('c5')"><div class="cond-toggle-inner"><span class="cond-num">Practice 5</span><span class="cond-name">Game Speed</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill"><strong>12 x 40-yard sprints</strong> with 24 seconds rest</div><div class="cond-drill">Finish with <strong>4 consecutive gassers</strong></div></div></div>
+      <div class="cond-card" id="c6"><button class="cond-toggle" onclick="toggleCond('c6')"><div class="cond-toggle-inner"><span class="cond-num">Practice 6</span><span class="cond-name">Competition Day</span><span class="cond-chevron">&#9662;</span></div></button><div class="cond-content"><div class="cond-drill">Relay races</div><div class="cond-drill">Blackhawk Championship</div><div class="cond-drill">Timed gasser competition</div></div></div>
+      <div class="standards-card">
+        <div class="standards-title">Program Standards</div>
+        <div class="standard-rule">Sprint through every line.</div>
+        <div class="standard-rule">Touch every line with your hand.</div>
+        <div class="standard-rule">Give full effort every rep.</div>
+        <div class="standard-rule">During Blackhawk Shuttles, if one player misses a line, cuts a rep short, or quits before the whistle &mdash; the team returns to 0 reps.</div>
+        <div class="standard-rule">The team finishes together.</div>
+        <div class="standard-rule">If players are failing due to excessive fatigue, heat, or safety concerns, coaches should adjust volume, rest periods, or rep totals accordingly while maintaining effort standards.</div>
+      </div>
+    </div>
+    <div class="sub-page active" id="sub-schedule">
+      <div class="month-section">
+        <div class="month-label">June 2026</div>
+        <div class="practice" id="p-jun16"><button class="practice-toggle" onclick="togglePractice('p-jun16')"><div class="practice-toggle-inner"><span class="practice-num-badge">Intro</span><div class="practice-header-text"><div class="practice-date">June 16 &mdash; Basic Foundations</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:15</div></div><div class="period-body"><div class="period-title">Warm Up</div><div class="period-note">Teaching it &mdash; may run longer</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:40</div></div><div class="period-body"><div class="period-title">Conditioning</div><div class="drills"><div class="drill-group special"><div class="drill-label">Blackhawk Day</div><div class="drill-item">Blackhawk Day &mdash; Push Ups &mdash; Core</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;6:45</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:45&ndash;7:05</div></div><div class="period-body"><div class="period-title">Offense &mdash; Intro <span class="hudl">&#128242; HUDL</span></div><div class="drills"><div class="drill-group offense"><div class="drill-label">Full Group</div><div class="drill-item">Formations &amp; Terminology &mdash; Positions &mdash; Route Tree</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:05&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Intro <span class="hudl">&#128242; HUDL</span></div><div class="drills"><div class="drill-group defense"><div class="drill-label">Full Group</div><div class="drill-item">Odd &amp; Even fronts &mdash; Position philosophy &mdash; Alignment</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">End Talk</div><div class="drills"><div class="drill-group team"><div class="drill-label">Coach&rsquo;s Talk</div><div class="drill-item">The 6 Foundations &mdash; Attendance &amp; timeliness is important</div></div></div></div></div></div></div></div>
+        <div class="practice" id="p-jun18"><button class="practice-toggle" onclick="togglePractice('p-jun18')"><div class="practice-toggle-inner"><span class="practice-num-badge">#1</span><div class="practice-header-text"><div class="practice-date">June 18 &mdash; Quick Game &amp; Pass Pro</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Pursuit Day</div><div class="drills"><div class="drill-group special"><div class="drill-label">Pursuit Day</div><div class="drill-item">Pursuit Day &mdash; Body Weight &mdash; Core</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="period-note">Pass routes and inside zone</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Stance &amp; Starts &mdash; Quick Routes (Hitch, Slant, Out, In) &mdash; Signals</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Quicks &mdash; 1 Step Drop</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Quick Protection &mdash; Ram/Lion &mdash; Solid Protection &mdash; Rhino/Leopard &mdash; Signals</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Offense understands importance of speed and detail for quick</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="period-note">Cover 3 &mdash; Stance, Base odd front, gap responsibility, pursuit, signals</div><div class="drills"><div class="drill-group defense"><div class="drill-label"><span class="cn">Lubs</span> DB</div><div class="drill-item">Cover 3 drops</div></div><div class="drill-group defense"><div class="drill-label"><span class="cn">Erv</span> LB</div><div class="drill-item">Read triangle / fits</div></div><div class="drill-group defense"><div class="drill-label"><span class="cn">Dontez</span> D-Line</div><div class="drill-item">Stance, alignment, get off</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Every player can align correctly and communicate the call</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div></div></div>
+        <div class="practice" id="p-jun23"><button class="practice-toggle" onclick="togglePractice('p-jun23')"><div class="practice-toggle-inner"><span class="practice-num-badge">#2</span><div class="practice-header-text"><div class="practice-date">June 23 &mdash; Inside Zone &amp; Drop Game</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; 4th Quarter Circuit</div><div class="drills"><div class="drill-group special"><div class="drill-label">4th Quarter Circuit</div><div class="drill-item">4th Quarter Circuit &mdash; Body Weight &mdash; Core</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="period-note">Drop routes and Inside Zone intro</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Drop Routes &mdash; Curl, In, Out, Verts, Spot, Mesh, Smash &mdash; Signals</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Quick / Drop Back</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Inside Zone &mdash; Slide Step &mdash; Signal</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Continued practice with Pass Pro and crisp routes, intro the slide</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="period-note">Cover 1 &mdash; Force-Fill-Spill &mdash; Motion Communication</div><div class="drills"><div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item">Man coverage technique</div></div><div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item">Run / pass reads</div></div><div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item">Strike and shed</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Players understand eyes, leverage and communication</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div></div></div>
+        <div class="practice" id="p-jun25"><button class="practice-toggle" onclick="togglePractice('p-jun25')"><div class="practice-toggle-inner"><span class="practice-num-badge">#3</span><div class="practice-header-text"><div class="practice-date">June 25 &mdash; Roll Coverage &amp; Rollout Game</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Blackhawk Plus</div><div class="drills"><div class="drill-group special"><div class="drill-label">Blackhawk Plus</div><div class="drill-item">Blackhawk Plus</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR / RB</div><div class="drill-item">Flood and Wheel &mdash; Signals</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Erv</span> QB</div><div class="drill-item">Roll &mdash; Ringo / Lucky</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Roll Out Coverage</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Offense understands the need for depth, speed, and eyes for rollout</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="period-note">Even Front Installation &mdash; Blitz #1</div><div class="drills"><div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item">Rotation and communication</div></div><div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item">Blitz path and timing</div></div><div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item">Even front alignments</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Players can adjust between fronts without confusion</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div></div></div>
+      </div>
+      <div class="month-section">
+        <div class="month-label">July 2026</div>
+        <div class="practice" id="p-jul7"><button class="practice-toggle" onclick="togglePractice('p-jul7')"><div class="practice-toggle-inner"><span class="practice-num-badge">#4</span><div class="practice-header-text"><div class="practice-date">July 7 &mdash; OZ &amp; 7v7 Prep</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:15&ndash;6:35</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Game Speed</div><div class="drills"><div class="drill-group special"><div class="drill-label">Game Speed</div><div class="drill-item">Game Speed</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;6:40</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:40&ndash;7:20</div></div><div class="period-body"><div class="period-title">Offense &amp; D-Line</div><div class="period-note">Preparing for 7v7 &mdash; play sheets and personnel groups</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs/Erv</span> WR/RB/QB</div><div class="drill-item">7v7 Practice &mdash; Quicks, Drops, Roll, Empty w/ Defense</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line (6:40&ndash;7:00)</div><div class="drill-item">Outside Zone &mdash; Bucket Step</div></div><div class="drill-group defense"><div class="drill-label">D-Line (7:00&ndash;7:20)</div><div class="drill-item">Cover 2 &mdash; Blitz #2 &mdash; Pressure Checks</div></div><div class="drill-group goal"><div class="drill-label">Overall Goal</div><div class="drill-item">Execute the pass game &mdash; Defense communicates at full speed</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div></div></div>
+        <div class="practice gameday" id="p-jul8"><button class="practice-toggle" onclick="togglePractice('p-jul8')"><div class="practice-toggle-inner"><span class="practice-num-badge">#5</span><div class="practice-header-text"><div class="practice-date">July 8 &mdash; 7v7 vs JV</div><div class="practice-theme">6:00 PM @ BH</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="game-detail"><div class="game-detail-title">&#127944; 7v7 vs JV</div><div class="game-detail-sub">6:00 PM &mdash; Bloomfield Hills</div></div></div></div>
+        <div class="practice" id="p-jul9"><button class="practice-toggle" onclick="togglePractice('p-jul9')"><div class="practice-toggle-inner"><span class="practice-num-badge">#6</span><div class="practice-header-text"><div class="practice-date">July 9 &mdash; Power &amp; Blocking</div><div class="practice-theme">6:00 &ndash; 7:30 PM</div></div><span class="practice-chevron">&#9662;</span></div></button><div class="practice-content"><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:00&ndash;6:10</div></div><div class="period-body"><div class="period-title">Warm Up</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:10&ndash;6:30</div></div><div class="period-body"><div class="period-title">Conditioning &mdash; Competition Day</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:30&ndash;6:35</div></div><div class="period-body"><div class="period-title">Water / Rest</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">6:35&ndash;7:00</div></div><div class="period-body"><div class="period-title">Offense &mdash; Individual</div><div class="drills"><div class="drill-group offense"><div class="drill-label"><span class="cn">Lubs</span> WR/RB</div><div class="drill-item">Routes / Blocking Technique</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">RE</span> QB</div><div class="drill-item">Drop and Roll Technique</div></div><div class="drill-group offense"><div class="drill-label"><span class="cn">Dontez</span> O-Line</div><div class="drill-item">Power</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:00&ndash;7:20</div></div><div class="period-body"><div class="period-title">Defense &mdash; Individual</div><div class="drills"><div class="drill-group defense"><div class="drill-label">DB</div><div class="drill-item tbd">TBD</div></div><div class="drill-group defense"><div class="drill-label">LB</div><div class="drill-item tbd">TBD</div></div><div class="drill-group defense"><div class="drill-label">D-Line</div><div class="drill-item tbd">TBD</div></div></div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:20&ndash;7:30</div></div><div class="period-body"><div class="period-title">Tackle Technique Drill</div></div></div></div><div class="period"><div class="period-row"><div class="period-time"><div class="period-time-text">7:30</div></div><div class="period-body"><div class="period-title">End &mdash; Motivation &amp; Info</div></div></div></div></div></div>
+      </div>
+      <p class="footer-note">Bloomfield Hills Black Hawks &middot; Coaches Page &middot; 2026</p>
+    </div>
+  </div>
+</div>
+
+<script>
+var unlocked = false;
+
+// Event data for calendar detail popups
+var events = {
+  june: {
+    15: [{type:'special', title:'Conditioning', detail:'8:00 &ndash; 10:00 AM'}],
+    16: [{type:'practice', title:'Freshman Practice', detail:'Tuesday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Field &mdash; Basic Foundations'}],
+    18: [{type:'practice', title:'Freshman Practice', detail:'Thursday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    22: [{type:'special', title:'Conditioning', detail:'8:00 &ndash; 10:00 AM'}],
+    23: [{type:'practice', title:'Freshman Practice', detail:'Tuesday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}],
+    25: [{type:'practice', title:'Freshman Practice', detail:'Thursday &mdash; 6:00&ndash;7:30 PM &mdash; Strength / Football'}]
+  },
+  july: {
+    6:  [{type:'special', title:'Conditioning', detail:'8:00 &ndash; 10:00 AM'}],
+    7:  [{type:'practice', title:'Freshman Practice', detail:'8:00 &ndash; 10:00 AM'}],
+    8:  [{type:'scrimmage', title:'7v7 vs JV', detail:'Wednesday &mdash; 6:00 PM @ Home'}],
+    9:  [{type:'practice', title:'Freshman Practice', detail:'8:00 &ndash; 10:00 AM'}],
+    13: [{type:'special', title:'Conditioning', detail:'8:00 &ndash; 10:00 AM'}],
+    14: [{type:'practice', title:'Freshman Practice', detail:'8:00 &ndash; 10:00 AM'}],
+    15: [{type:'scrimmage', title:'7v7 vs JV', detail:'Wednesday &mdash; 6:00 PM @ TBD'}],
+    16: [{type:'practice', title:'Freshman Practice', detail:'8:00 &ndash; 10:00 AM'}],
+    20: [{type:'special', title:'Conditioning', detail:'8:00 &ndash; 10:00 AM'}],
+    21: [{type:'practice', title:'Freshman Practice', detail:'8:00 &ndash; 10:00 AM'}],
+    23: [{type:'practice', title:'Freshman Practice', detail:'8:00 &ndash; 10:00 AM'}],
+    27: [{type:'special', title:'Conditioning', detail:'8:00 &ndash; 10:00 AM'}],
+    28: [{type:'practice', title:'Freshman Practice', detail:'8:00 &ndash; 10:00 AM'}],
+    30: [{type:'practice', title:'Freshman Practice', detail:'8:00 &ndash; 10:00 AM'}],
+    31: [{type:'special', title:'Equipment Handout', detail:'Friday &mdash; 11:00 AM&ndash;12:00 PM'}]
+  },
+  august: {
+    10: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 8:00 PM &mdash; Valid physical required to practice!'}],
+    11: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 8:00 PM'}],
+    12: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 8:00 PM'}],
+    13: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 8:00 PM'}],
+    14: [{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 8:00 PM'}],
+    15: [{type:'scrimmage', title:'Scrimmage', detail:'8:30 &ndash; 10:00 AM'},{type:'special', title:'Uniform Handout', detail:'10:00 &ndash; 10:30 AM'},{type:'special', title:'BBQ', detail:'11:00 AM &ndash; 12:00 PM'}],
+    17: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:15 PM'}],
+    18: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:15 PM'}],
+    19: [{type:'special', title:'Freshman Pictures', detail:'2:00 &ndash; 4:00 PM'},{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 6:00 PM'}],
+    20: [{type:'scrimmage', title:'Scrimmage @ Plymouth HS', detail:'Freshman 4:00 PM &mdash; Varsity 6:00 PM'}],
+    21: [{type:'scrimmage', title:'Scrimmage @ Plymouth HS', detail:'Freshman 4:00 PM &mdash; Varsity 6:00 PM'}],
+    22: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    23: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+        24: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    25: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    26: [{type:'game', title:'Freshman @ L\'Anse Creuse', detail:'4:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=38495%20L%27Anse%20Creuse%20Rd%20Harrison%20Township%20MI%2048045" target="_blank">Get Directions</a>'}],
+    27: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs L\'Anse Creuse', detail:'7:00 PM'}],
+    28: [{type:'game', title:'Varsity (Home) vs L\'Anse Creuse', detail:'7:00 PM'}],
+    29: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    30: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+        31: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}]
+  },
+  september: {
+    1:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    2:  [{type:'game', title:'Freshman (Home) vs Lake Orion', detail:'4:30 PM'}],
+    3:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity @ Lake Orion', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=1565%20E%20Walton%20Blvd%20Auburn%20Hills%20MI%2048326" target="_blank">Get Directions</a>'}],
+    4:  [{type:'game', title:'Varsity @ Lake Orion', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=1565%20E%20Walton%20Blvd%20Auburn%20Hills%20MI%2048326" target="_blank">Get Directions</a>'}],
+    5:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    6:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+        7:  [{type:'special', title:'Labor Day', detail:''},{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    8:  [{type:'practice', title:'Freshman Practice &mdash; School Starts', detail:'3:30 &ndash; 5:30 PM'}],
+    9:  [{type:'game', title:'Freshman @ Rochester', detail:'Wednesday &mdash; 4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=1361%20Walton%20Blvd%20Rochester%20Hills%20MI%2048309" target="_blank">Get Directions</a>'}],
+    10: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs Rochester', detail:'7:00 PM &mdash; Community Night'}],
+    11: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs Rochester', detail:'7:00 PM &mdash; Community Night'}],
+    12: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    14: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    15: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    16: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    17: [{type:'game', title:'Freshman (Home) vs Stoney Creek', detail:'4:30 PM'}],
+    18: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity @ Stoney Creek', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=6755%20Sheldon%20Rd%20Rochester%20Hills%20MI%2048306" target="_blank">Get Directions</a>'}],
+    19: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    21: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    22: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    23: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    24: [{type:'game', title:'Freshman @ West Bloomfield', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4925%20Orchard%20Lake%20Rd%20West%20Bloomfield%20MI%2048323" target="_blank">Get Directions</a>'}],
+    25: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs West Bloomfield', detail:'7:00 PM'}],
+    26: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    28: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    29: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    30: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}]
+  },
+  october: {
+    1:  [{type:'game', title:'Freshman (Home) vs Athens', detail:'4:30 PM'}],
+    2:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity @ Athens', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4333%20John%20R%20Rd%20Troy%20MI%2048085" target="_blank">Get Directions</a>'}],
+    3:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    5:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    6:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    7:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    8:  [{type:'game', title:'Freshman @ Troy', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4777%20Northfield%20Pkwy%20Troy%20MI%2048098" target="_blank">Get Directions</a>'}],
+    9:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs Troy', detail:'7:00 PM &mdash; Homecoming'}],
+    10: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    12: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    13: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    14: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    15: [{type:'game', title:'Freshman @ Gold Crossover', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4777%20Northfield%20Pkwy%20Troy%20MI%2048098" target="_blank">Get Directions (Troy HS)</a>'}],
+    16: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity Crossover TBD', detail:'7:00 PM'}],
+    17: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    19: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    20: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
+    21: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
+    22: [{type:'game', title:'Freshman @ AA Pioneer', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=601%20W%20Stadium%20Blvd%20Ann%20Arbor%20MI%2048103" target="_blank">Get Directions</a>'}],
+    23: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs AA Pioneer', detail:'7:00 PM &mdash; Senior Night'}],
+    24: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}]
+  }
+};
+
+var dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var monthNames = {june:'June',july:'July',august:'August',september:'September',october:'October'};
+var monthNums  = {june:6,july:7,august:8,september:9,october:10};
+
+function showPage(name, btn) {
+  if (name === 'coaches' && !unlocked) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.top-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('page-coaches').classList.add('active');
+    btn.classList.add('active');
+    document.getElementById('lockScreen').style.display = 'block';
+    document.getElementById('coachesContent').style.display = 'none';
+    setTimeout(() => document.getElementById('pwInput').focus(), 100);
+    return;
+  }
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.top-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+function checkPw() {
+  if (document.getElementById('pwInput').value === 'led') {
+    unlocked = true;
+    document.getElementById('lockScreen').style.display = 'none';
+    document.getElementById('coachesContent').style.display = 'block';
+  } else {
+    document.getElementById('lockError').style.display = 'block';
+    document.getElementById('pwInput').value = '';
+    setTimeout(() => { document.getElementById('lockError').style.display = 'none'; }, 3000);
+  }
+}
+
+function showMonth(name, btn) {
+  document.querySelectorAll('.cal-grid-wrap').forEach(g => g.classList.remove('active'));
+  document.querySelectorAll('.month-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('cal-' + name).classList.add('active');
+  btn.classList.add('active');
+  // Hide all detail panels
+  document.querySelectorAll('.event-detail-panel').forEach(p => { p.classList.remove('active'); p.innerHTML = ''; });
+}
+
+function showDetail(month, day) {
+  // Hide all panels first
+  document.querySelectorAll('.event-detail-panel').forEach(function(p) {
+    p.classList.remove('active');
+    p.innerHTML = '';
+  });
+  var panel = document.getElementById('detail-' + month);
+  var evList = (events[month] || {})[day];
+  if (!evList || evList.length === 0) {
+    return;
+  }
+  // Get day of week
+  var d = new Date(2026, monthNums[month]-1, day);
+  var dayName = dayNames[d.getDay()];
+  var html = '<div class="edp-date">' + dayName + ', ' + monthNames[month] + ' ' + day + ', 2026</div>';
+  evList.forEach(function(ev) {
+    html += '<div class="edp-event ' + ev.type + '"><div class="edp-title">' + ev.title + '</div>';
+    if (ev.detail) html += '<div class="edp-detail">' + ev.detail + '</div>';
+    html += '</div>';
+  });
+  panel.innerHTML = html;
+  panel.classList.add('active');
+}
+
+function showSub(name, btn) {
+  document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sub-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+function togglePractice(id) { document.getElementById(id).classList.toggle('open'); }
+function toggleCond(id) { document.getElementById(id).classList.toggle('open'); }
+</script>
+</body>
+</html>
