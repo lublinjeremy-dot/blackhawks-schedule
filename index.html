@@ -394,8 +394,8 @@
         <div class="cal-cell" onclick="showDetail('october',20)"><div class="cal-num">20<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',21)"><div class="cal-num">21<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5:30</div></div></div></div>
         <div class="cal-cell" onclick="showDetail('october',22)"><div class="cal-num">22<div class="cal-dots"><div class="cal-dot game">&#128205; @ AA Pioneer</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('october',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-5pm</div><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
-        <div class="cal-cell" onclick="showDetail('october',24)"><div class="cal-num">24<div class="cal-dots"><div class="cal-dot practice">Practice 3:30-6pm</div></div></div></div>
+        <div class="cal-cell" onclick="showDetail('october',23)"><div class="cal-num">23<div class="cal-dots"><div class="cal-dot game">Varsity Home 7pm</div></div></div></div>
+        <div class="cal-cell"><div class="cal-num">24</div></div>
         <div class="cal-cell"><div class="cal-num">25</div></div>
         <div class="cal-cell"><div class="cal-num">26</div></div>
         <div class="cal-cell"><div class="cal-num">27</div></div>
@@ -571,14 +571,13 @@ var events = {
     18: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:15 PM'}],
     19: [{type:'special', title:'Freshman Pictures', detail:'2:00 &ndash; 4:00 PM'},{type:'practice', title:'Freshman Practice', detail:'4:00 &ndash; 6:00 PM'}],
     20: [{type:'scrimmage', title:'Scrimmage @ Plymouth HS', detail:'Freshman 4:00 PM &mdash; Varsity 6:00 PM'}],
-    21: [{type:'scrimmage', title:'Scrimmage @ Plymouth HS', detail:'Freshman 4:00 PM &mdash; Varsity 6:00 PM'}],
+    21: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     22: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     23: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
-        24: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     25: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
     26: [{type:'game', title:'Freshman @ L\'Anse Creuse', detail:'4:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=38495%20L%27Anse%20Creuse%20Rd%20Harrison%20Township%20MI%2048045" target="_blank">Get Directions</a>'}],
-    27: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs L\'Anse Creuse', detail:'7:00 PM'}],
-    28: [{type:'game', title:'Varsity (Home) vs L\'Anse Creuse', detail:'7:00 PM'}],
+    27: [{type:'practice', title:'Freshman Practice', detail:'Lifts 3:15&ndash;4:00 PM &mdash; Practice 3:30&ndash;5:00 PM'},{type:'game', title:'Varsity (Home) vs L\'Anse Creuse', detail:'7:00 PM'}],
+    28: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     29: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     30: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
         31: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}]
@@ -586,7 +585,7 @@ var events = {
   september: {
     1:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
     2:  [{type:'game', title:'Freshman (Home) vs Lake Orion', detail:'4:30 PM'}],
-    3:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity @ Lake Orion', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=1565%20E%20Walton%20Blvd%20Auburn%20Hills%20MI%2048326" target="_blank">Get Directions</a>'}],
+    3:  [{type:'practice', title:'Freshman Practice', detail:'Lifts 3:15&ndash;4:00 PM &mdash; Practice 3:30&ndash;5:00 PM'},{type:'game', title:'Varsity @ Lake Orion', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=1565%20E%20Walton%20Blvd%20Auburn%20Hills%20MI%2048326" target="_blank">Get Directions</a>'}],
     4:  [{type:'game', title:'Varsity @ Lake Orion', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=1565%20E%20Walton%20Blvd%20Auburn%20Hills%20MI%2048326" target="_blank">Get Directions</a>'}],
     5:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     6:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
@@ -600,13 +599,13 @@ var events = {
     15: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     16: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
     17: [{type:'game', title:'Freshman (Home) vs Stoney Creek', detail:'4:30 PM'}],
-    18: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity @ Stoney Creek', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=6755%20Sheldon%20Rd%20Rochester%20Hills%20MI%2048306" target="_blank">Get Directions</a>'}],
+    18: [{type:'practice', title:'Freshman Practice', detail:'Practice 3:30&ndash;5:30 PM &mdash; Lifts 4:45&ndash;5:30 PM'},{type:'game', title:'Varsity @ Stoney Creek', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=6755%20Sheldon%20Rd%20Rochester%20Hills%20MI%2048306" target="_blank">Get Directions</a>'}],
     19: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     21: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     22: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     23: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
     24: [{type:'game', title:'Freshman @ West Bloomfield', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4925%20Orchard%20Lake%20Rd%20West%20Bloomfield%20MI%2048323" target="_blank">Get Directions</a>'}],
-    25: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs West Bloomfield', detail:'7:00 PM'}],
+    25: [{type:'practice', title:'Freshman Practice', detail:'Practice 3:30&ndash;5:30 PM &mdash; Lifts 4:45&ndash;5:30 PM'},{type:'game', title:'Varsity (Home) vs West Bloomfield', detail:'7:00 PM'}],
     26: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     28: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     29: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
@@ -614,26 +613,26 @@ var events = {
   },
   october: {
     1:  [{type:'game', title:'Freshman (Home) vs Athens', detail:'4:30 PM'}],
-    2:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity @ Athens', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4333%20John%20R%20Rd%20Troy%20MI%2048085" target="_blank">Get Directions</a>'}],
+    2:  [{type:'practice', title:'Freshman Practice', detail:'Practice 3:30&ndash;5:30 PM &mdash; Lifts 4:45&ndash;5:30 PM'},{type:'game', title:'Varsity @ Athens', detail:'7:00 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4333%20John%20R%20Rd%20Troy%20MI%2048085" target="_blank">Get Directions</a>'}],
     3:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     5:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     6:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     7:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
     8:  [{type:'game', title:'Freshman @ Troy', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4777%20Northfield%20Pkwy%20Troy%20MI%2048098" target="_blank">Get Directions</a>'}],
-    9:  [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs Troy', detail:'7:00 PM &mdash; Homecoming'}],
+    9:  [{type:'practice', title:'Freshman Practice', detail:'Practice 3:30&ndash;5:30 PM &mdash; Lifts 4:45&ndash;5:30 PM'},{type:'game', title:'Varsity (Home) vs Troy', detail:'7:00 PM &mdash; Homecoming'}],
     10: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     12: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     13: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     14: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
     15: [{type:'game', title:'Freshman @ Gold Crossover', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=4777%20Northfield%20Pkwy%20Troy%20MI%2048098" target="_blank">Get Directions (Troy HS)</a>'}],
-    16: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity Crossover TBD', detail:'7:00 PM'}],
+    16: [{type:'practice', title:'Freshman Practice', detail:'Practice 3:30&ndash;5:30 PM &mdash; Lifts 4:45&ndash;5:30 PM'},{type:'game', title:'Varsity Crossover TBD', detail:'7:00 PM'}],
     17: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     19: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     20: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}],
     21: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:30 PM'}],
     22: [{type:'game', title:'Freshman @ AA Pioneer', detail:'4:30 PM &mdash; &#128205; <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=601%20W%20Stadium%20Blvd%20Ann%20Arbor%20MI%2048103" target="_blank">Get Directions</a>'}],
-    23: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 5:00 PM'},{type:'game', title:'Varsity (Home) vs AA Pioneer', detail:'7:00 PM &mdash; Senior Night'}],
-    24: [{type:'practice', title:'Freshman Practice', detail:'3:30 &ndash; 6:00 PM'}]
+    23: [{type:'game', title:'Varsity (Home) vs AA Pioneer', detail:'7:00 PM &mdash; Senior Night'}],
+
   }
 };
 
